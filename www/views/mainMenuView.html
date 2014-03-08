@@ -25,39 +25,15 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/vendor/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <img src="logo.png" alt="logo.png">
-                    <a class="navbar-brand">BPEase</a>
-                    <a class="navbar-brand" href="#Home">Home</a>
-                </div>
-            </div>
-        </div>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand">Logo</a>
-                    <a class="navbar-brand">BPEase</a>
-                    <a class="navbar-brand" href="#Home">Home</a>
-                </div>
-            </div>
-        </div>
+    <body onLoad="onLoad()">
         <div class="container">
-            <!-- Example row of columns -->
-            <div><p>Please enter your medical data</p></div>
-            <form>
-                <input type="checkbox">Tick it....<br>
-                <input type="checkbox">Tick it....<br>
-                <input type="checkbox">Tick it....
-            </form>
-            <div><p>Warning....<br>Enter information:</p>
-                <form name="test">
-                    <input type="text" name="Enter information">
-                </form>
-                <button type="submit">Back</button>
-                <button type="submit">Finish and Save</button>
-            </div>
-        </body>
-    </html>
+            <div><p>Select a mode</p></div>
+            <div><p>View Records</p></div>
+            <div><p>Personal Info</p></div>
+            <div><p>Information</p></div>
+            <div><p>Current Activity</p></div>
+        </div>
+
+        <script src="js/mainMenuView.js"></script>
+    </body>
+</html>

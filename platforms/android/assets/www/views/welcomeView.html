@@ -25,39 +25,14 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/vendor/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <img src="logo.png" alt="logo.png">
-                    <a class="navbar-brand">BPEase</a>
-                    <a class="navbar-brand" href="#Home">Home</a>
-                </div>
-            </div>
-        </div>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand">Logo</a>
-                    <a class="navbar-brand">BPEase</a>
-                    <a class="navbar-brand" href="#Home">Home</a>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <!-- Example row of columns -->
-            <div><p>Please enter your medical data</p></div>
-            <form>
-                <input type="checkbox">Tick it....<br>
-                <input type="checkbox">Tick it....<br>
-                <input type="checkbox">Tick it....
-            </form>
-            <div><p>Warning....<br>Enter information:</p>
-                <form name="test">
-                    <input type="text" name="Enter information">
-                </form>
-                <button type="submit">Back</button>
-                <button type="submit">Finish and Save</button>
-            </div>
-        </body>
-    </html>
+    <body onLoad="onLoad()">
+        <img src="img/logo.png" alt="logo.png" id="logo">
+        <div><span id="welcome">Welcome</span></div>
+        <a id="register-button" href="">Register</a>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+                    app.initialize();
+        </script>
+    </body>
+</html>
