@@ -68,24 +68,45 @@
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="container">
-      <h1>Records</h1>
+      <h1>Personal Information</h1>
   </div>
 </div>
   <div class="container">
     <script>
-      var startDate = "00/00/00";
-      var endDate = "00/00/00";
-
+      var name = "User";
+      var nhs = "Number";
+      var dob = "00/00/00";
+      var gpemail = "GP@email.com";
+      var yes = "Yes";
+      var no = "No"
+      var medication ="List of medication"
     </script>
     <!-- Example row of columns -->
-<div>
-   <form>
-<input type="checkbox" name="record" value="Record"> <a href = ""><script>document.write(startDate)</script> - <script>document.write(endDate)</script></a>
-</form>
-</div>
+      <div>
+        <p>Name: <script>document.write(name)</script></p>
+      </div>
+        <div>
+        <p>NHS Number: <script>document.write(nhs)</script></p>
+      </div>
+      <div>
+        <p>Date of Birth: <script>document.write(dob)</script></p>
+      </div>
+      <div>
+        <p>GP Email: <script>document.write(gpemail)</script></p>
+      </div>
+     <div>
+        <p>Do you have Hypertension? <script>document.write(no)</script></p>
+      </div>
+      <div>
+        <p>Do you have a heart arrythmia? <script>document.write(no)</script></p>
+      </div>
+      <div>
+        <p>Medication Taken: </p>
+         <p><script>document.write(medication)</script></p>
+      </div>
  
       <div>
-        <a href = "">Back</a> <a href = "">Delete</a> <a href = "">Send</a> 
+        <a href = "">Back</a> <a href = "">Edit</a> 
       </div>
     </div>
   </body>
