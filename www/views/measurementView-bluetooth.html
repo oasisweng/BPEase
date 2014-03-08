@@ -26,13 +26,21 @@
         <script src="js/vendor/bootstrap.min.js"></script>
     </head>
     <body>
-        <img src="img/logo.png" alt="logo.png" id="logo">
-        <div><span id="welcome">Welcome</span></div>
-        <a id="register-button" href="">Register</a>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-                    app.initialize();
-        </script>
+        <div id="reading-1" class="container">
+            <span>Reading 1</span>
+            <span>Diastolic: </span>
+            <span>Systolic: </span>
+            <span>Pulse: </span>
+            <a href="#" id="measurement-button-1">Start</a>
+        </div>
+        <div id="reading-2" class="container">
+            <span>Reading 2</span>
+            <span>Diastolic: </span>
+            <span>Systolic: </span>
+            <span>Pulse: </span>
+            <a href="#" id="measurement-button-2">Start</a>
+        </div>
+        <a href="#" id="button-back">Back</a>
+        <a href="#" id="button-save">Save</a>
     </body>
 </html>
