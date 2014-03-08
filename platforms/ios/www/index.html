@@ -25,15 +25,28 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/vendor/bootstrap.min.js"></script>
     </head>
-    <body onLoad="onLoad()">
-        <img src="img/logo.png" alt="logo.png" id="logo">
-        <div><span id="welcome">Welcome</span></div>
-        <a id="register-button" href="/views/basicDetailView.html">Register</a>
-        <a href="/views/mainMenuView.html">Go to main menu</a>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-                    app.initialize();
-        </script>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Logo</a>
+                    <a class="navbar-brand">BPEase</a>
+                    <a class="navbar-brand" href="home">Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <script>
+                var startDate = "05/03/14";
+                var MornRem = "8:00";
+            </script>
+            <!-- Example row of columns -->
+            <div><p>Select</p></div>
+            <div><p>HBPM Mode</p></div>
+            <div><p>Start date</p></div>
+            <input id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date"><br>
+            <button type="submit">Back</button>
+            <button type="submit">Next</button>
+        </div>
     </body>
 </html>
