@@ -31,7 +31,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand">Logo</a>
                     <a class="navbar-brand">BPEase</a>
-                    <a class="navbar-brand" href="home">Home</a>
+                    <a class="navbar-brand" href="file:///Users/chaitanya/BPEase/www/views/mainMenuView.html">Home</a>
                 </div>
             </div>
         </div>
@@ -41,12 +41,15 @@
                 var MornRem = "8:00";
             </script>
             <!-- Example row of columns -->
-            <div><p>Select</p></div>
-            <div><p>HBPM Mode</p></div>
-            <div><p>Free Mode</p></div>
-
-            <button type="submit">Back</button>
-            <button type="submit">Next</button>
+            <div><p>Start date</p></div><input id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">
+            <div><p>End date</p></div><input id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">
+            <div>Morning reminder<input type="time" name="usr_time" value="12:00">
+            <div>Evening reminder<input type="time" name="usr_time" value="12:00">
+            <form>
+            Bluetooth<input type="checkbox"><br>
+            </form>
+            <a href="file:///Users/chaitanya/BPEase/www/views/modeselection.html"><button type="submit">Back</button></a>
+            <a href="file:///Users/chaitanya/BPEase/www/views/measurementView-bluetooth.html"><button type="submit">Next</button></a>
         </div>
     </body>
 </html>
