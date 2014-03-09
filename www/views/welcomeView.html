@@ -5,15 +5,6 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <!-- JS -->
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/vendor/jquery.mobile-1.4.2.min.js"></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/vendor/jquery.pageslide.css">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/vendor/bootstrap-theme.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,17 +13,28 @@
         <![endif]-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- JS -->
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/jquery.mobile-1.4.2.min.js"></script>
+        <script src="/js/vendor/jquery.pageslide.min.js"></script>
+        <script src="/js/common.js"></script>
+        <script src="/js/index.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.pageslide.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.mobile-1.4.2.min.css">
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/vendor/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/vendor/bootstrap-theme.min.css">
+        <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
     </head>
     <body onLoad="onLoad()">
         <img src="img/logo.png" alt="logo.png" id="logo">
         <div><span id="welcome">Welcome</span></div>
-        <a id="register-button" href="file:///Users/chaitanya/BPEase/www/views/basicDetailView.html">Register</a>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <a id="register-button" href="/views/basicDetailView.html">Register</a>
         <script type="text/javascript">
-                    app.initialize();
+            app.initialize();
         </script>
     </body>
 </html>

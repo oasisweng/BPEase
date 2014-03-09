@@ -139,6 +139,7 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/templates/navbar-tmpl.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/basicDetailView.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/currentActivity.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/information.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/mainMenuView.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/measurementView-bluetooth.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/measurementView-manual.html \
