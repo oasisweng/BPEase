@@ -1,9 +1,1 @@
-{
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
-    },
-    "config_munge": {},
-    "installed_plugins": {},
-    "dependent_plugins": {}
-}
+{"prepare_queue":{"installed":[],"uninstalled":[]},"config_munge":{"framework":{"MessageUI.framework":{"true":1},"CoreGraphics.framework":{"false":1},"CoreBluetooth.framework":{"false":1},"AssetsLibrary.framework":{"false":2},"MobileCoreServices.framework":{"false":1}},"config.xml":{"/*":{"<feature name=\"EmailComposer\"><param name=\"ios-package\" value=\"APPEmailComposer\" /></feature>":1,"<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>":1,"<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>":1,"<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>":1},"/widget":{"<feature name=\"BluetoothSerial\"><param name=\"ios-package\" onload=\"true\" value=\"MEGBluetoothSerial\" /></feature>":1}}},"installed_plugins":{"de.appplant.cordova.plugin.email-composer":{"PACKAGE_NAME":"com.doc.BPEase"},"org.apache.cordova.splashscreen":{"PACKAGE_NAME":"com.doc.bpease"},"com.megster.cordova.bluetoothserial":{"PACKAGE_NAME":"com.doc.bpease"},"org.apache.cordova.file":{"PACKAGE_NAME":"com.doc.bpease"},"org.apache.cordova.file-transfer":{"PACKAGE_NAME":"com.doc.bpease"}},"dependent_plugins":{}}

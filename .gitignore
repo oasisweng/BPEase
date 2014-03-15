@@ -1,4 +1,4 @@
 .DC_Store
 **/.DC_Store
-platforms/**
+**/platforms/**	
 !.cordova/

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.doc.BPEase" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>HelloWorld</name>
+<widget id="com.doc.bpease" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>BPEase</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        BPEsae is awesome
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
@@ -47,5 +47,14 @@
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    <!-- (Plugin Name),(Avail OS) -->
+    <!-- Bluetooth Serial, IOS Android -->
+    <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.2.0" />
+    <!-- email-composer, iOS WP Android -->
+    <gap:plugin name="de.appplant.cordova.plugin.email-composer" version="0.7.1" />
+    <!-- File, all platforms -->
+    <gap:plugin name="org.apache.cordova.file" version="1.0.1" />
+    <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.2" />
+    
     <access origin="http://127.0.0.1*" />
 </widget>

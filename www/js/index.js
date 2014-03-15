@@ -37,6 +37,20 @@ var app = {
 };
 
 function onLoad(){
+    console.log(window.plugins);
+    window.plugins.email.isServiceAvailable(
+        function (isAvailable){
+            console.log("successful");
+            window.plugin.email.open({
+                to:      ['oasisweng@gmail.com'],
+                cc:      [],
+                bcc:     [],
+                subject: 'Hello World!',
+                body:    '<h3>TEST</h3><h2>TEST</h2><h1>TEST</h1>',
+                isHtml:  true
+            });
+        }
+);
 }
 
 

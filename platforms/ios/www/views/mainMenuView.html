@@ -5,15 +5,6 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <!-- JS -->
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/vendor/jquery.mobile-1.4.2.min.js"></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/vendor/jquery.pageslide.css">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/vendor/bootstrap-theme.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,18 +13,39 @@
         <![endif]-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- JS -->
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/jquery.mobile-1.4.2.min.js"></script>
+        <script src="/js/vendor/jquery.pageslide.min.js"></script>
+        <script src="/js/common.js"></script>
+        <script src="/js/mainMenuView.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.pageslide.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.mobile-1.4.2.min.css">
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/vendor/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/vendor/bootstrap-theme.min.css">
+        <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
     </head>
     <body onLoad="onLoad()">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <img src="/icon.png" alt="logo.png">
+                    <a class="navbar-brand">BPEase</a>
+                    <a class="" href="/views/mainMenuView.html">Home</a>
+                </div>
+            </div>
+        </div>
         <div class="container">
-            <div><p>Select a mode</p></div>
-            <div><p>View Records</p></div>
-            <div><p>Personal Info</p></div>
-            <div><p>Information</p></div>
-            <div><p>Current Activity</p></div>
+            <p><a href="/views/modeselection.html">Select a mode</a></p>
+            <p><a href="/views/recordsView.html">View Records</a></p>
+            <p><a href="/views/personalinformation.html">Personal Info</a></p>
+            <p><a href="/views/information.html">Information</a></p>
+            <p><a href="/views/currentActivityView.html">Current Activity</a></p>
         </div>
 
-        <script src="js/mainMenuView.js"></script>
     </body>
 </html>
