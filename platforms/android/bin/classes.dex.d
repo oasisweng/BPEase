@@ -1,0 +1,27 @@
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes.dex : \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/BuildConfig.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/HelloWorld.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R$attr.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R$drawable.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R$string.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R$xml.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$1$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$1$2.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$2$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$2$2.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$2$3.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$2$4.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$2.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$3$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$3$2.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$3$3.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$3$4.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$3.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$4$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$4.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$5$1.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification$5.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/dialogs/Notification.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/dexedLibs/classes-0f17ecc15b57c1fa25302ceaf312918d.jar \
