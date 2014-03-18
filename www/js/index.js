@@ -99,7 +99,7 @@ function readText() {
 
     return false;
 }
-
+  
 function saveText() {
     if (file.writer.available) {
         file.writer.available = false; 
