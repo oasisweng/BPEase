@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
-    <body>
+    <body onload = "onload()">
         <div class="app">
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">
@@ -34,6 +34,8 @@
                 <p class="event received">Device is Ready</p>
             </div>
         </div>
+        <p id="deviceProperties">Loading device properties...</p>
+        <p id="log"></p>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">

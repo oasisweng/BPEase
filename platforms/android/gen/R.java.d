@@ -1,4 +1,4 @@
-/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/gen/com/doc/BPEase/R.java \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/gen/com/phonegap/helloworld/R.java \
  : /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/res/drawable/icon.png \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/res/drawable-hdpi/icon.png \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/res/drawable-ldpi/icon.png \
