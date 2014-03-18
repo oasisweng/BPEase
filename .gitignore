@@ -3,4 +3,3 @@
 **/platforms/android/**	
 **/platforms/ios/**	
 !.cordova/
-!platforms/
