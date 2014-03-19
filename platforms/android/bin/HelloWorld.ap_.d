@@ -16,6 +16,7 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/cordova.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/cordova_plugins.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/css \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/EmailComposer.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/icon.png \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/img \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/index.html \
@@ -251,11 +252,14 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/js/vendor/jquery.mobile-1.4.2.min.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/js/vendor/jquery.pageslide.min.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/com.jcjee.plugins.emailcomposer \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/com.jcjee.plugins.emailcomposer/www \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs/www \

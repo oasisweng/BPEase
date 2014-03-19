@@ -170,6 +170,13 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
+        "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
+        "clobbers": [
+            "EmailComposer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -179,7 +186,8 @@ module.exports.metadata =
     "org.apache.cordova.dialogs": "0.2.6",
     "org.apache.cordova.file": "1.0.1",
     "org.apache.cordova.vibration": "0.3.7",
-    "org.apache.cordova.file-transfer": "0.4.2"
+    "org.apache.cordova.file-transfer": "0.4.2",
+    "com.jcjee.plugins.emailcomposer": "1.4.6"
 }
 // BOTTOM OF METADATA
 });

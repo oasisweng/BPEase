@@ -1,4 +1,6 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes.dex : \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/jcjee/plugins/EmailAttachmentProvider.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/jcjee/plugins/EmailComposer.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/BuildConfig.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/HelloWorld.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/com/phonegap/helloworld/R$attr.class \

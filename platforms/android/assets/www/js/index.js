@@ -116,6 +116,11 @@ function saveText() {
     return false;
 }
 
+//==============================
+// Email Composer
+//==============================
+
+
 function onload() {
     //alert("abc");
 }
