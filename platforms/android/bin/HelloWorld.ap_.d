@@ -25,6 +25,7 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/res \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/spec \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/spec.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/css/index.css \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/css/main.css \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/css/mainMenuView.css \
@@ -254,6 +255,7 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs/www \
@@ -283,6 +285,8 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransfer.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer/www/FileTransferError.js \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.vibration/www/vibration.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/res/icon \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/res/screen \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/res/icon/android \
@@ -352,4 +356,16 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/spec/lib/jasmine-1.2.0/jasmine.css \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/spec/lib/jasmine-1.2.0/jasmine.js \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/spec/lib/jasmine-1.2.0/MIT.LICENSE \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/basicDetailView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/currentActivityView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/information.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/mainMenuView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/measurementView-bluetooth.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/measurementView-manual.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/medicalInfoView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/modeSelectionView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/personalInformation.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/recordsView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/setupHBPMView.html \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/assets/www/views/welcomeView.html \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/AndroidManifest.xml \

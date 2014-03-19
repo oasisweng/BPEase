@@ -27,19 +27,17 @@
         <title>Hello World</title>
     </head>
     <body onload = "onload()">
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <img src="img/logo.png" alt="logo.png" id="logo">
+        <div><span id="welcome">Welcome</span></div>
+        <a id="register-button" href="/views/basicDetailView.html">Register</a>
+        <div id="debug">
+            <p id="deviceProperties">Loading device properties...</p>
+            <p id="log"></p>
         </div>
-        <p id="deviceProperties">Loading device properties...</p>
-        <p id="log"></p>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            app.initialize();
+           app.initialize();
         </script>
     </body>
 </html>

@@ -78,4 +78,5 @@
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/filetransfer/FileTransfer$TrackingInputStream.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/filetransfer/FileTransfer.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/filetransfer/FileUploadResult.class \
+/Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/classes/org/apache/cordova/vibration/Vibration.class \
 /Users/oasis_weng/Desktop/repos/app/BPEase/platforms/android/bin/dexedLibs/classes-0f17ecc15b57c1fa25302ceaf312918d.jar \

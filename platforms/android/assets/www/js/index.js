@@ -43,7 +43,6 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-
     },
 };
 
@@ -71,7 +70,6 @@ function gotFileWriter(fileWriter) {
     file.writer.object = fileWriter;
     saveText(); 
 }
-
 function gotFileEntry(fileEntry) {
     logit("Got File Entry!");
     file.entry = fileEntry;
@@ -99,10 +97,10 @@ function readText() {
 
     return false;
 }
-
+  
 function saveText() {
     if (file.writer.available) {
-        file.writer.available = false;
+        file.writer.available = false; 
         logit("saving text 'hello world!'");
         file.writer.object.onwriteend = function (evt) {
             file.writer.available = true;
