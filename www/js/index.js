@@ -43,6 +43,18 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
+        var mail = {
+            callback: function(result){logit("Email sent "+result);},
+            subject: "This is a test email",
+            body: "Chait is a man:"
+            toRecipients: ["oasisweng@gmail.com"],
+            ccRecipients: ["delia.gander.13@ucl.ac.uk","dingzhong.weng.13@ucl.ac.uk"],
+            bccRecipients: [],
+            isHTML: true,
+            attachments: []
+        }
+
+        window.plugins.emailComposer.showEmailComposerWithCallback(mail.callback, mail.subject, mail.body, mail.toRecipients, mail.ccRecipients, mail.bccRecipients,mailsHTML, mail.attachments);
     },
 };
 
@@ -114,6 +126,15 @@ function saveText() {
     }
 
     return false;
+}
+
+//==============================
+// Email Composer
+//==============================
+plugin.emailcomposer.isAvailable(available){
+    if (available){
+        sendEmail();
+    }
 }
 
 function onload() {
