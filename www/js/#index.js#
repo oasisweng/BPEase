@@ -43,18 +43,86 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-        var mail = {
-            callback: function(result){logit(result);},
-            subject: "This is a test email",
-            body: "Chait is a man:"
-            toRecipients: ["afsanab2011@gmail.com"],
-            ccRecipients: ["delia.gander.13@ucl.ac.uk","dingzhong.weng.13@ucl.ac.uk"],
-            bccRecipients: [],
-            isHTML: true,
-            attachments: []
+}
+}
+
+    /**
+   
+     * @param {Function} callback
+     * @param {Object?}  scope (default: window)
+     */
+    isServiceAvailable: function (callback, scope) {
+        var callbackFn = function () {
+            callback.apply(scope || window, arguments);
+        };
+
+        cordova.exec(callbackFn, null, 'EmailComposer', 'isServiceAvailable', []);
+    }
+
+};
+
+var plugin = new EmailComposer();
+
+module.exports = plugin;
+
+};
+
+EmailComposer.prototype = {
+    /**
+     * Öffnet den Email-Kontroller mit vorausgefüllten Daten.
+     *
+     * @param {Object?} options
+     */
+    open: function (options) {
+        var callbackFn = null,
+            options    = options || {};
+
+        var defaults = {
+            subject:     null,
+            body:        null,
+            to:          null,
+            cc:          null,
+            bcc:         null,
+            attachments: null,
+            isHtml:      true
         }
 
-        window.plugins.emailComposer.showEmailComposerWithCallback(mail.callback, mail.subject, mail.body, mail.toRecipients, mail.ccRecipients, mail.bccRecipients,mailsHTML, mail.attachments);
+        for (var key in defaults) {
+            if (options[key] !== undefined) {
+                defaults[key] = options[key];
+            }
+        }
+
+        cordova.exec(null, null, 'EmailComposer', 'open', [options]);
+    },
+
+    /**
+     * Alias für `open()`.
+     */
+    openDraft: function () {
+        this.open.apply(this, arguments);
+    },
+
+    /**
+     * Gibt an, ob Emails versendet werden können.
+     *
+     * @param {Function} callback
+     * @param {Object?}  scope (default: window)
+     */
+    isServiceAvailable: function (callback, scope) {
+        var callbackFn = function () {
+            callback.apply(scope || window, arguments);
+        };
+
+        cordova.exec(callbackFn, null, 'EmailComposer', 'isServiceAvailable', []);
+    }
+
+};
+
+var plugin = new EmailComposer();
+
+module.exports = plugin;
+
     },
 };
 
@@ -127,15 +195,6 @@ function saveText() {
     }
 
     return false;
-}
-
-//==============================
-// Email Composer
-//==============================
-plugin.emailcomposer.isAvailable(available){
-    if (available){
-        sendEmail();
-    }
 }
 
 function onload() {
