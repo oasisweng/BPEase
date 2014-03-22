@@ -77,4 +77,7 @@
     <feature name="EmailComposer">
         <param name="android-package" value="com.jcjee.plugins.EmailComposer" />
     </feature>
+    <feature name="Bluetooth">
+        <param name="android-package" value="org.apache.cordova.bluetooth.BluetoothPlugin" />
+    </feature>
 </widget>

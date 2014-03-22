@@ -170,6 +170,20 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
+        "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
+        "clobbers": [
+            "EmailComposer"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.bluetooth/www/bluetooth.js",
+        "id": "com.phonegap.plugins.bluetooth.bluetooth",
+        "clobbers": [
+            "bluetooth"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -179,7 +193,9 @@ module.exports.metadata =
     "org.apache.cordova.dialogs": "0.2.6",
     "org.apache.cordova.file": "1.0.1",
     "org.apache.cordova.vibration": "0.3.7",
-    "org.apache.cordova.file-transfer": "0.4.2"
+    "org.apache.cordova.file-transfer": "0.4.2",
+    "com.jcjee.plugins.emailcomposer": "1.4.6",
+    "com.phonegap.plugins.bluetooth": "0.9"
 }
 // BOTTOM OF METADATA
 });
