@@ -43,8 +43,6 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-                  
-
     },
 };
 
@@ -72,7 +70,6 @@ function gotFileWriter(fileWriter) {
     file.writer.object = fileWriter;
     saveText(); 
 }
-
 function gotFileEntry(fileEntry) {
     logit("Got File Entry!");
     file.entry = fileEntry;
@@ -118,6 +115,11 @@ function saveText() {
 
     return false;
 }
+
+//==============================
+// Email Composer
+//==============================
+
 
 function onload() {
     //alert("abc");

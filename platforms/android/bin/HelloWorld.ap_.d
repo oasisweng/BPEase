@@ -251,14 +251,11 @@
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/js/vendor/jquery.mobile-1.4.2.min.js \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/js/vendor/jquery.pageslide.min.js \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js \
-/Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.vibration \
-/Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer/www \
-/Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /Users/deliagander/Documents/FIRST YEAR/APP/BPEase/platforms/android/assets/www/plugins/org.apache.cordova.dialogs/www \
