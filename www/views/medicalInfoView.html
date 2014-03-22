@@ -32,25 +32,18 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "
-  background-color: #5bc0de;
-  border-color: #3fb5d8;
-  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));
-  background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);
-  background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);
-  background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);
-">
+      <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
     <div class = "row">
-    <img class="col-xs-2" src="img/logo.png" alt="logo.png" width = "50" height = "50">
-    <h1 class="navbar-brand" style = "color: #ffffff" align = "center">BPEase</h1>
+    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
+    <div class="col-xs-1 visible-xs"></div>
+    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+    <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
 </div>
 </nav>
 <form class="form-horizontal" role="form"  style = "position:relative; top:70px;margin: 10px 10px">
-<h3>Please enter your medical data...</h3></br>
+<h3 class = "text-info">Please enter your medical data...</h3></br>
 <div class="form-group" name="input"> 
-    <label class="col-xs-7 control-label" for="hypertension">Do you have hypertension?</label>
+    <label class="col-xs-7 control-label text-info" for="hypertension">Do you have hypertension?</label>
     <div class="col-xs-5"> 
 <select class="form-control">
   <option>Yes</option>
@@ -61,7 +54,7 @@
 
 
 <div class="form-group" name="input"> 
-    <label class="col-xs-7 control-label" for="arrythmia">Do you have a heart arrythmia?</label>
+    <label class="col-xs-7 control-label text-info" for="arrythmia">Do you have a heart arrythmia?</label>
     <div class="col-xs-5"> 
 <select class="form-control">
   <option>Yes</option>
@@ -72,7 +65,7 @@
 
 <div class="alert alert-info">If you have a heart arrythmia consult your doctor. This application may not be suitable for you.</div>
 
-<p>Enter any medication taken...</p>
+<p class = "text-info">Enter any medication taken...</p>
             <textarea class="form-control" rows="3"type="text" name="Enter information" placeholder = "Enter Medication..."></textarea></br>
     <div style = "position:fixed; bottom:10px; width:100%;">
         <a  class = "btn btn-info" type = "button" href ="#"onclick="javascript:history.back(1)" style ="width: 47%;height: 50px;color: #FFFFFF;font-size: 22px;">Back</a>
@@ -81,4 +74,5 @@
 
 </form>
     </body>
+</html>
 </html>

@@ -34,22 +34,36 @@
          #button-back{height: 50px;color: #FFFFFF;font-size: 22px;position:fixed; bottom:10px; width:47%;}
          a.btn-info:hover{color: #B9D5DD}
         </style>
-        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+      <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
     <div class = "row">
-    <img class="col-xs-2" src="img/logo.png" alt="logo.png" width = "50" height = "50">
-    <h1 class="navbar-brand" style = "color: #ffffff" align = "center">BPEase</h1>
+    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
+    <div class="col-xs-1 visible-xs"></div>
+    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
     <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
 </div>
 </nav>
         <div class="container" style = "position:relative; top:70px;margin: 10px 10px">
 
-                <h2 class="text-info">Information</h2>
-                <h3 class="text-info">Instructions</h3>
-                <p class="alert alert-info">This is how we use the BP Ease app</p>
-                <h3 class="text-info">Disclaimer</h3>
-                <p class="alert alert-info">The client will write a disclaimer for us to put into this section</p>
-                <h3 class="text-info">Terms and Conditions</h3>
-                <p class="alert alert-info">Assume that when they register, when they click register there will be a bit before saying 'by registering you will confirm to the terms etc'</p>
+    <h2 class="text-info">Information</h2>
+
+    <div class="panel panel-info" id="instructions">
+        <div class="panel-heading text-info">Instructions</div>
+        <div class="panel-body text-info">
+           This is how we use the BP Ease app
+        </div>
+    </div>
+      <div class="panel panel-info" id="disclaimer">
+        <div class="panel-heading text-info">Disclaimer</div>
+        <div class="panel-body text-info">
+The client will write a disclaimer for us to put into this section
+        </div>
+    </div>
+      <div class="panel panel-info" id="reading-2">
+        <div class="panel-heading text-info">Terms and Conditions</div>
+        <div class="panel-body text-info">
+Assume that when they register, when they click register there will be a bit before saying 'by registering you will confirm to the terms etc'
+        </div>
+    </div>
              
             <a class = "btn btn-info" type = "button" href = "/views/mainMenuView.html" id="button-back">Back</a>
         </div>

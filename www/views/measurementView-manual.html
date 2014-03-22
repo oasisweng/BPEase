@@ -5,15 +5,6 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <!-- JS -->
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/vendor/jquery.mobile-1.4.2.min.js"></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/vendor/jquery.pageslide.css">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/vendor/bootstrap-theme.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,60 +13,95 @@
         <![endif]-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- JS -->
+        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="/js/vendor/jquery.mobile-1.4.2.min.js"></script>
+        <script src="/js/vendor/jquery.pageslide.min.js"></script>
+        <script src="/js/common.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.pageslide.css">
+        <link rel="stylesheet" href="/css/vendor/jquery.mobile-1.4.2.min.css">
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <style>
-        a.btn-info:hover{color: #B9D5DD}
-        </style>
+        <!-- Bootstrap -->
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/vendor/bootstrap-theme.min.css">
+        <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+
     </head>
+
     <body>
-         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <img src="/icon.png" alt="logo.png">
-                    <a class="navbar-brand">BPEase</a>
-                    <a class="" href="/views/mainMenuView.html">Home</a>
-                </div>
-            </div>
-        </div>
-        <div id="reading-manual" class="container">
-            <div class="container">
-                <label for="date">Date: </label>
-                <input type="text" name="date" id="date-dd" placeholder="DD">
-                <input type="text" name="date" id="date-mm" placeholder="MM">
-                <input type="text" name="date" id="date-yy" placeholder="YY">
-            </div>
-            <div class="container">
-                <label for="time">Time: </label>
-                <input type="text" name="time" id="time-hh" placeholder="HH">
-                <input type="text" name="time" id="time-hh" placeholder="MM">
-            </div>
-            <a href="#" id="measurement-button-1">Start</a>
-            <div class="container" id="prompts" class="right">
-                <div id="prompt-1">Reading 1</div>
-                <div id="prompt-2">Reading 2</div>
-            </div>
-            <div class="container">
-                <span class="title left">Diatolic</span>
-                <input type="text" name="reading-1" id="diastolic-reading-1"></input>
-                <input type="text" name="reading-2" id="diastolic-reading-2"></input>
-            </div>
-            <div class="container">
-                <span class="title left">Systolic</span>
-                <input type="text" name="reading-1" id="systolic-reading-1"></input>
-                <input type="text" name="reading-2" id="systolic-reading-2"></input>
-            </div>
-            <div class="container">
-                <span class="title left">Pulse</span>
-                <input type="text" name="reading-1" id="pulse-reading-1"></input>
-                <input type="text" name="reading-2" id="pulse-reading-2"></input>
-            </div>
-            <div class="container">
-                <span class="title left">BP</span>
-                <input type="text" name="reading-1" id="bp-reading-1"></input>
-                <input type="text" name="reading-2" id="bp-reading-2"></input>
-            </div>
-            <a href="" id="button-back" class="bottom">Back</a>
-            <a href="#" id="button-save" class="bottom">Save</a>
+       <style>
+        a.btn-info:hover{color: #B9D5DD}
+        .btn-info{height: 50px;font-size: 22px;width: 47%}
+        </style>
+       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+    <div class = "row">
+    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
+    <div class="col-xs-1 visible-xs"></div>
+    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+    <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+</div>
+</nav>
+<form class="form-horizontal" role="form" style = "position:relative; top:100px;margin: 10px 10px">
+       <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Date:</label>
+    <div class="col-xs-8">
+        <input class="form-control" id="date" name="date" min="2012-01-01" max="2013-01-01" type="date">
+    </div>
+  </div>
+    <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Time:</label>
+    <div class="col-xs-8">
+        <input class="form-control" name="usr_time" value="12:00" type="time">
+    </div>
+  </div>
+  <div class="row"> 
+        <div class="col-xs-4 visible-xs"></div>
+        <div class="col-xs-4 text-info">Reading 1</div>
+        <div class="col-xs-4 text-info">Reading 2</div>
+ </div>
+     <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Diatolic:</label>
+    <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+        <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+  </div>
+     <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Systolic:</label>
+    <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+        <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+  </div>
+     <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Pulse:</label>
+    <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+        <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+  </div>
+     <div class="form-group"> 
+        <label class="col-xs-4 control-label text-info">Blood Pressure:</label>
+    <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+        <div class="col-xs-4">
+        <input class="form-control" name="reading-1" type="text">
+    </div>
+  </div>
+
+     <div style = "position:fixed; bottom:10px;width:100%">
+        <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
+        <a  class = "btn btn-info" id="button-save" type = "button" href ="/views/mainMenuView.html" style = "color:#FFFFFF;">Save</a>
+       </div>
+        </form>
         </body>
     </html>
