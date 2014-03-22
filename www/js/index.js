@@ -58,7 +58,8 @@ function onError(err) {
 var FILENAME = "readme.txt",
     file = {
         writer: { available: false },
-        reader: { available: false }
+        reader: { available: false },
+        fullPath: ""
     },
     $ = function (id) {
         return document.getElementById(id);
@@ -71,8 +72,9 @@ function gotFileWriter(fileWriter) {
     saveText(); 
 }
 function gotFileEntry(fileEntry) {
-    logit("Got File Entry!");
     file.entry = fileEntry;
+    file.fullPath = fileEntry.fullPath;
+    logit("Got File Entry! "+file.fullPath);
     fileEntry.createWriter(gotFileWriter, onError);
 }
 
@@ -90,6 +92,7 @@ function readText() {
                 file.reader.available = true;
                 var text = evt.target.result;
                 logit("Reading "+text);
+                sendEmail();
             }
             reader.readAsText(txtFile);
         }, onError);
@@ -119,7 +122,32 @@ function saveText() {
 //==============================
 // Email Composer
 //==============================
+function sendEmail(){
+    logit("Sending email");
+    subject = "subject";
+    body = "body";
+    toRecipients = ["oasisweng@gmail.com"];
+    ccRecipients = ["chaitanya.agrawal.13@ucl.ac.uk"];
+    bccRecipients = [""];
+    isHtml = true;
+    logit("Sending with Attachments:"+ file.fullPath);
+    attachments = [file.fullPath];   
+    attachmentsData = null;
+    window.plugins.emailComposer.showEmailComposerWithCallback(
+        sendEmail_Result,
+        subject,
+        body,
+        toRecipients,
+        ccRecipients,
+        bccRecipients,
+        isHtml,
+        attachments,
+        attachmentsData);
+}
 
+function sendEmail_Result(){
+    logit("Email calling back");
+}
 
 function onload() {
     //alert("abc");
