@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function () {
@@ -43,10 +44,15 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-    },
+        var title = 'Reminder';
+        var message = 'Dont forget to buy some flowers.';
+        var repeat = 'weekly';
+        var date = new Date().getTime();
+        setLocalNotificaiton(new Date(date+6*1000),title,message,repeat);
+    }
 };
 
-function logit(s){
+function logit(s) {
     document.getElementById("log").innerHTML += s;
     document.getElementById("log").innerHTML += "<br/>";
 }
@@ -55,26 +61,43 @@ function onError(err) {
     logit(err.code);
 }
 
+
+//==============================
+// Local Notification
+//==============================
+function setLocalNotificaiton(date_c,title_c,message_c,repeat_c){
+    var id_c = parseInt(Math.random()*1000);
+
+    window.plugin.notification.local.add({
+        id:      id_c,
+        title:   title_c,
+        message: message_c,
+        repeat:  repeat_c,
+        date:    date_c
+    });
+}
+
+//==============================
+// Files
+//==============================
+
 var FILENAME = "readme.txt",
     file = {
         writer: { available: false },
         reader: { available: false },
         fullPath: ""
-    },
-    $ = function (id) {
-        return document.getElementById(id);
     };
 
 function gotFileWriter(fileWriter) {
     logit("Got File Writer");
     file.writer.available = true;
     file.writer.object = fileWriter;
-    saveText(); 
+    saveText();
 }
 function gotFileEntry(fileEntry) {
     file.entry = fileEntry;
     file.fullPath = fileEntry.fullPath;
-    logit("Got File Entry! "+file.fullPath);
+    logit("Got File Entry! "+ file.fullPath);
     fileEntry.createWriter(gotFileWriter, onError);
 }
 
@@ -91,8 +114,8 @@ function readText() {
             reader.onloadend = function (evt) {
                 file.reader.available = true;
                 var text = evt.target.result;
-                logit("Reading "+text);
-                sendEmail();
+                logit("Reading "+ text);
+                //sendEmail();
             }
             reader.readAsText(txtFile);
         }, onError);
@@ -111,7 +134,7 @@ function saveText() {
             logit("saving complete");
             readText();
         }
-        file.writer.object.write("hello world!");
+        file.writer.object.write("hello world HAHAHA PRANK!");
     } else {
         logit("Writer is unavaiable!");
     }
@@ -122,8 +145,8 @@ function saveText() {
 //==============================
 // Email Composer
 //==============================
-function sendEmail(){
-    logit("Sending email");
+function sendEmail() {
+    logit("Email Demo");
     subject = "subject";
     body = "body";
     toRecipients = ["oasisweng@gmail.com"];
@@ -145,10 +168,19 @@ function sendEmail(){
         attachmentsData);
 }
 
-function sendEmail_Result(){
+function sendEmail_Result() {
     logit("Email calling back");
 }
 
-function onload() {
-    //alert("abc");
-}
+
+
+//==============================
+// Datepicker
+//==============================
+$(function(){
+    $('#datepicker').datepicker({
+      format: 'mm-dd-yyyy',
+      endDate: '+1y',
+      startDate: '-80y'
+    });
+});

@@ -11,75 +11,29 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <!-- JS -->
-        <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="/js/vendor/jquery.mobile-1.4.2.min.js"></script>
-        <script src="/js/vendor/jquery.pageslide.min.js"></script>
-        <script src="/js/common.js"></script>
-        <!-- CSS -->
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/vendor/jquery.pageslide.css">
-        <link rel="stylesheet" href="/css/vendor/jquery.mobile-1.4.2.min.css">
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
         <!-- Bootstrap -->
-        <script src="/js/vendor/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="/css/vendor/bootstrap-theme.min.css">
-        <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+        <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+        <link href="css/vendor/datepicker.css" rel="stylesheet">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/main.css">
     </head>
-
-        <style>
-        a.btn-info:hover{color: #B9D5DD}
-        .btn-info{height: 50px;font-size: 22px;width: 47%}
-        </style>
-    <body>
-       <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
-            <div class = "row">
-            <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-            <div class="col-xs-1 visible-xs"></div>
-            <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-            <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+    <body align="center">
+        <div id="debug">
+            <div id="deviceProperties"></div>
+            <div id="log"></div>
         </div>
-        </nav>
-<form class="form-horizontal" role="form" style = "position:relative; top:70px;margin: 10px 10px">
-    <h2 class = "text-info">HBPM Mode setup</h2>
-    <div class="form-group"> 
-        <label class="col-xs-6 control-label text-info">Start date:</label>
-    <div class="col-xs-6">
-        <input class="form-control" id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">
-    </div>
-  </div>
-      <div class="form-group"> 
-        <label class="col-xs-6 control-label text-info">End date:</label>
-    <div clas       s="col-xs-6">
-        <input class="form-control" id="enddate" name="enddate" min="2012-01-01" max="2013-01-01" type="date">
-    </div>
-  </div>
-    <div class="form-group"> 
-        <label class="col-xs-6 control-label text-info">Morning reminder:</label>
-    <div class="col-xs-6">
-        <input class="form-control" name="usr_time" value="12:00" type="time">
-    </div>
-  </div>
-
-    <div class="form-group"> 
-        <label class="col-xs-6 control-label text-info">Evening reminder:</label>
-    <div class="col-xs-6">
-        <input class="form-control" name="usr_time" value="12:00" type="time">
-    </div>
-  </div>
-   </div></br>
-    <div class="form-group"> 
-        <label class="col-xs-6 control-label text-info">Bluetooth:</label>
-    <div class="col-xs-6">
-        <input class="form-control" type="checkbox">
-    </div>
-  </div>
-         <div style = "position:fixed; bottom:10px;width:100%">
-        <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
-        <a  class = "btn btn-info" type = "button" href ="/views/measurementView-bluetooth.html" style = "color:#FFFFFF;">Next</a>
-       </div>
-      </form>
+        <div id = "main">
+            <img src="img/logo.png" alt="logo.png" id="logo">
+            <h1>Welcome</h1>
+            <a class = "btn btn-info" type = "button" id="register-button" href="views/basicDetailView.html">Register</a>
+        </div>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+                    app.initialize();
+        </script>
     </body>
 </html>
