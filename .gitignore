@@ -3,4 +3,5 @@ platforms/android/**
 platforms/ios/**
 platforms/
 **/platforms
+plugins/android.json
 !.cordova
