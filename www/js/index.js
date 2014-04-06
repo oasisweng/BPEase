@@ -191,12 +191,47 @@ $(function() {
 function generatePDFReport() {
     //FIRST GENERATE THE PDF DOCUMENT
     logit("generating pdf...");
-    var doc = new jsPDF();
-    doc.text(20, 20, 'HELLO!');
-    doc.setFont("courier");
-    doc.setFontType("normal");
-    doc.text(20, 30, 'This is a PDF document generated using JSPDF.');
-    doc.text(20, 50, 'YES, Inside of PhoneGap!');
+    // @TODO: Need to simplify this demo
+
+    var doc = new jsPDF('p','in','letter')
+    , sizes = [12, 16, 20]
+    , fonts = [['Times','Roman'],['Helvetica',''], ['Times','Italic']]
+    , font, size, lines
+    , margin = 0.5 // inches on a 8.5 x 11 inch sheet.
+    , verticalOffset = margin
+    , loremipsum ='\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBPEase\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\Blood Presure Report\n\nPersonal Details\nName:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDOB:\nNHS Number:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGP Name:\nHypertension:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tHeart Arrhythmia:\nMedical info:\n\nReadings\n'
+    // Margins:
+    doc.setDrawColor(0, 255, 0)
+    .setLineWidth(1/72)
+    .line(margin, margin, margin, 11 - margin)
+    .line(8.5 - margin, margin, 8.5-margin, 11-margin)
+
+    // the 3 blocks of text
+    for (var i in fonts)
+    {
+     if (fonts.hasOwnProperty(i)) 
+     {
+        font = fonts[i]
+        size = sizes[i]
+
+        lines = doc.setFont(font[0], font[1])
+                    .setFontSize(size)
+                    .splitTextToSize(loremipsum, 7.5)
+        // Don't want to preset font, size to calculate the lines?
+        // .splitTextToSize(text, maxsize, options)
+        // allows you to pass an object with any of the following:
+        // {
+        //  'fontSize': 12
+        //  , 'fontStyle': 'Italic'
+        //  , 'fontName': 'Times'
+        // }
+        // Without these, .splitTextToSize will use current / default
+        // font Family, Style, Size.
+        doc.text(0.5, verticalOffset + size / 72, lines)
+
+        verticalOffset += (lines.length + 0.5) * size / 72
+      }
+    }
     var pdfOutput = doc.output();
     logit(pdfOutput);
     //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
