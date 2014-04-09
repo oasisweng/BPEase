@@ -9,7 +9,7 @@ body {
 }
 
 
-nav{
+nav.navbar{
 	background-color: #5bc0de;
 	border-color: #3fb5d8;
 	background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));
