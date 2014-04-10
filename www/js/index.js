@@ -221,7 +221,8 @@ function generatePDFReport() {
     doc.setFontType("normal");
     doc.text(10,130,"Average Systole:");
     doc.text(10,140,"Average Diastole:");
-    doc.text(10,150,"Average Heart Rate")
+    doc.text(10,150,"Average Heart Rate");
+    
     var pdfOutput = doc.output();
     logit(pdfOutput);
 
