@@ -184,6 +184,16 @@ $(function() {
         startDate: '-80y'
     });
 });
+
+//=========================================================================
+//JQPlot 
+//For more information, check: http://www.jqplot.com/tests/line-charts.php
+//=========================================================================
+function plotGraph(){
+    
+}
+
+
 //==============================
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
@@ -222,7 +232,7 @@ function generatePDFReport() {
     doc.text(10,130,"Average Systole:");
     doc.text(10,140,"Average Diastole:");
     doc.text(10,150,"Average Heart Rate");
-    
+
     var pdfOutput = doc.output();
     logit(pdfOutput);
 
