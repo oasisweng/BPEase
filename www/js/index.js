@@ -193,47 +193,38 @@ function generatePDFReport() {
     logit("generating pdf...");
     // @TODO: Need to simplify this demo
 
-    var doc = new jsPDF('p','in','letter')
-    , sizes = [12, 16, 20]
-    , fonts = [['Times','Roman'],['Helvetica',''], ['Times','Italic']]
-    , font, size, lines
-    , margin = 0.5 // inches on a 8.5 x 11 inch sheet.
-    , verticalOffset = margin
-    , loremipsum ='\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBPEase\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\Blood Presure Report\n\nPersonal Details\nName:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDOB:\nNHS Number:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tGP Name:\nHypertension:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tHeart Arrhythmia:\nMedical info:\n\nReadings\n'
-    // Margins:
-    doc.setDrawColor(0, 255, 0)
-    .setLineWidth(1/72)
-    .line(margin, margin, margin, 11 - margin)
-    .line(8.5 - margin, margin, 8.5-margin, 11-margin)
+    var doc = new jsPDF();
+    doc.setFontType("bold");
+    doc.text(88,10, 'BP Ease');
+    doc.text(70,20, 'Blood Pressure Report');
+    doc.text(10,30,'Personal Details');
 
-    // the 3 blocks of text
-    for (var i in fonts)
-    {
-     if (fonts.hasOwnProperty(i)) 
-     {
-        font = fonts[i]
-        size = sizes[i]
+    doc.setFontType("normal");
+    doc.text(10,40,"Patient Name:");
+    doc.text(125,40,"DOB:");
+    doc.text(10,50,"NHS Number:");
+    doc.text(112,50,"GP Name:");
+    doc.text(10,60,"Hypertension:");
+    doc.text(94,60,"Heart Arrhthymia:");
+    doc.text(10,70,"Medical Info:");
 
-        lines = doc.setFont(font[0], font[1])
-                    .setFontSize(size)
-                    .splitTextToSize(loremipsum, 7.5)
-        // Don't want to preset font, size to calculate the lines?
-        // .splitTextToSize(text, maxsize, options)
-        // allows you to pass an object with any of the following:
-        // {
-        //  'fontSize': 12
-        //  , 'fontStyle': 'Italic'
-        //  , 'fontName': 'Times'
-        // }
-        // Without these, .splitTextToSize will use current / default
-        // font Family, Style, Size.
-        doc.text(0.5, verticalOffset + size / 72, lines)
+    doc.setFontType("bold");
+    doc.text(10,90,"Readings Details");
+    doc.text(10,100,"Date");
+    doc.text(40,100,"Time");
+    doc.text(70,100,"Systole");
+    doc.text(110,100,"Diastole");
+    doc.text(150,100,"Heart Rate");
 
-        verticalOffset += (lines.length + 0.5) * size / 72
-      }
-    }
+    doc.text(10,120,"Readings Summary");
+
+    doc.setFontType("normal");
+    doc.text(10,130,"Average Systole:");
+    doc.text(10,140,"Average Diastole:");
+    doc.text(10,150,"Average Heart Rate")
     var pdfOutput = doc.output();
     logit(pdfOutput);
+
     //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
     logit("saving to file system...");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
