@@ -204,34 +204,21 @@ function generatePDFReport() {
     // @TODO: Need to simplify this demo
 
     var doc = new jsPDF();
-    doc.setFontType("bold");
-    doc.text(88,10, 'BP Ease');
-    doc.text(70,20, 'Blood Pressure Report');
-    doc.text(10,30,'Personal Details');
-
-    doc.setFontType("normal");
-    doc.text(10,40,"Patient Name:");
-    doc.text(125,40,"DOB:");
-    doc.text(10,50,"NHS Number:");
-    doc.text(112,50,"GP Name:");
-    doc.text(10,60,"Hypertension:");
-    doc.text(94,60,"Heart Arrhthymia:");
-    doc.text(10,70,"Medical Info:");
 
     doc.setFontType("bold");
-    doc.text(10,90,"Readings Details");
-    doc.text(10,100,"Date");
-    doc.text(40,100,"Time");
-    doc.text(70,100,"Systole");
-    doc.text(110,100,"Diastole");
-    doc.text(150,100,"Heart Rate");
-
-    doc.text(10,120,"Readings Summary");
+    doc.text(10,10,"Home blood pressure");
+    doc.text(10,20,"monitoring (HBPM)");
 
     doc.setFontType("normal");
-    doc.text(10,130,"Average Systole:");
-    doc.text(10,140,"Average Diastole:");
-    doc.text(10,150,"Average Heart Rate");
+    doc.text(10,40,"Patient detaisl:");
+    doc.text(10,50,"Name:");
+    doc.text(10,60,"DOB:");
+    doc.text(10,70,"NHS Number:");
+    doc.text(10,80,"GP Surgery:");
+    doc.text(10,90,"Named GP:");
+    doc.text(10,110,"Medical History:");
+    doc.text(10,120,"HTN-y/n");
+    doc.text(10,130,"Arrythmia-y/n");
 
     var pdfOutput = doc.output();
     logit(pdfOutput);
