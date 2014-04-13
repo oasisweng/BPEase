@@ -243,7 +243,23 @@ function generatePDFReport() {
 
     doc.addPage();
     //Page 3-Nice guidance reminder for GP
-    
+    doc.setFontType('bold');
+    doc.text(60,10,'NICE guidance reminder for GP:');
+    doc.text(30,20,'http://www.nice.org.uk/guidance/CG127/QuickRefGuide');
+
+    doc.setFontType('normal');
+    doc.text(10,30,'* Stage 1 hypertension Clinic blood pressure is 140/90 mmHg');
+    doc.text(14,40,'or higher and subsequent ambulatory');
+    doc.text(10,50,'* blood pressure monitoring(ABPM) daytime average or');
+    doc.text(14,60,'home blood pressure monitoring (HBPM)');
+    doc.text(10,70,'* average blood pressure is 135/85 mmHg or higher.');
+    doc.text(10,80,'* Stage 2 hypertension Clinic blood pressure is 160/100');
+    doc.text(14,90,'mmHg or higher and subsequent ABPM');
+    doc.text(10,100,'* daytime average or HBPM average blood pressure is 150/95');
+    doc.text(14,110,'mmHg or higher.');
+    doc.text(10,120,'* Severe hypertension Clinic systolic blood pressure is 180');
+    doc.text(14,130,'mmHg or higher, or clinic diastolic blood');
+    doc.text(10,140,'* pressure is 110 mmHg or higher.
 
 
     var pdfOutput = doc.output();
