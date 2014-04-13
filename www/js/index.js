@@ -204,7 +204,7 @@ function generatePDFReport() {
     // @TODO: Need to simplify this demo
 
     var doc = new jsPDF();
-
+    //Page 1-Readings details
     doc.setFontType("bold");
     doc.text(10,10,"Home blood pressure");
     doc.text(10,20,"monitoring (HBPM)");
@@ -219,6 +219,32 @@ function generatePDFReport() {
     doc.text(10,110,"Medical History:");
     doc.text(10,120,"HTN-y/n");
     doc.text(10,130,"Arrythmia-y/n");
+
+    doc.addPage();
+    //Page 2-Instructions for HBPM 
+    doc.setFontType('bold');
+    doc.text(40,20,'Recall- instructions on the HBPM-could flash');
+    doc.text(60,30,'up when pxs start this mode');
+
+    doc.setFontType('normal');
+    doc.text(10,50,'* When using home blood pressure monitoring (HBPM) to confirm a');
+    doc.text(14,60,'diagnosis of hypertension,');
+    doc.text(10,70,'* ensure that:');
+    doc.text(10,80,'* - for each blood pressure recording, two consecutive');
+    doc.text(14,90,'measurements are taken, atleast 1 min');
+    doc.text(10,100,'* apart and with the person seated and');
+    doc.text(10,110,'* - blood pressure is recorded twice daily, ideally in the morning');
+    doc.text(14,120,'and evening and');
+    doc.text(10,130,'* - blood pressure recording continues for at least 4 days, ideally');
+    doc.text(14,140,'for 7 days.');
+    doc.text(10,150,'* Discard the measurements taken on the first day and use the');
+    doc.text(10,160,'average value of all the remaining');
+    doc.text(10,170,'* measurements to confirm a diagnosis of hypertension.');
+
+    doc.addPage();
+    //Page 3-Nice guidance reminder for GP
+    
+
 
     var pdfOutput = doc.output();
     logit(pdfOutput);
