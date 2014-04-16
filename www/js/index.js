@@ -259,7 +259,10 @@ function generatePDFReport() {
     doc.text(14,110,'mmHg or higher.');
     doc.text(10,120,'* Severe hypertension Clinic systolic blood pressure is 180');
     doc.text(14,130,'mmHg or higher, or clinic diastolic blood');
-    doc.text(10,140,'* pressure is 110 mmHg or higher.
+    doc.text(10,140,'* pressure is 110 mmHg or higher.');
+
+    //Adding the tables
+    
 
 
     var pdfOutput = doc.output();
