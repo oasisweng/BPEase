@@ -2,7 +2,7 @@
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
 //==============================
-function generatePDFReport(dataArray) {
+function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     //FIRST GENERATE THE PDF DOCUMENT
     logit("generating pdf...");
     // @TODO: Need to simplify this demo
@@ -30,7 +30,7 @@ function generatePDFReport(dataArray) {
         {
             content = "<tr>";
 
-            for(var j=0;j<5;j++)
+            for(var j=0;j<date_and_time;j++)
             {
                 content += '<td>' + dataArray[i] + '</td>';
             }
@@ -44,7 +44,68 @@ function generatePDFReport(dataArray) {
         <th>Time</th>
         <th>Systolic</th>
         <th>Diastolic</th>
-        <th>Pulse</th> "+content,function() {
+        <th>Pulse</th>
+        </tr> "+content,function() {
+        var string = pdf.output('datauristring');
+        $('.preview-pane').attr('src', string);
+    });
+
+
+
+    doc.setFontType("bold");
+    doc.text(60,90,"SUMMARY:");
+    doc.text(60,100,"Readings from "+ ""+ "to "+"");
+    doc.text(60,110,"Total number of readings: "+ dataArray.length);
+    doc.text(60,120,"*Remember to discard the first days reading in the averages");
+    doc.text(63,130,"calculation.");
+
+    var readings = new Array(systolic,diastolic,pulse);
+    var min_and_max = new Array();
+    for(var k=0;k<readings.length;k++)
+        {
+            var l= readings[k];
+            var min = Math.min.apply(null,l);
+            var max = Math.max.apply(null,l);
+            min_and_max.push(min,max);
+        }
+
+    var columnHeadings = new Array("Syst BP","Diast BP","Pulse")    
+    var content2= "";
+    for(var m=0;m<columnHeadings.length;m++)
+    {
+        content2 = '<tr>';
+        for(var n=0;n<3;n++)
+        {
+            content2 += '<td>' + columnHeadings[m] + '</td>';
+            if(columnHeadings[m] == "Syst BP")
+            {
+                content2 += '<td>'+ min_and_max[0] + '</td>';
+                content2 += '<td>'+ min_and_max[1] + '</td>';
+            }
+            if(columnHeadings[m] == "Syst BP")
+            {
+                content2 += '<td>'+ min_and_max[2] + '</td>';
+                content2 += '<td>'+ min_and_max[3] + '</td>';
+            }
+            if(columnHeadings[m] == "Syst BP")
+            {
+                content2 += '<td>'+ min_and_max[4] + '</td>';
+                content2 += '<td>'+ min_and_max[5] + '</td>';
+            }
+            content2+= '</tr>'
+        }
+    }
+
+
+    pdf.addHTML("
+        <table style='width:50px'>
+        <tr>
+        <th>BP</th>
+        <th>Minimum</th>
+        <th>Maximum</th>
+        <th>Average</th>
+        </tr>
+         "+content2,function() {
         var string = pdf.output('datauristring');
         $('.preview-pane').attr('src', string);
     });
