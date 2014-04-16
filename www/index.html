@@ -15,83 +15,157 @@
         <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
         <link href="css/vendor/datepicker.css" rel="stylesheet">
         <!-- CSS -->
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="..css/main.css">
         <link rel="stylesheet" type="text/css" href="jquery.jqplot.css" />
         <link rel="stylesheet" href="../css/vendor/jquery.mobile.min.css">
     </head>
-    <body align="center">
+    <body>
+        <style> 
+           nav.navbar{
+                background-color: #5bc0de;
+                border-color: #3fb5d8;
+                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#85d0e7), color-stop(0.33, 0%), color-stop(0.67, #5bc0de), to(100%));
+                background-image: -webkit-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
+                background-image: -moz-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
+                background-image: -o-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
+                background-image: linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);}
+            a.btn-info:hover{
+                color: #B9D5DD
+            }
+
+            #btn-next{
+                height: 50px;
+                font-size: 14px;
+                width: 100%
+            }
+
+            .children{
+                position: absolute;
+                top: 40%;
+
+                left:25%;
+                margin:auto;
+                width:50%;
+
+            }
+            #register-button
+            {
+                width: 100%;
+                height:75px;
+                font-size: 30px;
+            }
+            div[data-role="content"]
+            {
+                position: absolute;
+                top:14%;
+                bottom: 10%;
+                width: 100%;
+            }
+            .normal
+            {
+                height:10%;
+                font-size: 22px;
+                width: 100%;
+            }
+            .half
+            {
+                height:10%;
+                font-size: 22px;
+                width: 49%;
+            }
+            .glyphicon-th-list
+            {
+                font-size: 250%;
+            }
+        </style>
         <!-- Start of welcome page -->
-        <div data-role = "page" id = "welcome" >
+        <div class = "page" data-role = "page" id = "welcome" >
             <div id="debug" >
                 <div id="deviceProperties"></div>
                 <div id="log"></div>
             </div>
-            <div id = "main" align="center">
-                <img src="img/logo.png" alt="logo.png" id="logo">
-                <h1>Welcome</h1>
-                <a class = "btn btn-info" type = "button" id="register-button" href="#basicInfo">Register</a>
+
+            <div class = "children" id = "main" align = "center">
+                <img src="bpeaseblue.png" alt="bpeaseblue.png" id="bpeaseblue" width="110" height="150" >
+                <h1 align = "center">Welcome</h1>
+                <a class = "btn btn-info" type = "button" id="register-button" href="#basicInfo" style = "color:#FFFFFF;">Register</a>
             </div>
+            <script type="text/javascript" src="phonegap.js"></script>
+            <script src="js/vendor/jquery.min.js"></script>
+            <script src="js/vendor/bootstrap.min.js"></script>
+            <script src="js/vendor/bootstrap-datepicker.js"></script>
+            <script type="text/javascript" src="js/vendor/jspdf/jspdf.min.js"></script>
+            <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
+            <script language="javascript" type="text/javascript" src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
+            <script type="text/javascript" src="js/index.js"></script>
             <script type="text/javascript">
-                    app.initialize();
+            app.initialize();
             </script>
         </div>
         <!-- Start of Basic info page -->
         <div data-role="page" id="basicInfo">
-            <div data-role="header" class="ui-bar ui-bar-c">
-                <a href="welcome" >Back</a>
-                <a href="mainMenu" id ="home-btn">Home</a>
-                <h1 id="nav-header"><img src="../img/logo-36.png"></h1>
-            </div>
-            <div data-role="content">
-                <form class="form-horizontal" role="form">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class = "row">
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt=".png">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon--th-list"></span></a>
+                </div>
+            </nav>
+            <div  data-role="content">
+                <form class = "body" class="form-horizontal" role="form">
                     <h3>Enter personal details...</h3>
                     <div class="form-group" name="input">
-                        <label class="col-xs-4 control-label text-info" for="name">Name: </label>
-                        <div class="col-xs-8">
+                        <label class="col-xs-4 col-sm-4 control-label text-info" for="name">Name: </label>
+                        <div class="col-xs-8 col-sm-8">
                             <input class="form-control" type="text" name="name" id="name" placeholder="Enter name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label text-info" for="dob">Date of Birth: </label>
-                        <div class="col-xs-8">
+                        <label class="col-xs-4 col-sm-4 control-label text-info" for="dob">Date of Birth: </label>
+                        <div class="col-xs-8 col-sm-8">
                             <input type="text" class="form-control" id="datepicker" data-date-format="mm/dd/yyyy" placeholder="Enter Your DOB">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label text-info" for="nshno">NHS Number: </label>
-                        <div class="col-xs-8">
+                        <label class="col-xs-4 col-sm-4 control-label text-info" for="nshno">NHS Number: </label>
+                        <div class="col-xs-8  col-sm-8">
                             <input class="form-control" type="text" name="nshno" id="nshno" placeholder="Enter NHS No.">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label text-info" for="gpemail">GP Email: </label>
-                        <div class="col-xs-8">
+                        <label class="col-xs-4  col-sm-4 control-label text-info" for="gpemail">GP Email: </label>
+                        <div class="col-xs-8 col-sm-8">
                             <input class="form-control" type="text" name="gpemail" id="gpemail" placeholder="Enter GP Email">
                         </div>
                     </div>
-                    <a class = "btn btn-info" type = "button" value="Next" href ="#medicalData" id="btn-next">Next</a>
+                    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                        <div class="container-fluid">
+                            <a class = "btn btn-info navbar-btn normal" type = "button" value="Next" href ="#medicalData" id="btn-next" style = "color:#FFFFFF;">Next</a>
+                        </div>
+                    </nav>
                 </form>
             </div>
-            <div data-role="footer">
-                <h4>BP Ease Demo</h4>
-            </div>
+
         </div>
         <!-- Start of medical info page -->
         <div data-role="page" id="medicalData" data-add-back-btn="true">
-            <div data-role="header" class="ui-bar ui-bar-c">
-                <h1 id="nav-header"><img src="../img/logo-36.png"></h1>
-                <a href="#basicInfo" data-role="button" data-inline="true" data-corners="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-d" data-theme="c" >
-                    <span class="ui-btn-inner ui-btn-corner-all">
-                        <span class="ui-btn-text">Back</span>
-                    </span>
-                </a>
-            </div>
+            <nav  class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class = "row">
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
             <div data-role="content">
                 <form class="form-horizontal" role="form"  style = "margin: 10px 10px">
                     <h3 class = "text-info">Please enter your medical data...</h3>
                     <div class="form-group" name="input">
-                        <label class="col-xs-6 control-label text-info" for="hypertension">Do you have hypertension?</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6 col-sm-6 control-label text-info" for="hypertension">Do you have hypertension?</label>
+                        <div class="col-xs-6 col-sm-6">
                             <select class="form-control">
                                 <option>Yes</option>
                                 <option>No</option>
@@ -99,8 +173,8 @@
                         </div>
                     </div>
                     <div class="form-group" name="input">
-                        <label class="col-xs-6 control-label text-info" for="arrythmia">Do you have a heart arrythmia?</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6  col-sm-6 control-label text-info" for="arrythmia">Do you have a heart arrythmia?</label>
+                        <div class="col-xs-6 col-sm-6">
                             <select class="form-control">
                                 <option>Yes</option>
                                 <option>No</option>
@@ -111,7 +185,12 @@
                     <p class = "text-info">Enter any medication taken...</p>
                     <textarea class="form-control" rows="5"type="text" name="Enter information" placeholder = "Enter Medication...">
                     </textarea>
-                    <a  class = "btn btn-info btn-block" type = "button" href ="#mainMenu" style ="height: 50px;color: #FFFFFF;font-size: 22px;">Finish and Save</a>
+                    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                        <div class="container-fluid">
+                            <a  class = "btn btn-info navbar-btn half" type = "button" href ="#basicInfo" style ="color: #FFFFFF;">Back</a>
+                            <a  class = "btn btn-info navbar-btn half" type = "button" href ="#mainMenu" style ="color: #FFFFFF;">Finish and Save</a>
+                        </div>
+                    </nav>             
                     </div>
                 </form>
             </div>
@@ -122,15 +201,20 @@
 
         <!-- Start of main menu page -->
         <div data-role="page" id="mainMenu">
-             <div data-role="header" class="ui-bar ui-bar-c">
-                    <h1 id="nav-header"><img src="../img/logo-36.png"></h1>
-            </div>
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class = "row">
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon--th-list"></span></a>
+                </div>
+            </nav>
              <div data-role="content">
-                <a class = "btn btn-info btn-block" type = "button" href="#modeSelection">Select a mode</a>
-                <a class = "btn btn-info btn-block" type = "button" href="#records">View Records</a>
-                <a class = "btn btn-info btn-block" type = "button" href="#personalInfo">Personal Info</a>
-                <a class = "btn btn-info btn-block" type = "button" href="#information">Information</a>
-                <a class = "btn btn-info btn-block" type = "button" href="#currentActivity">Current Activity</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#modeSelection" style = "color:#FFFFFF;">Select a mode</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#records" style = "color:#FFFFFF;">View Records</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#personalInfo" style = "color:#FFFFFF;">Personal Info</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#information" style = "color:#FFFFFF;">Information</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#currentActivity" style = "color:#FFFFFF;">Current Activity</a>
             </div>
             <div data-role="footer">
                 <h4>BP Ease Demo</h4>
@@ -139,15 +223,12 @@
 
         <!-- Start of mode selection page -->
         <div data-role="page" id="modeSelection">
-            <style>
-                a.btn-info:hover{color: #B9D5DD}
-            </style>
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
             <div class="container" style = "position:relative; top:90px;margin: 10px 10px">
@@ -159,15 +240,15 @@
 
         <!-- Start of records page -->
         <div data-role="page" id="records">
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div style = "position:relative; top:70px;margin: 10px 10px">
+            <div data-role="content">
                 <h2 class = "text-info">Records</h2>
                 <script type="text/javascript">
                     var startDate = "00/00/00";
@@ -181,25 +262,27 @@
                         <a class = "btn btn-default text-info" type = "button" style = "width: 100%"><script>document.write(startDate)</script> - <script>document.write(endDate)</script></a>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
-                <div style = "position:fixed; bottom:10px;width:100%">
-                    <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#" style = "color:#FFFFFF;">Delete</a>
-                    <a  class = "btn btn-info" type = "button" href ="#" style = "color:#FFFFFF;">Send</a>
-                </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn normal" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;width:32%">Back</a>
+                        <a  class = "btn btn-info navbar-btn normal" type = "button" href ="#" style = "color:#FFFFFF;width:32%">Delete</a>
+                        <a  class = "btn btn-info navbar-btn normal" type = "button" href ="#" style = "color:#FFFFFF;width:32%">Send</a>
+                    </div>
+                </nav>
             </div>
         </div>
 
         <!-- Start of personal info page -->
         <div data-role="page" id="personalInfo">   
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-
+            <div data-role="content">
             <script>
               var name = "User";
               var nhs = "Number";
@@ -212,64 +295,67 @@
             <form class="form-horizontal" role="form" style = "position:relative; top:70px;margin: 10px 10px">
                 <h2 class="text-info">Personal Information</h2>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">Name:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4 col-sm-6 control-label text-info">Name:</label>
+                    <div class="col-xs-8 col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(name)</script></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">NHS Number:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4  col-sm-6 control-label text-info">NHS Number:</label>
+                    <div class="col-xs-8 col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(nhs)</script></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">Date of Birth:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4 col-sm-6 control-label text-info">Date of Birth:</label>
+                    <div class="col-xs-8 col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(dob)</script></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">GP Email:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4  col-sm-6 control-label text-info">GP Email:</label>
+                    <div class="col-xs-8 col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(gpemail)</script></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">Do you have Hypertension?</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4  col-sm-6 control-label text-info">Do you have Hypertension?</label>
+                    <div class="col-xs-8  col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(no)</script></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-4 control-label text-info">Do you have a heart arrythmia?</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4  col-sm-6 control-label text-info">Do you have a heart arrythmia?</label>
+                    <div class="col-xs-8 col-sm-6">
                         <p class="form-control-static text-info"><script>document.write(no)</script></p>
                     </div>
                 </div>
-                <label class="text-info">Medication Taken:</label>
-                <p class="text-info"><script>document.write(medication)</script></p>
-                <div style = "position:fixed; bottom:10px;width:100%">
-                    <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#basicInfo" style = "color:#FFFFFF;">Edit</a>
+                <div class="form-group">
+                    <label class="col-xs-4  col-sm-6 control-label text-info">Medication Taken:</label>
+                    <div class="col-xs-8 col-sm-6">
+                        <p class="text-info"><script>document.write(medication)</script></p>
+                    </div>
                 </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#basicInfo" style = "color:#FFFFFF;">Edit</a>
+                    </div>
+                </nav>
             </form>
+        </div>
         </div>
         <!-- Start of information page -->
         <div data-role="page" id="information">
-            <style>
-                #button-back{height: 50px;color: #FFFFFF;font-size: 22px;position:fixed; bottom:10px; width:47%;}
-                a.btn-info:hover{color: #B9D5DD}
-            </style>
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="/img/logo.png" alt="logo.png">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div class="container" style = "position:relative; top:70px;margin: 10px 10px">
+            <div class="container" data-role="content">
                 <h2 class="text-info">Information</h2>
                 <div class="panel panel-info" id="instructions">
                     <div class="panel-heading text-info">Instructions</div>
@@ -283,124 +369,128 @@
                     <div class="panel-heading text-info">Terms and Conditions</div>
                     <div class="panel-body text-info">Assume that when they register, when they click register there will be a bit before saying 'by registering you will confirm to the terms etc'</div>
                 </div>
-
-                <a class = "btn btn-info" type = "button" href = "#mainMenu" id="button-back">Back</a>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a class = "btn btn-info navbar-btn normal" type = "button" href = "#mainMenu" id="button-back" style = "color:#FFFFFF;">Back</a>
+                    </div>
+                </nav>              
             </div>
         </div>
         <!-- Start of currrent activity page -->
         <div data-role="page" id="currentActivity">
-            <div data-role="header" class="ui-bar ui-bar-c">
-                <h1 id="nav-header"><img src="../img/logo-36.png"></h1>
-                <a href="#mainMenu">Back</a>
-            </div>
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class = "row">
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
             <div data-role="content">
                 <form class="form-horizontal" role="form" style = "position:relative; top:70px;margin: 10px 10px">
                     <h2 class = "text-info">Your current activity...</h2>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label text-info">Start date:</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6  col-sm-6 control-label text-info">Start date:</label>
+                        <div class="col-xs-6 col-sm-6">
                             <p class="form-control" id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">05/03/14</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label text-info">End date:</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6 col-sm-6 control-label text-info">End date:</label>
+                        <div class="col-xs-6 col-sm-6">
                             <p class="form-control" id="enddate" name="enddate" min="2012-01-01" max="2013-01-01" type="date">8:00</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label text-info">Morning reminder:</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6 col-sm-6 control-label text-info">Morning reminder:</label>
+                        <div class="col-xs-6 col-sm-6">
                             <p class="form-control" name="usr_time" value="12:00" type="time">12:00</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label text-info">Evening reminder:</label>
-                        <div class="col-xs-6"><p></p>
+                        <label class="col-xs-6 col-sm-6 control-label text-info">Evening reminder:</label>
+                        <div class="col-xs-6  col-sm-6"><p></p>
                             <p class="form-control" name="usr_time" value="12:00" type="time">12:00</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label text-info">Bluetooth:</label>
-                        <div class="col-xs-6">
+                        <label class="col-xs-6  col-sm-6 control-label text-info">Bluetooth:</label>
+                        <div class="col-xs-6  col-sm-6">
                             <input class="form-control" type="checkbox" id="disabledInput">
                         </div>
                     </div>
-                    <div style = "position:fixed; bottom:10px;width:100%">
-                        <a  class = "btn btn-info" type = "button" href ="#setupHBPM" style = "color:#FFFFFF;">Edit Setup</a>
-                        <a  class = "btn btn-info" type = "button" href ="#bluetoothHBPM" style = "color:#FFFFFF;">Take a<br/>Measurement</a>
-                    </div>
+                    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                        <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#setupHBPM" style = "color:#FFFFFF;">Edit Setup</a>
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#bluetoothHBPM" style = "color:#FFFFFF;">Take a<br/>Measurement</a>  
+                        </div>
+                    </nav>
                 </form>
-            </div>
-            <div data-role="footer">
-                <h4>BP Ease Demo</h4>
             </div>
         </div>
         <!-- Start of HBPM setup page-->
         <div data-role="page" id="setupHBPM"> 
-            <style>
-                a.btn-info:hover{color: #B9D5DD}
-            </style>
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="/views/mainMenuView.html" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs  col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <form class="form-horizontal" role="form" style = "position:relative; top:70px;margin: 10px 10px">
+            <div data-role="content">
+            <form class="form-horizontal" role="form">
                 <h2 class = "text-info">HBPM Mode setup</h2>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label text-info">Start date:</label>
+                    <label class="col-xs-6 col-sm-6 control-label text-info">Start date:</label>
                     <div class="col-xs-6">
                         <input class="form-control" id="startdate" name="startdate" min="2012-01-01" max="2013-01-01" type="date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label text-info">End date:</label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-6 col-sm-6 control-label text-info">End date:</label>
+                    <div class="col-xs-6 col-sm-6">
                         <input class="form-control" id="enddate" name="enddate" min="2012-01-01" max="2013-01-01" type="date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label text-info">Morning reminder:</label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-6 col-sm-6 control-label text-info">Morning reminder:</label>
+                    <div class="col-xs-6 col-sm-6">
                         <input class="form-control" name="usr_time" value="12:00" type="time">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label text-info">Evening reminder:</label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-6 col-sm-6 control-label text-info">Evening reminder:</label>
+                    <div class="col-xs-6 col-sm-6">
                         <input class="form-control" name="usr_time" value="12:00" type="time">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label text-info">Bluetooth:</label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-6 col-sm-6 control-label text-info">Bluetooth:</label>
+                    <div class="col-xs-6 col-sm-6">
                         <input class="form-control" type="checkbox">
                     </div>
                 </div>
-                <div style = "position:fixed; bottom:10px;width:100%">
-                    <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#bluetoothHBPM" style = "color:#FFFFFF;">Next</a>
-                </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#bluetoothHBPM" style = "color:#FFFFFF;">Next</a>
+                    </div>
+                </nav>
             </form>
+        </div>
         </div> 
         <!-- Start of bluetooth measurement page-->
         <div data-role="page" id="bluetoothHBPM"> 
-            <style>
-                a.btn-info:hover{color: #B9D5DD}
-            </style>
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="/img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div style = "position:relative; top:90px;margin: 10px 10px">
+            <div data-role="content">
                 <div class="panel panel-info" id="reading-1">
                     <div class="panel-heading text-info">Reading 1:</div>
                     <div class="panel-body text-info">
@@ -424,85 +514,87 @@
                         <a type="button" class="btn btn-info" href="#" id="measurement-button-2" style = "color:#FFFFFF;height: 30px;font-size: 10px;width: 25%" align = "center">Start</a></div>
                     </div>
                 </div>
-                <div style = "position:fixed; bottom:10px;width:100%">
-                    <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;height: 50px;font-size: 22px;width: 47%">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#mainMenu" style = "color:#FFFFFF;height: 50px;font-size: 22px;width: 47%">Save</a>
-                </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#mainMenu" style = "color:#FFFFFF;">Save</a>
+                    </div>
+                </nav>
             </div>      
         </div>
         <!-- Start of manual measurement page-->
         <div data-role="page" id="manualHBPM"> 
-            <style>
-                a.btn-info:hover{color: #B9D5DD}
-            </style>
-            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style = "background-color: #5bc0de;border-color: #3fb5d8;background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);background-repeat: repeat-x;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff85d0e7', endColorstr='#ff5bc0de', GradientType=0);">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class = "row">
-                    <img class="col-xs-3" src="img/logo.png" alt="logo.png" width = "50px" height = "80px">
-                    <div class="col-xs-1 visible-xs"></div>
-                    <h1 class="navbar-brand col-xs-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
-                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-home"></span></a>
+                    <img class="col-xs-3 col-sm-2" src="/bpeaseblue.png" alt="bpeaseblue.png" width = "50px" height = "80px">
+                    <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
+                    <h1 class="navbar-brand col-xs-4 col-sm-4" style = "color: #ffffff;font-size: 22px" align = "center">BPEase</h1>
+                    <a class="" href="#mainMenu" style = "position:fixed;right:10px"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
+            <div data-role="content">
             <form class="form-horizontal" role="form" style = "position:relative; top:100px;margin: 10px 10px">
                 <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Date:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4 col-sm-4 control-label text-info">Date:</label>
+                    <div class="col-xs-8 col-sm-8">
                         <input class="form-control" id="date" name="date" min="2012-01-01" max="2013-01-01" type="date">
                     </div>
                 </div>
                 <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Time:</label>
-                    <div class="col-xs-8">
+                    <label class="col-xs-4 col-sm-4control-label text-info">Time:</label>
+                    <div class="col-xs-8 col-sm-8">
                         <input class="form-control" name="usr_time" value="12:00" type="time">
                     </div>
                 </div>
                 <div class="row"> 
-                    <div class="col-xs-4 visible-xs"></div>
-                    <div class="col-xs-4 text-info">Reading 1</div>
-                    <div class="col-xs-4 text-info">Reading 2</div>
+                    <div class="col-xs-4 visible-xs col-sm-4 visible-sm"></div>
+                    <div class="col-xs-4 col-sm-4 text-info">Reading 1</div>
+                    <div class="col-xs-4 col-sm-4 text-info">Reading 2</div>
                 </div>
                 <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Diatolic:</label>
-                    <div class="col-xs-4">
+                    <label class="col-xs-4 col-sm-4 control-label text-info">Diatolic:</label>
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
-                    <div class="col-xs-4">
-                        <input class="form-control" name="reading-1" type="text">
-                    </div>
-                </div>
-                <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Systolic:</label>
-                    <div class="col-xs-4">
-                        <input class="form-control" name="reading-1" type="text">
-                    </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
                 </div>
                 <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Pulse:</label>
-                    <div class="col-xs-4">
+                    <label class="col-xs-4 col-sm-4 control-label text-info">Systolic:</label>
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
                 </div>
                 <div class="form-group"> 
-                    <label class="col-xs-4 control-label text-info">Blood Pressure:</label>
-                    <div class="col-xs-4">
+                    <label class="col-xs-4 col-sm-4 control-label text-info">Pulse:</label>
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-4 col-sm-4">
                         <input class="form-control" name="reading-1" type="text">
                     </div>
                 </div>
-
-                <div style = "position:fixed; bottom:10px;width:100%">
-                    <a  class = "btn btn-info" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
-                    <a  class = "btn btn-info" id="button-save" type = "button" href ="#mainMenu" style = "color:#FFFFFF;">Save</a>
+                <div class="form-group"> 
+                    <label class="col-xs-4 col-sm-4 control-label text-info">Blood Pressure:</label>
+                    <div class="col-xs-4 col-sm-4">
+                        <input class="form-control" name="reading-1" type="text">
+                    </div>
+                    <div class="col-xs-4 col-sm-4">
+                        <input class="form-control" name="reading-1" type="text">
+                    </div>
                 </div>
+                <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                    <div class="container-fluid">
+                        <a  class = "btn btn-info navbar-btn half" type = "button" href ="#" onclick="javascript:history.back(1)" id="button-back" style = "color:#FFFFFF;">Back</a>
+                        <a  class = "btn btn-info navbar-btn half" id="button-save" type = "button" href ="#mainMenu" style = "color:#FFFFFF;">Save</a>
+                    </div>
+                </nav>                
             </form>
+        </div>
         </div>
 
 
