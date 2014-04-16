@@ -14,7 +14,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     doc.text(10,20,"monitoring (HBPM)");
 
     doc.setFontType("normal");
-    doc.text(10,40,"Patient detaisl:");
+    doc.text(10,40,"Patient detais:");
     doc.text(10,50,"Name:");
     doc.text(10,60,"DOB:");
     doc.text(10,70,"NHS Number:");
@@ -25,18 +25,30 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     doc.text(10,130,"Arrythmia-y/n");
 
     //Adding the tables
-    var content = "";
-    for(var i=0;i<dataArray.length;i++)
-        {
-            content = "<tr>";
+    var content = "<tr>";
+    for(var a=0;a<date_and_time.length;a++)
+    {
+      for(var b=0;b< date_and_time.length;b++)
+      {
+          content += '<td>' + date_and_time[b] + '</td>';
+          content += '<td>' + date_and_time[b+1] + '</td>';
+          for(var c=0; c < systolic.length; c++)
+          {
+             content += '<td>' + systolic[c] + '</td>';
+             for(var d=0; d< diastolic.length;d++)
+             {
+                 content += '<td>' + diastolic[d] + '</td>';          
+                 for(var e=0;e < pulse.length; e++)
+                   {
+                       content += '<td>' + pulse[e] + '</td>';
+                       content += '</tr>';
+                   }
+               }
+           }
+       }
+   }
 
-            for(var j=0;j<date_and_time;j++)
-            {
-                content += '<td>' + dataArray[i] + '</td>';
-            }
 
-            content += "</tr>";
-        }
     pdf.addHTML("
         <table style='width:50px'>
         <tr>
