@@ -26,7 +26,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
 
     //Adding the tables
     var content = "<tr>";
-    for(var a=0;a<date_and_time.length;a++)
+    for(var a=0;a<systolic.length;a++)
     {
       for(var b=0;b< date_and_time.length;b++)
       {
@@ -67,7 +67,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     doc.setFontType("bold");
     doc.text(60,90,"SUMMARY:");
     doc.text(60,100,"Readings from "+ ""+ "to "+"");
-    doc.text(60,110,"Total number of readings: "+ dataArray.length);
+    doc.text(60,110,"Total number of readings: "+ systolic.length);
     doc.text(60,120,"*Remember to discard the first days reading in the averages");
     doc.text(63,130,"calculation.");
 
@@ -85,30 +85,26 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     var content2= "";
     for(var m=0;m<columnHeadings.length;m++)
     {
-        content2 = '<tr>';
-        for(var n=0;n<3;n++)
-        {
-            content2 += '<td>' + columnHeadings[m] + '</td>';
-            if(columnHeadings[m] == "Syst BP")
+        content2 += '<tr>';
+        content2 += '<td>' + columnHeadings[m] + '</td>';
+        if(columnHeadings[m] == "Syst BP")
             {
                 content2 += '<td>'+ min_and_max[0] + '</td>';
                 content2 += '<td>'+ min_and_max[1] + '</td>';
             }
-            if(columnHeadings[m] == "Syst BP")
+        if(columnHeadings[m] == "Diast BP")
             {
                 content2 += '<td>'+ min_and_max[2] + '</td>';
                 content2 += '<td>'+ min_and_max[3] + '</td>';
             }
-            if(columnHeadings[m] == "Syst BP")
+        if(columnHeadings[m] == "Pulse")
             {
                 content2 += '<td>'+ min_and_max[4] + '</td>';
                 content2 += '<td>'+ min_and_max[5] + '</td>';
             }
-            content2+= '</tr>'
-        }
+        content2+= '</tr>'
     }
-
-
+        
     pdf.addHTML("
         <table style='width:50px'>
         <tr>
