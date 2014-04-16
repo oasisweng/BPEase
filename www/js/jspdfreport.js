@@ -2,7 +2,7 @@
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
 //==============================
-function generatePDFReport() {
+function generatePDFReport(dataArray) {
     //FIRST GENERATE THE PDF DOCUMENT
     logit("generating pdf...");
     // @TODO: Need to simplify this demo
@@ -23,6 +23,31 @@ function generatePDFReport() {
     doc.text(10,110,"Medical History:");
     doc.text(10,120,"HTN-y/n");
     doc.text(10,130,"Arrythmia-y/n");
+
+    //Adding the tables
+    var content = "";
+    for(var i=0;i<dataArray.length;i++)
+        {
+            content = "<tr>";
+
+            for(var j=0;j<5;j++)
+            {
+                content += '<td>' + dataArray[i] + '</td>';
+            }
+
+            content += "</tr>";
+        }
+    pdf.addHTML("
+        <table style='width:50px'>
+        <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Systolic</th>
+        <th>Diastolic</th>
+        <th>Pulse</th> "+content,function() {
+        var string = pdf.output('datauristring');
+        $('.preview-pane').attr('src', string);
+    });
 
     doc.addPage();
     //Page 2-Instructions for HBPM 
@@ -46,6 +71,7 @@ function generatePDFReport() {
     doc.text(10,170,'* measurements to confirm a diagnosis of hypertension.');
 
     doc.addPage();
+
     //Page 3-Nice guidance reminder for GP
     doc.setFontType('bold');
     doc.text(60,10,'NICE guidance reminder for GP:');
@@ -64,10 +90,6 @@ function generatePDFReport() {
     doc.text(10,120,'* Severe hypertension Clinic systolic blood pressure is 180');
     doc.text(14,130,'mmHg or higher, or clinic diastolic blood');
     doc.text(10,140,'* pressure is 110 mmHg or higher.');
-
-    //Adding the tables
-    
-
 
     var pdfOutput = doc.output();
     logit(pdfOutput);
