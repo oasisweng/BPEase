@@ -62,8 +62,6 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
         $('.preview-pane').attr('src', string);
     });
 
-
-
     doc.setFontType("bold");
     doc.text(60,90,"SUMMARY:");
     var length_date_and_time = date_and_time.length;
