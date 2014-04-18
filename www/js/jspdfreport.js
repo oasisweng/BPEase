@@ -67,7 +67,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     doc.setFontType("bold");
     doc.text(60,90,"SUMMARY:");
     var length_date_and_time = date_and_time.length;
-    doc.text(60,100,"Readings from "+ date_and_time[0] + "to "+ date_and_time[length_date_and_time-2]); // oasis please check if everything here is fine
+    doc.text(60,100,"Readings from ("+ date_and_time[0]+"," + date_and_time[1]+ ") to ("+ date_and_time[length_date_and_time-2] + "," + date_and_time[length_date_and_time-1]); // oasis please check if everything here is fine
     doc.text(60,110,"Total number of readings: "+ systolic.length);
     doc.text(60,120,"*Remember to discard the first days reading in the averages");
     doc.text(63,130,"calculation.");
