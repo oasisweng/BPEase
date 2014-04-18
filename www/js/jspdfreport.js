@@ -28,7 +28,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
     var content = "<tr>";
     for(var a=0;a<systolic.length;a++)
     {
-      for(var b=0;b< date_and_time.length;b++)
+      for(var b=0;b< date_and_time.length;b+=2)
       {
           content += '<td>' + date_and_time[b] + '</td>';
           content += '<td>' + date_and_time[b+1] + '</td>';
