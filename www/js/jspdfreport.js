@@ -58,7 +58,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
         <th>Diastolic</th>
         <th>Pulse</th>
         </tr> "+content,function() {
-        var string = pdf.output('datauristring');
+        var string = pdf.output('firsttable');
         $('.preview-pane').attr('src', string);
     });
 
@@ -66,7 +66,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
 
     doc.setFontType("bold");
     doc.text(60,90,"SUMMARY:");
-    doc.text(60,100,"Readings from "+ ""+ "to "+"");
+    doc.text(60,100,"Readings from "+ ""+ "to "+""); // min and max date to be added here
     doc.text(60,110,"Total number of readings: "+ systolic.length);
     doc.text(60,120,"*Remember to discard the first days reading in the averages");
     doc.text(63,130,"calculation.");
@@ -114,7 +114,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
         <th>Average</th>
         </tr>
          "+content2,function() {
-        var string = pdf.output('datauristring');
+        var string = pdf.output('secondtable');
         $('.preview-pane').attr('src', string);
     });
 
