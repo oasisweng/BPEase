@@ -2,7 +2,7 @@
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
 //==============================
-function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
+function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais) {
     //FIRST GENERATE THE PDF DOCUMENT
     logit("generating pdf...");
     // @TODO: Need to simplify this demo
@@ -15,14 +15,14 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse) {
 
     doc.setFontType("normal");
     doc.text(10,40,"Patient detais:");
-    doc.text(10,50,"Name:");
-    doc.text(10,60,"DOB:");
-    doc.text(10,70,"NHS Number:");
-    doc.text(10,80,"GP Surgery:");
-    doc.text(10,90,"Named GP:");
-    doc.text(10,110,"Medical History:");
-    doc.text(10,120,"HTN-y/n");
-    doc.text(10,130,"Arrythmia-y/n");
+    doc.text(10,50,"Name: "+personalDetais[0]);
+    doc.text(10,60,"DOB: "+personalDetais[1]);
+    doc.text(10,70,"NHS Number: "+personalDetais[2]);
+    doc.text(10,80,"GP Surgery: "+ personalDetais[3]);
+    doc.text(10,90,"Named GP: "+ personalDetais[4]);
+    doc.text(10,110,"Medical History: "+ personalDetais[5]);
+    doc.text(10,120,"HTN: "+personalDetais[6]);
+    doc.text(10,130,"Arrythmia: "+personalDetais[7]);
 
     //Adding the tables
     var content = "<tr>";
