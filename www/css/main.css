@@ -49,21 +49,16 @@ a.btn-info:hover{
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
 	width: 300px;
-	height:460px;
+	height:309px;
 }
 #main h1{
 	margin:0;
 	margin-bottom: 20px;
-}
-#register-button {
-	padding: 9px 0px;
-	font-size: 22px;
-	border-radius: 8px;
-	color: #FFFFFF;
+	margin-top: 14px;
 }
 
 body form{
-	margin: 10px 10px;
+	margin: 10px 15px;
 }
 
 
@@ -76,7 +71,8 @@ body form{
 	text-align: left;
 }
 p{
-	margin-top:30px;
+	margin-bottom: 30px;
+	margin-top: 20px;
 }
 
 /*=============
@@ -93,7 +89,7 @@ p{
 }
 
 .form-group{
-	margin-bottom:25px !important;
+	margin-bottom:20px !important;
 }
 
 textarea{
@@ -103,5 +99,10 @@ textarea{
 
 .home-btn{
 	padding-left:5px;
+}
+
+.table-hover tr td .ui-checkbox{
+	margin:0;
+}
 }
 

@@ -56,11 +56,14 @@ var app = {
         var new_date = new Date(date + 6 * 1000);
         setLocalNotificaiton(new_date, title, message, repeat);
         generatePDFReport();
-        $(document).delegate(" ", "pageshow", function() {
-            console.log("Hello world!");
+        $(document).delegate("#records", "pageshow", function() {
+            alert("records showing");
         });
     }
 };
+$(document).delegate("#welcome", "pageshow", function() {
+    $("#menu-button").css("display","none");
+});
 
 function logit(s) {
     document.getElementById("log").innerHTML += s;
@@ -70,6 +73,29 @@ function logit(s) {
 function onError(err) {
     logit(err.code);
 }
+
+//==============================
+// Datepicker
+//==============================
+ $('.input-daterange').datepicker({
+    todayBtn: "linked"
+});
+$('#datepicker').datepicker({
+    startDate: "-95y",
+    endDate: "+0d",
+    autoclose: true
+});
+
+$('.hbpm-datepicker').datepicker({
+    startDate: "+0d",
+    endDate: "+1y",
+    autoclose: true,
+    todayHighlight: true
+});
+
+$('.hbpm-timepicker').datetimepicker({
+    pickDate: false
+});
 
 //==============================
 // Local Notification
@@ -173,16 +199,7 @@ function sendEmail() {
 function sendEmail_Result() {
     logit("Email calling back");
 }
-//==============================
-// Datepicker
-//==============================
-$(function() {
-    $('#datepicker').datepicker({
-        format: 'mm-dd-yyyy',
-        endDate: '+1y',
-        startDate: '-80y'
-    });
-});
+
 //==============================
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
