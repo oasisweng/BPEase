@@ -34,6 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //navigator.notification.alert("PhoneGap is ready!");
+        alert("device ready")
         logit("Phonegap is ready.");
 
         logit("File system demo:");
@@ -258,5 +259,65 @@ function generatePDFReport() {
         logit(evt.target.error.code);
     });
 }
+
+function saveUserInfo(){
+    logit("can read this...");
+    var userinfo = $("#name").value;
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+    logit(fileSystem.name + "yo");
+    logit(fileSystem.root.name + "yo2");
+    logit(fileSystem.root.fullPath + "yo3");
+    fileSystem.root.getFile("userinfo.txt", {
+        create: true
+    }, function(entry) {
+        logit(entry);
+        entry.createWriter(function(writer) {
+            writer.onwrite = function(evt) {
+                logit("write success");
+            };
+            logit("writing to file");
+            var json = JSON.parse({name: userinfo}); 
+            writer.write(json);
+        }, function(error) {
+            logit(error);
+        });
+    }, function(error) {
+        logit(error);
+    });
+}, function(event) {
+    logit(evt.target.error.code);
+});
+}
+
+function readUserInfo(){
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+    logit(fileSystem.name);
+    logit(fileSystem.root.name);
+    logit(fileSystem.root.fullPath);
+    fileSystem.root.getFile("userinfo.txt", function(entry) {
+        var reader = new FileReader();
+        logit(entry);
+        reader.onloadend= function(evt){
+            var userinfo =evt.target.result;
+            var userinfoObj = JSON.parse(userinfo);
+            logit("reading"+userinfo);
+            document.getElementById("outname").innerHTML=userinfoObj.name;
+        }
+    }, function(error) {
+        logit(error);
+    });
+}, function(event) {
+    logit(event.target.error.code);
+});
+}
+
+ $("#next").bind("click",function(event){
+    saveUserInfo();
+}
+
+ $("#pi-save-btn").bind("click",function(event){
+    readUserInfo();
+
+ }
 //Stringify a JSON JSON.stringify({test:123})
 //Parse a JSON String JSON.parse(json).test

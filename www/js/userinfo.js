@@ -37,9 +37,13 @@ function saveUserInfo() {
         }, function(error) {
             logit(error);
         });
-    }, function(event) {
-        logit(evt.target.error.code);
+    }, function(error) {
+        logit(error);
     });
+},
+function(event) {
+    logit(evt.target.error.code);
+});
 }
 
 function readUserInfo() {
