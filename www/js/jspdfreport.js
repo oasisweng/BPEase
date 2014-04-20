@@ -49,7 +49,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
    }
 
 
-    pdf.addHTML("
+    doc.addHTML("
         <table style='width:50px'>
         <tr>
         <th>Date</th>
@@ -58,8 +58,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
         <th>Diastolic</th>
         <th>Pulse</th>
         </tr> "+content,function() {
-        var string = pdf.output('firsttable');
-        $('.preview-pane').attr('src', string);
+        alert("finished");
     });
 
     doc.setFontType("bold");
@@ -163,7 +162,7 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
     logit(pdfOutput);
 
     //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
-    logit("saving to file system...");
+    logit("Saving to file system...");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         logit(fileSystem.name);
         logit(fileSystem.root.name);

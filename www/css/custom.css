@@ -118,3 +118,8 @@ div[data-role="content"]
     margin-right: auto;
     margin-top: 10px;
 }
+
+.remove{
+    display:none;
+    visibility: hidden;
+}
