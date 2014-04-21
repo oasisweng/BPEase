@@ -28,6 +28,7 @@ function setHBMPFilePrefix(v) {
 
 function saveSettings() {
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+        logit("get file system");
         fileSystem.root.getFile("settings.txt", {
             create: true
         }, function(entry) {
@@ -46,42 +47,45 @@ function saveSettings() {
             logit(error);
         });
     }, function(event) {
-        logit(evt.target.error.code);
+        logit("cant save");
     });
 }
 
 function loadSettings(success) {
-    var isCreating = false;
     if (settings.firsttime)
-        isCreating = true;
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        fileSystem.root.getFile("settings.txt", {
-            create: isCreating
-        }, function(entry) {
-            var reader = new FileReader();
-            alert("reading settings");
-            reader.onloadend = function(evt) {
-                var settingsJson = evt.target.result;
-                var settingsObj = JSON.parse(settingsJson);
-                logit("setting is set " + settingsObj);
-                settings.firsttime = settingsObj.firsttime;
-                settings.hbpm = settingsObj.hbpm;
-                settings.bluetooth = settingsObj.bluetooth;
-                settings.hasActivity = settingsObj.hasActivity;
-                settings.hbpmFilePrefix = settingsObj.hbpmFilePrefix;
-                success();
-            }
-        }, function(error) {
-            logit("failed to load setting " + error);
+        success();
+    else {
+        logit("loading settings " + isCreating);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+            logit("get file system");
+            fileSystem.root.getFile("settings.txt", {
+                create: false
+            }, function(entry) {
+                entry.file(function(txtFile) {
+                    var reader = new FileReader();
+                    reader.onloadend = function(evt) {
+                        var settingsJson = evt.target.result;
+                        var settingsObj = $.parseJSON(settingsJson);
+                        settings.firsttime = settingsObj.firsttime;
+                        settings.hbpm = settingsObj.hbpm;
+                        settings.bluetooth = settingsObj.bluetooth;
+                        settings.hasActivity = settingsObj.hasActivity;
+                        settings.hbpmFilePrefix = settingsObj.hbpmFilePrefix;
+                        logit("setting is set " + settingsJson);
+                        success();
+                    }
+                    reader.readAsText(txtFile);
+                }, function(error) {
+                    logit("can't read" + error);
+                });
+            }, function(error) {
+                logit("failed to load setting " + error);
+            });
+        }, function(event) {
+            logit("failed to load setting " + event);
         });
-    }, function(event) {
-        logit("failed to load setting " + event);
-    });
+    }
 }
-
-$("#bluetooth-toggle").bind("click", function(event) {
-    alert("bluetooth changed");
-});
 
 //  $("#pi-save-btn").bind("click",function(event){
 //     readUserInfo();

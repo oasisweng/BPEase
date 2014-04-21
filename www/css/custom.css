@@ -26,9 +26,9 @@ a.btn-info:hover{
 div[data-role="content"]
 {
     position: absolute;
-    width: 100%;
+    width: 90%;
     margin:0 auto;
-    top:10%;
+    top:50px;
     left: 0;
     right: 0;
 }
@@ -65,7 +65,6 @@ div[data-role="content"]
 
 .menu{
     height:442px;
-    width:369px !important;
 }
 .menu-btn{
     position: fixed;
@@ -91,7 +90,7 @@ div[data-role="content"]
 .btn-mode{
     margin-top: 15px;
     height: 150px; 
-    width: 100%;
+    width: 90%;
     font-size: 28px;
     line-height: 150px !important;
 }
@@ -121,5 +120,29 @@ div[data-role="content"]
 #toggle-progress{
     background-color:rgba(0,0,0,0.6);
     width:150px;
-    height:120px;
+    height: 80px;
+    margin: auto;
+    position: absolute;
+    top:0;bottom: 0;left:0; right:0;
+    display:none;
+    border-radius: 5px;
+}
+
+#toggle-progress span{
+    color: white;
+font-weight: 100;
+font-size: 13px;
+position: absolute;
+top: 20px;
+left: 0;
+right: 0;
+margin: 0 auto;
+}
+
+#toggle-progress img{
+    position: absolute;
+margin: 0 auto;
+left: 0;
+right: 0;
+top: 45px;
 }
