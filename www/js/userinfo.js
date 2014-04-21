@@ -108,7 +108,7 @@ function readUserInfo(isEditing) {
 $('#user-btn-next').click(function(event) {
     var aName = $('#user-name').val();
     var aDOB = $('#datepicker').val();
-    var aNHSNO = $('#nshno').val();
+    var aNHSNO = $('#nhsno').val();
     var aGPEMAIL = $('#gpemail').val();
     if (aName == "") {
         alert("Name is empty");

@@ -42,24 +42,6 @@ var app = {
             var element = document.getElementById('deviceProperties');
             element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
 
-            logit("Local Notificaition Demo");
-            window.plugin.notification.local.onadd = function(id, state, json) {
-                logit("added a new local notification " + id + " " + state + " " + json);
-            };
-            window.plugin.notification.local.ontrigger = function(id, state, json) {
-                logit("a notification is triggered " + id + " " + state + " " + json);
-            };
-            window.plugin.notification.local.add({
-                message: 'Great app!'
-            });
-
-            var title = 'Reminder';
-            var message = 'Dont forget to buy some flowers.';
-            var repeat = 'weekly';
-            var date = new Date().getTime();
-            var new_date = new Date(date + 6 * 1000);
-            setLocalNotificaiton(new_date, title, message, repeat);
-
             //logit("Report Demo");
             //generatePDFReport();
 
@@ -89,6 +71,8 @@ var app = {
             }, function(error) {
                 logit("Please check connection.." + error);
             });
+
+            document.addEventListener("pause", appPause, false);
         });
     },
 };
@@ -108,6 +92,10 @@ function logit(s) {
 
 function onError(err) {
     logit(err.code);
+}
+
+function appPause() {
+    saveSettings();
 }
 
 //==============================
@@ -133,20 +121,6 @@ $('.hbpm-timepicker').datetimepicker({
     pickDate: false
 });
 
-//==============================
-// Local Notification
-//==============================
-function setLocalNotificaiton(date_c, title_c, message_c, repeat_c) {
-    var id_c = parseInt(Math.random() * 1000);
-    logit("Notification ID " + id_c);
-    window.plugin.notification.local.add({
-        id: id_c,
-        title: title_c,
-        message: message_c,
-        repeat: repeat_c,
-        date: date_c,
-    });
-}
 //==============================
 // Files
 //==============================
@@ -289,11 +263,11 @@ function onConfirmError(button) {
     if (button == 1) {
         $.mobile.navigate("#mainMenu");
     } else {
-        
+
     }
 }
 
-function errorMessage(){
+function errorMessage() {
     navigator.notification.confirm(
         'Your measurements may contain errors, do you want to retake?', // message
         onConfirmError, // callback to invoke with index of button pressed
@@ -303,20 +277,18 @@ function errorMessage(){
 
 }
 
-function validateResults(index1, index2)
-{
+function validateResults(index1, index2) {
     var diastole1 = $('#diastole' + index1).val();
     var systole1 = $('#systole' + index1).val();
     var diastole2 = $('#diastole' + index2).val();
     var systole2 = $('#systole' + index2).val();
-    if (diastole1 < 60 || diastole2 < 60 || diastole1 > 120 || diastole2 > 120 || systole1 < 80 || systole2 < 80 || systole1 > 220 || systole2 > 220)
-    {
+    if (diastole1 < 60 || diastole2 < 60 || diastole1 > 120 || diastole2 > 120 || systole1 < 80 || systole2 < 80 || systole1 > 220 || systole2 > 220) {
         errorMessage();
     }
 }
 
-function checkIfEmpty(index1, index2)
-{   var time = $('#time' + index1).val();
+function checkIfEmpty(index1, index2) {
+    var time = $('#time' + index1).val();
     var date = $('#date' + index1).val();
     var diastole1 = $('#diastole' + index1).val();
     var diastole2 = $('#diastole' + index2).val();
@@ -356,5 +328,3 @@ $("#button-save").click(function(event) {
     validateResults(3, 4);
     checkIfEmpty(3, 4);
 });
-
-

@@ -10,7 +10,6 @@ function onConfirm(button) {
     if (button == 1) {
         $.mobile.navigate("#manual-measure");
     } else {
-        event.preventDefault();
         $.mobile.navigate("#bluetooth-measure");
     }
 }

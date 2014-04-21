@@ -2,8 +2,10 @@ var settings = {
     firsttime: true,
     hbpm: false,
     bluetooth: false,
-    hasActivity: false,
-    hbpmFilePrefix: "h1"
+    hbpmFileName: "H0",
+    hbpmStartDate: new Date(),
+    hbpmEndDate: new Date,
+    totalFiles: 0
 };
 
 function setFirstTime(v) {
@@ -22,8 +24,8 @@ function setHasActivity(v) {
     settings.hasActivity = v;
 }
 
-function setHBMPFilePrefix(v) {
-    settings.hbpmFilePrefix = v;
+function setHBMPFileName(v) {
+    settings.hbpmFileName = v;
 }
 
 function saveSettings() {
@@ -69,8 +71,10 @@ function loadSettings(success) {
                         settings.firsttime = settingsObj.firsttime;
                         settings.hbpm = settingsObj.hbpm;
                         settings.bluetooth = settingsObj.bluetooth;
-                        settings.hasActivity = settingsObj.hasActivity;
-                        settings.hbpmFilePrefix = settingsObj.hbpmFilePrefix;
+                        settings.hbpmFileName = settingsObj.hbpmFileName;
+                        settings.hbpmStartDate = new Date(settingsObj.hbpmStartDate);
+                        settings.hbpmEndDate = new Date(settingsObj.hbpmEndDate);
+                        settings.totalFiles = settingsObj.totalFiles;
                         logit("setting is set " + settingsJson);
                         success();
                     }
