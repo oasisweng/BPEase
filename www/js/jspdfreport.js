@@ -7,6 +7,9 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
     logit("generating pdf...");
     // @TODO: Need to simplify this demo
 
+    $("#bp-table").innerHTML += content;
+
+
     var doc = new jsPDF();
     //Page 1-Readings details
     doc.setFontType("bold");
