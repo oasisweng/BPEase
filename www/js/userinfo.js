@@ -19,9 +19,6 @@ function saveUserInfo() {
         medication: med
     }, null, '\t');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        logit(fileSystem.name);
-        logit(fileSystem.root.name);
-        logit(fileSystem.root.fullPath);
         fileSystem.root.getFile("userinfo.txt", {
             create: true
         }, function(entry) {
