@@ -27,7 +27,6 @@ function setHBMPFilePrefix(v) {
 }
 
 function saveSettings() {
-    logit("can read this...");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         fileSystem.root.getFile("settings.txt", {
             create: true
@@ -52,9 +51,12 @@ function saveSettings() {
 }
 
 function loadSettings(success) {
+    var isCreating = false;
+    if (settings.firsttime)
+        isCreating = true;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         fileSystem.root.getFile("settings.txt", {
-            create: false
+            create: isCreating
         }, function(entry) {
             var reader = new FileReader();
             alert("reading settings");
@@ -73,7 +75,7 @@ function loadSettings(success) {
             logit("failed to load setting " + error);
         });
     }, function(event) {
-        logit("failed to load setting " + event.target.error.code);
+        logit("failed to load setting " + event);
     });
 }
 

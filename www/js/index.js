@@ -95,12 +95,6 @@ var app = {
 
 //potentially have to add it back to ondeviceready
 
-$(document).delegate("#welcome", "pageshow", function() {
-    $("#register-button").addClass("remove");
-    $("#menu-button").addClass("remove");
-    loadWelcomeButton();
-});
-
 $(document).delegate("#records", "pageshow", function() {
     alert("records showing");
 });

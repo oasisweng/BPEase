@@ -115,3 +115,11 @@ div[data-role="content"]
     display:none;
     visibility: hidden;
 }
+
+
+
+#toggle-progress{
+    background-color:rgba(0,0,0,0.6);
+    width:150px;
+    height:120px;
+}
