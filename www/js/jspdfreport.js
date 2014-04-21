@@ -79,7 +79,13 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
             var l= readings[k];
             var min = Math.min.apply(null,l);
             var max = Math.max.apply(null,l);
-            min_and_max.push(min,max);
+            var sum =0;
+            for(var z=0 ; z<l; z++)
+            {
+               sum += l[z];
+            }
+            var avg = sum/l.length;
+            min_and_max.push(min,max,avg);
         }
 
     var columnHeadings = new Array("Syst BP","Diast BP","Pulse")    
@@ -92,16 +98,19 @@ function generatePDFReport(date_and_time,systolic,diastolic,pulse,personalDetais
             {
                 content2 += '<td>'+ min_and_max[0] + '</td>';
                 content2 += '<td>'+ min_and_max[1] + '</td>';
+                content2 += '<td>'+ min_and_max[2] + '</td>';
             }
         if(columnHeadings[m] == "Diast BP")
             {
-                content2 += '<td>'+ min_and_max[2] + '</td>';
                 content2 += '<td>'+ min_and_max[3] + '</td>';
+                content2 += '<td>'+ min_and_max[4] + '</td>';
+                content2 += '<td>'+ min_and_max[5] + '</td>';
             }
         if(columnHeadings[m] == "Pulse")
             {
-                content2 += '<td>'+ min_and_max[4] + '</td>';
-                content2 += '<td>'+ min_and_max[5] + '</td>';
+                content2 += '<td>'+ min_and_max[6] + '</td>';
+                content2 += '<td>'+ min_and_max[7] + '</td>';
+                content2 += '<td>'+ min_and_max[8] + '</td>';
             }
         content2+= '</tr>'
     }
