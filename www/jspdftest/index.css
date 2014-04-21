@@ -1,3 +1,22 @@
 #page2body {
 	font-size : 100;
 }
+
+
+#bp-table1 {
+   background-color: blue;
+   border : 1px solid white;
+   margin:10px 100px;
+}
+
+#bp-table2 {
+   background-color: blue;
+   border : 1px solid white;
+   margin:100px 100px;
+
+}
+
+#betweebTableContent{
+	margin : 50px 100px;
+}
+
