@@ -1,13 +1,4 @@
-div.navbar{
-    background-color: #5bc0de;
-    border-color: #3fb5d8;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#85d0e7), color-stop(0.33, 0%), color-stop(0.67, #5bc0de), to(100%));
-    background-image: -webkit-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
-    background-image: -moz-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
-    background-image: -o-linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
-    background-image: linear-gradient(#85d0e7, 0%, #5bc0de, 100%);
-    background-repeat: repeat-x;
-}
+
 a.btn-info:hover{
     color: #B9D5DD
 }
@@ -35,8 +26,11 @@ a.btn-info:hover{
 div[data-role="content"]
 {
     position: absolute;
-    top:14%;
     width: 100%;
+    margin:0 auto;
+    top:10%;
+    left: 0;
+    right: 0;
 }
 .normal
 {
@@ -64,21 +58,19 @@ div[data-role="content"]
 
 .brand{
     color: #ffffff;
-    font-size: 27px;
-    margin-top: 38px;
-    margin-left: 18px;
+    font-size: 24px;
+    padding-top: 12px;
+    font-weight: 100;
 }
 
 .menu{
-    margin:auto;
-    top: 0 !important; left: 0; bottom: 0; right: 0;
     height:442px;
     width:369px !important;
 }
 .menu-btn{
     position: fixed;
-    right: 14px;
-    top: 28px;
+    right: 15px;
+    top: 2px;
 }
 
 .btn-measure{
@@ -122,4 +114,12 @@ div[data-role="content"]
 .remove{
     display:none;
     visibility: hidden;
+}
+
+
+
+#toggle-progress{
+    background-color:rgba(0,0,0,0.6);
+    width:150px;
+    height:120px;
 }

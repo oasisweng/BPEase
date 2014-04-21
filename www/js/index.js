@@ -34,70 +34,66 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //navigator.notification.alert("PhoneGap is ready!");
-        alert("device ready")
+        alert("device ready");
         logit("Phonegap is ready.");
+        loadSettings(function() {
+            logit("File system demo:");
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
+            var element = document.getElementById('deviceProperties');
+            element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
 
-        logit("File system demo:");
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
-        var element = document.getElementById('deviceProperties');
-        element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
+            logit("Local Notificaition Demo");
+            window.plugin.notification.local.onadd = function(id, state, json) {
+                logit("added a new local notification " + id + " " + state + " " + json);
+            };
+            window.plugin.notification.local.ontrigger = function(id, state, json) {
+                logit("a notification is triggered " + id + " " + state + " " + json);
+            };
+            window.plugin.notification.local.add({
+                message: 'Great app!'
+            });
 
-        logit("Local Notificaition Demo");
-        window.plugin.notification.local.onadd = function(id, state, json) {
-            logit("added a new local notification " + id + " " + state + " " + json);
-        };
-        window.plugin.notification.local.ontrigger = function(id, state, json) {
-            logit("a notification is triggered " + id + " " + state + " " + json);
-        };
-        window.plugin.notification.local.add({
-            message: 'Great app!'
-        });
-        var title = 'Reminder';
-        var message = 'Dont forget to buy some flowers.';
-        var repeat = 'weekly';
-        var date = new Date().getTime();
-        var new_date = new Date(date + 6 * 1000);
-        setLocalNotificaiton(new_date, title, message, repeat);
+            var title = 'Reminder';
+            var message = 'Dont forget to buy some flowers.';
+            var repeat = 'weekly';
+            var date = new Date().getTime();
+            var new_date = new Date(date + 6 * 1000);
+            setLocalNotificaiton(new_date, title, message, repeat);
 
-        //logit("Report Demo");
-        //generatePDFReport();
+            //logit("Report Demo");
+            //generatePDFReport();
 
-        //bluetooth
-        logit("bluetooth serial starts working...");
-        var macaddress = "00:09:1F:80:39:5C";
-        bluetoothSerial.connect(macaddress, function() {
-            // if connected
-            bluetoothSerial.subscribe('\n', function(data) {
-                logit("Receiving data " + data);
-                //disconnect
-                bluetoothSerial.disconnect(function() {
-                    bluetoothSerial.unsubscribe(
-                        function(data) {
-                            logit("unsubscribing " + data)
-                        },
-                        function(error) {
-                            logit("unsubscribe error.." + error);
-                        }
-                    )
+            //bluetooth
+            logit("bluetooth serial starts working...");
+            var macaddress = "00:09:1F:80:39:5C";
+            bluetoothSerial.connect(macaddress, function() {
+                // if connected
+                bluetoothSerial.subscribe('\n', function(data) {
+                    logit("Receiving data " + data);
+                    //disconnect
+                    bluetoothSerial.disconnect(function() {
+                        bluetoothSerial.unsubscribe(
+                            function(data) {
+                                logit("unsubscribing " + data)
+                            },
+                            function(error) {
+                                logit("unsubscribe error.." + error);
+                            }
+                        )
+                    }, function(error) {
+                        logit("unable to disconnect.." + error);
+                    });
                 }, function(error) {
-                    logit("unable to disconnect.." + error);
+                    logit("Please check connection.. subscribe failure.." + error);
                 });
             }, function(error) {
-                logit("Please check connection.. subscribe failure.." + error);
+                logit("Please check connection.." + error);
             });
-        }, function(error) {
-            logit("Please check connection.." + error);
         });
     },
 };
 
 //potentially have to add it back to ondeviceready
-
-$(document).delegate("#welcome", "pageshow", function() {
-    $("#register-button").addClass("remove");
-    $("#menu-button").addClass("remove");
-    loadWelcomeButton();
-});
 
 $(document).delegate("#records", "pageshow", function() {
     alert("records showing");
@@ -215,7 +211,7 @@ function saveText() {
         }
         file.writer.object.write("hello world HAHAHA PRANK!");
     } else {
-        logit("Writer is unavaiable!");
+        logit("Writer is unavailable!");
     }
     return false;
 }
@@ -285,9 +281,5 @@ function generatePDFReport() {
 
 //==============================
 // Bluetooth Serial
-//==============================
 
-function validateResult()
-{
-    
-}
+

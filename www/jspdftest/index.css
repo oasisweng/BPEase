@@ -1,22 +1,25 @@
-#page2body {
-	font-size : 100;
-}
-
 
 #bp-table1 {
-   background-color: blue;
+  	 background-color: blue;
    border : 5px solid white;
    margin:-290px 450px;
+   width : 30%;
 }
 
-#bp-table2 {
-   background-color: blue;
-   border : 5px solid white;
-   margin:100px 450px;
-
-}
 
 #summary{
 	margin : 500px 450px;
 }
+
+#bp-table2{
+   background-color: blue;
+   border : 5px solid white;
+   width: 85%;
+}
+
+
+#page2body {
+	font-size : 10;
+}
+
 
