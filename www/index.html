@@ -223,10 +223,10 @@
                     <div class="panel panel-info" id="reading-1">
                         <div class="panel-heading text-info">Reading 1:</div>
                         <div class="panel-body text-info">
-                            <p>Time/Date: </p><span id="time"></span>
-                            <p>Diastolic: </p><span id="diastolic"></span>
-                            <p>Systolic: </p><span id="systolic"></span>
-                            <p>Pulse: </p><span id="pulse"></span>
+                            <p>Time/Date: </p><span id="time1"></span>
+                            <p>Diastolic: </p><span id="diastolic1"></span>
+                            <p>Systolic: </p><span id="systolic1"></span>
+                            <p>Pulse: </p><span id="pulse1"></span>
                             <div align = "center">
                                 <a type="button" class="btn btn-info btn-measure" href="#" id="measurement-button-1">Start
                                 </a>
@@ -236,10 +236,10 @@
                     <div class="panel panel-info" id="reading-2">
                         <div class="panel-heading text-info">Reading 2:</div>
                         <div class="panel-body text-info">
-                            <p>Time/Date: </p><span id="time"></span>
-                            <p>Diastolic: </p><span id="diastolic"></span>
-                            <p>Systolic: </p><span id="systolic"></span>
-                            <p>Pulse: </p><span id="pulse"></span>
+                            <p>Time/Date: </p><span id="time2"></span>
+                            <p>Diastolic: </p><span id="diastolic2"></span>
+                            <p>Systolic: </p><span id="systolic2"></span>
+                            <p>Pulse: </p><span id="pulse2"></span>
                             <div align = "center">
                                 <a type="button" class="btn btn-info btn-measure" href="#" id="measurement-button-2">Start
                                 </a>
@@ -266,13 +266,13 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Date:</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control hbpm-datepicker" id="date-manual" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+                            <input type="text" class="form-control hbpm-datepicker" id="date3" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Time:</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control hbpm-timepicker" name="time-manual" id="time-manual" data-date-format="HH:mm">
+                            <input type="text" class="form-control hbpm-timepicker" name="time-manual" id="time3" data-date-format="HH:mm">
                         </div>
                     </div>
                     <div class="row">
@@ -283,37 +283,28 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Diatolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-1-dia" type="text">
+                            <input class="form-control" id="diastole3" type="text">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-2-dia" type="text">
+                            <input class="form-control" id="diastole4" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Systolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-1-sys" type="text">
+                            <input class="form-control" id="systole3" type="text">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-2-sys" type="text">
+                            <input class="form-control" id="systole4" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Pulse:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-1-p" type="text">
+                            <input class="form-control" id="pulse3" type="text">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="reading-2-p" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label text-info">Blood Pressure:</label>
-                        <div class="col-xs-4">
-                            <input class="form-control" id="reading-1-bp" type="text">
-                        </div>
-                        <div class="col-xs-4">
-                            <input class="form-control" id="reading-2-bp" type="text">
+                            <input class="form-control" id="pulse4" type="text">
                         </div>
                     </div>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
@@ -518,6 +509,7 @@
         <script src="js/menu.js"></script>
         <script src="js/mode.js"></script>
         <script src="js/hbpm.js"></script>
+        <script src="js/measurementCheck.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">
         app.initialize();
