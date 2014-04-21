@@ -1,20 +1,23 @@
 
 #bp-table1 {
-  	 background-color: blue;
-   border : 5px solid white;
-   margin:-290px 450px;
-   width : 30%;
+   border : 1px solid white;
+   position : absolute;
+   left: 400px;
+   top: 10px;
 }
 
 
 #summary{
-	margin : 500px 450px;
+	position:absolute;
+	left: 400px;
+	top: 50px;
 }
 
 #bp-table2{
-   background-color: blue;
-   border : 5px solid white;
-   width: 85%;
+   border : 1px solid white;
+   position: absolute;
+   left: 0px;
+   top: 175px;
 }
 
 
