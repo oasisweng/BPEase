@@ -19,7 +19,13 @@
 
 
 #page2body {
-	font-size : 10;
+	font-size : 20;
+	margin: 0px 200px;
+}
+
+#page3body{
+	font-size : 20;
+	margin: 0px 200px;
 }
 
 
