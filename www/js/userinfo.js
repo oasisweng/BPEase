@@ -3,24 +3,26 @@ var userinfo;
 
 function saveUserInfo() {
     var aName = $('#user-name').val();
-    var aDOB = $('#datepicker').datepicker("getDate");
-    var aNHSNO = $('#nshno').val();
+    var aDOB = $('#datepicker').datepicker("getDate").toJSON();
+    var aNHSNO = $('#nhsno').val();
     var aGPEMAIL = $('#gpemail').val();
     var isHypertension = $('#user-hypertension option:selected').val();
     var isArrythmia = $('#user-arrythmia option:selected').val();
+    var med = $("#medication").val();
     userinfo_json = JSON.stringify({
         name: aName,
         dob: aDOB,
         nhsno: aNHSNO,
         gpemail: aGPEMAIL,
         hypertension: isHypertension,
-        arrythmia: isArrythmia
+        arrythmia: isArrythmia,
+        medication: med
     }, null, '\t');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         logit(fileSystem.name);
         logit(fileSystem.root.name);
         logit(fileSystem.root.fullPath);
-        fileSystem.root.getFile("test.pdf", {
+        fileSystem.root.getFile("userinfo.txt", {
             create: true
         }, function(entry) {
             var fileEntry = entry;
@@ -28,6 +30,7 @@ function saveUserInfo() {
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
                     logit("write success");
+                    alert("saving " + userinfo_json);
                 };
                 logit("writing to file " + userinfo_json);
                 writer.write(userinfo_json);
@@ -37,35 +40,64 @@ function saveUserInfo() {
         }, function(error) {
             logit(error);
         });
-    }, function(error) {
-        logit(error);
+    }, function(event) {
+        logit(evt.target.error.code);
     });
-},
-function(event) {
-    logit(evt.target.error.code);
-});
 }
 
-function readUserInfo() {
+function setPersonalInformation() {
+    $('#user-name').val(userinfo.name);
+    $('#nhsno').val(userinfo.nhsno);
+    var dob2 = new Date(userinfo.dob);
+    $('#datepicker').datepicker("setDate", dob2);
+    $('#gpemail').val(userinfo.gpemail);
+    $('#user-hypertension').val(userinfo.hypertension);
+    $('#user-arrythmia').val(userinfo.arrythmia);
+    $("#medication").val(userinfo.medication);
+}
+
+function setUserInfo() {
+    $("#pi-name").html(userinfo.name);
+    $("#pi-no").html(userinfo.nhsno);
+    var dob2 = new Date(userinfo.dob);
+    $("#pi-dob").html(dob2.toDateString());
+    $("#pi-em").html(userinfo.gpemail);
+    if (userinfo.hypertension == "Yes")
+        $("#pi-h").html("Yes");
+    else
+        $("#pi-h").html("No");
+    if (userinfo.arrythmia == "Yes")
+        $("#pi-a").html("Yes");
+    else
+        $("#pi-a").html("No");
+    if (userinfo.medication == "")
+        $("#pi-medication").html("None");
+    else
+        $("#pi-medication").html(userinfo.medication);
+}
+
+function readUserInfo(isEditing) {
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        logit(fileSystem.name);
-        logit(fileSystem.root.name);
-        logit(fileSystem.root.fullPath);
-        fileSystem.root.getFile("userinfo.txt", function(entry) {
+        fileSystem.root.getFile("userinfo.txt", {
+            create: false
+        }, function(entry) {
             var fileEntry = entry;
-            logit(entry);
-            if (file.entry) {
-                file.entry.file(function(txtFile) {
+            if (fileEntry) {
+                fileEntry.file(function(txtFile) {
                     var reader = new FileReader();
-                    file.reader.available = false;
                     reader.onloadend = function(evt) {
-                        file.reader.available = true;
                         userinfo_json = evt.target.result;
                         logit("Reading " + userinfo_json);
                         userinfo = $.parseJSON(userinfo_json);
+                        if (isEditing)
+                            setPersonalInformation();
+                        else
+                            setUserInfo();
                     }
                     reader.readAsText(txtFile);
-                }, onError);
+                }, function(error) {
+                    logit(error);
+                });
             }
         }, function(error) {
             logit(error);
@@ -97,8 +129,16 @@ $('#user-btn-next').click(function(event) {
 });
 
 $("#pi-save-btn").click(function(event) {
-    alert("finish");
+    saveUserInfo();
 })
+
+$("#pi-edit-btn").click(function(event) {
+    readUserInfo(true);
+})
+
+$(document).delegate("#personal-info", "pageshow", function() {
+    readUserInfo(false);
+});
 
 //JSON.stringify
 //JSON.stringify({ uno: 1, dos : 2 }, null, '\t')

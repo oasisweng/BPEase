@@ -50,7 +50,7 @@ a.btn-info:hover{
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
 	width: 300px;
-	height:419px;
+	height:519px;
 }
 #main h1{
 	margin:0;
@@ -69,7 +69,7 @@ body form{
 	position: relative;
 	margin-top: 10px;
 	text-align: center;
-	height: 100px;
+	height: 200px;
 	overflow: scroll;
 }
 

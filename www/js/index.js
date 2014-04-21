@@ -41,7 +41,7 @@ var app = {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
         var element = document.getElementById('deviceProperties');
         element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
-        
+
         logit("Local Notificaition Demo");
         window.plugin.notification.local.onadd = function(id, state, json) {
             logit("added a new local notification " + id + " " + state + " " + json);
@@ -59,21 +59,44 @@ var app = {
         var new_date = new Date(date + 6 * 1000);
         setLocalNotificaiton(new_date, title, message, repeat);
 
-        logit("Report Demo");
-        generatePDFReport();
+        //logit("Report Demo");
+        //generatePDFReport();
 
-        //loading welcome button
-        loadWelcomeButton();
-    }
+        //bluetooth
+        logit("bluetooth serial starts working...");
+        var macaddress = "00:09:1F:80:39:5C";
+        bluetoothSerial.connect(macaddress, function() {
+            // if connected
+            bluetoothSerial.subscribe('\n', function(data) {
+                logit("Receiving data " + data);
+                //disconnect
+                bluetoothSerial.disconnect(function() {
+                    bluetoothSerial.unsubscribe(
+                        function(data) {
+                            logit("unsubscribing " + data)
+                        },
+                        function(error) {
+                            logit("unsubscribe error.." + error);
+                        }
+                    )
+                }, function(error) {
+                    logit("unable to disconnect.." + error);
+                });
+            }, function(error) {
+                logit("Please check connection.. subscribe failure.." + error);
+            });
+        }, function(error) {
+            logit("Please check connection.." + error);
+        });
+    },
 };
 
 //potentially have to add it back to ondeviceready
+
 $(document).delegate("#welcome", "pageshow", function() {
     $("#register-button").addClass("remove");
     $("#menu-button").addClass("remove");
     loadWelcomeButton();
-    logit("Report Demo");
-    //generatePDFReport();
 });
 
 $(document).delegate("#records", "pageshow", function() {
@@ -94,7 +117,7 @@ function onError(err) {
 //==============================
 // Datepicker
 //==============================
- $('.input-daterange').datepicker({
+$('.input-daterange').datepicker({
     todayBtn: "linked"
 });
 $('#datepicker').datepicker({
@@ -260,64 +283,7 @@ function generatePDFReport() {
     });
 }
 
-function saveUserInfo(){
-    logit("can read this...");
-    var userinfo = $("#name").value;
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-    logit(fileSystem.name + "yo");
-    logit(fileSystem.root.name + "yo2");
-    logit(fileSystem.root.fullPath + "yo3");
-    fileSystem.root.getFile("userinfo.txt", {
-        create: true
-    }, function(entry) {
-        logit(entry);
-        entry.createWriter(function(writer) {
-            writer.onwrite = function(evt) {
-                logit("write success");
-            };
-            logit("writing to file");
-            var json = JSON.parse({name: userinfo}); 
-            writer.write(json);
-        }, function(error) {
-            logit(error);
-        });
-    }, function(error) {
-        logit(error);
-    });
-}, function(event) {
-    logit(evt.target.error.code);
-});
-}
 
-function readUserInfo(){
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-    logit(fileSystem.name);
-    logit(fileSystem.root.name);
-    logit(fileSystem.root.fullPath);
-    fileSystem.root.getFile("userinfo.txt", function(entry) {
-        var reader = new FileReader();
-        logit(entry);
-        reader.onloadend= function(evt){
-            var userinfo =evt.target.result;
-            var userinfoObj = JSON.parse(userinfo);
-            logit("reading"+userinfo);
-            document.getElementById("outname").innerHTML=userinfoObj.name;
-        }
-    }, function(error) {
-        logit(error);
-    });
-}, function(event) {
-    logit(event.target.error.code);
-});
-}
-
- $("#next").bind("click",function(event){
-    saveUserInfo();
-}
-
- $("#pi-save-btn").bind("click",function(event){
-    readUserInfo();
-
- }
-//Stringify a JSON JSON.stringify({test:123})
-//Parse a JSON String JSON.parse(json).test
+//==============================
+// Bluetooth Serial
+//==============================
