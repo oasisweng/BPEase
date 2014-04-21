@@ -17,15 +17,12 @@
         <link href="css/vendor/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <!-- CSS -->
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/custom.css">
         <link rel="stylesheet" href="css/vendor/jquery.jqplot.min.css" />
         <link rel="stylesheet" href="css/vendor/jquery.mobile.min.css">
     </head>
-    <body>
-        <div id="debug" >
-            <div id="deviceProperties"></div>
-
-        </div>
+    <body align="center">
         <!-- Start of Welcome page -->
         <div class = "page" data-role = "page" id = "welcome" >
             <div data-role="content" id = "main" align = "center">
@@ -33,7 +30,10 @@
                 <h1 align = "center">Welcome</h1>
                 <a class = "btn btn-info btn-white" type = "button" id="register-button" href="#userinfo-1">Register</a>
                 <a class = "btn btn-info btn-white" type = "button" id="menu-button" href="#mainMenu">Menu</a>
-                <div id="log"></div>
+                <div id="debug" >
+                    <div id="deviceProperties"></div>
+                    <div id="log"></div>
+                </div>
             </div>
         </div>
         <!-- Start of First Medical Info page -->
@@ -43,7 +43,6 @@
                     <img class="col-xs-3 col-sm-2" src="img/bpeaseblue.png">
                     <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
                     <h1 class="col-xs-4 col-sm-4 brand"align = "center">BPEase</h1>
-                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
             <div data-role="content">
@@ -52,7 +51,7 @@
                     <div class="form-group" name="input">
                         <label class="col-xs-4 control-label text-info" for="name">Name: </label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text" name="name" id="name" placeholder="Enter name">
+                            <input class="form-control" type="text" name="name" id="user-name" placeholder="Enter name">
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,9 +61,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label text-info" for="nshno">NHS Number: </label>
+                        <label class="col-xs-4 control-label text-info" for="nhsno">NHS Number: </label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text" name="nshno" id="nshno" placeholder="Enter NHS No.">
+                            <input class="form-control" type="text" name="nshno" id="nhsno" placeholder="Enter NHS No.">
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +72,7 @@
                             <input class="form-control" type="text" name="gpemail" id="gpemail" placeholder="Enter GP Email">
                         </div>
                     </div>
-                    <a class = "btn btn-info" type = "button" value="Next" href ="#userinfo-2" id="btn-next")>Next</a>
+                    <a class = "btn btn-info btn-block" type = "button" value="Next" href ="#userinfo-2" id="user-btn-next" style="width: 100%;">Next</a>
                 </form>
             </div>
         </div>
@@ -84,7 +83,6 @@
                     <img class="col-xs-3 col-sm-2" src="img/bpeaseblue.png">
                     <div class="col-xs-1 visible-xs col-sm-2 visible-sm"></div>
                     <h1 class="col-xs-4 col-sm-4 brand" align = "center">BPEase</h1>
-                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
             <div data-role="content">
@@ -93,24 +91,24 @@
                     <div class="form-group" name="input">
                         <label class="col-xs-6 control-label text-info" for="hypertension">Do you have hypertension?</label>
                         <div class="col-xs-6">
-                            <select class="form-control">
-                                <option>Yes</option>
+                            <select class="form-control" id="user-hypertension">
                                 <option>No</option>
+                                <option>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group" name="input">
                         <label class="col-xs-6 control-label text-info" for="arrythmia">Do you have a heart arrythmia?</label>
                         <div class="col-xs-6">
-                            <select class="form-control">
-                                <option>Yes</option>
+                            <select class="form-control" id="user-arrythmia">
                                 <option>No</option>
+                                <option>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="alert alert-info">If you have a heart arrythmia consult your doctor. This application may not be suitable for you.</div>
-                    <p class = "text-info">Enter any medication taken:</p>
-                    <textarea class="form-control" rows="5"type="text" name="Enter information" placeholder = "Enter Medication..."></textarea>
+                    <p class = "text-info">Enter any medication taken(optional):</p>
+                    <textarea class="form-control" rows="10" id="medication" placeholder = "Enter Medication..."></textarea>
                     <a  class = "btn btn-info btn-back" type = "button" href ="" style ="font-size: 17px; margin-top:10px;" id="pi-back-btn" data-rel="back">Back</a>
                     <a  class = "btn btn-info" type = "button" href ="#mainMenu" style ="font-size: 17px; margin-top:10px;" id="pi-save-btn">Finish and Save</a>
                 </form>
@@ -131,7 +129,7 @@
             <div data-role="content" class="menu">
                 <a class = "btn btn-info btn-block normal" type = "button" href="#modeSelection">Select a Mode</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#records">View Records</a>
-                <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info">Personal Info</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info" id="pi-view-btn">Personal Info</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#information">Information</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#current-activity">Current Activity</a>
             </div>
@@ -363,38 +361,38 @@
                     <h2 class="text-info" style="margin-top:30px;">Personal Information</h2>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Name:</label>
-                        <span class="col-xs-6 form-control-static text-info" id = "outname">
-                        </span>
+                        <div class="col-xs-6 form-control-static text-info" id = "pi-name">User
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">NHS Number:</label>
-                        <div class="col-xs-6 form-control-static text-info">123456
+                        <div class="col-xs-6 form-control-static text-info" id="pi-no">123456
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Date of Birth:</label>
-                        <div class="col-xs-6 form-control-static text-info">00/00/00
+                        <div class="col-xs-6 form-control-static text-info" id="pi-dob">00/00/00
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">GP Email:</label>
-                        <div class="col-xs-6 form-control-static text-info">GP@email.com
+                        <div class="col-xs-6 form-control-static text-info" id="pi-em">GP@email.com
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Hypertension?</label>
-                        <div class="col-xs-6 form-control-static text-info">Yes
+                        <div class="col-xs-6 form-control-static text-info" id="pi-h">Yes
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Heart Arrythmia?</label>
-                        <div class="col-xs-6 form-control-static text-info">No
+                        <div class="col-xs-6 form-control-static text-info" id="pi-a">No
                         </div>
                     </div>
                     <label class="text-info">Medication Taken:</label>
-                    <p class="text-info" id="medication-p">List of medication</p>
+                    <p class="text-info" id="pi-medication">List of medication</p>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#userinfo-1">Edit</a>
+                    <a  class = "btn btn-info" type = "button" href ="#userinfo-1" id="pi-edit-btn">Edit</a>
                 </form>
             </div>
             <div data-role="footer">
@@ -411,7 +409,7 @@
                     <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div data-role="content" class="container" style = "top:100px;">
+            <div data-role="content" class="container">
                 <h2 class="text-info">Information</h2>
                 <div class="panel panel-info" id="instructions">
                     <div class="panel-heading text-info">Instructions</div>
@@ -483,13 +481,18 @@
         <script src="js/vendor/bootstrap-datepicker.js"></script>
         <script src="js/vendor/moment.min.js"></script>
         <script src="js/vendor/bootstrap-datetimepicker.js"></script>
-        <script src="js/vendor/jspdf/jspdf.min.js"></script>
         <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
         <script src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
+        <script src="js/vendor/jspdf/html2canvas.js"></script>
+        <script src="js/vendor/jspdf/jspdf.js"></script>
+        <script src="js/vendor/jspdf/jspdf.plugin.addimage.js"></script>
+        <script src="js/vendor/jspdf/jspdf.plugin.addhtml.js"></script>
+        <script src="js/welcome.js"></script>
+        <script src="js/userinfo.js"></script>
+        <script src="js/menu.js"></script>
         <script src="js/index.js"></script>
-
        <script type="text/javascript">
-                                                                                    app.initialize();
+            app.initialize();
         </script>
     </body>
 </html>
