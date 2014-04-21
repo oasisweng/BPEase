@@ -283,77 +283,11 @@ function generatePDFReport() {
     });
 }
 
-<<<<<<< HEAD
-function saveUserInfo(){
-    logit("can read this...");
-    var userinfo = {fileName: "personalInfo"}
-    userinfo.name = $("#name").value;
-    userinfo.dob = $("#datepicker").value;
-    userinfo.nhsno = $("#nhsono").value;
-    userinfo.gpemail= $("#gpemail").value;
-
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-    logit(fileSystem.name + "yo");
-    logit(fileSystem.root.name + "yo2");
-    logit(fileSystem.root.fullPath + "yo3");
-    fileSystem.root.getFile("userinfo.txt", {
-        create: true
-    }, function(entry) {
-        logit(entry);
-        entry.createWriter(function(writer) {
-            writer.onwrite = function(evt) {
-                logit("write success");
-            };
-            logit("writing to file");
-            var json = JSON.stringify(userinfo); 
-            writer.write(json);
-        }, function(error) {
-            logit(error);
-        });
-    }, function(error) {
-        logit(error);
-    });
-}, function(event) {
-    logit(evt.target.error.code);
-});
-}
-
-function readUserInfo(){
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-    logit(fileSystem.name);
-    logit(fileSystem.root.name);
-    logit(fileSystem.root.fullPath);
-    fileSystem.root.getFile("userinfo.txt", function(entry) {
-        var reader = new FileReader();
-        logit(entry);
-        reader.onloadend= function(evt){
-            var userinfo =evt.target.result;
-            var userinfoObj = JSON.parse(userinfo);
-            logit("reading"+userinfo);
-            document.getElementById("outname").innerHTML=userinfoObj.name;
-        }
-    }, function(error) {
-        logit(error);
-    });
-}, function(event) {
-    logit(event.target.error.code);
-});
-}
-
- $("#btn-next").bind("click",function(event){
-    saveUserInfo();
-    alert("data saved");
-});
-
- $("#pi-save-btn").bind("click",function(event){
-    readUserInfo();
-
- });
-//Stringify a JSON JSON.stringify({test:123})
-//Parse a JSON String JSON.parse(json).test
-=======
-
 //==============================
 // Bluetooth Serial
 //==============================
->>>>>>> 1a6883b1b279caeebf8ff6a3c792d8f76ca5944d
+
+function validateResult()
+{
+    
+}
