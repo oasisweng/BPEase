@@ -3,6 +3,7 @@
    background-color: blue;
    border : 5px solid white;
    margin:-290px 450px;
+   width : 30%;
 }
 
 
@@ -13,6 +14,7 @@
 #bp-table2{
 	background-color: blue;
    border : 5px solid white;
+   width: 85%;
 }
 
 
