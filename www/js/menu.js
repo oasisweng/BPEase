@@ -1,8 +1,8 @@
 function loadCurrentActivityButton() {
-    if (settings.firstTime) {
-        $("#currentActivity-btn").removeClass("remove");
-    } else {
+    if (settings.hbpm) {
         $("#modeSelection-btn").removeClass("remove");
+    } else {
+        $("#currentActivity-btn").removeClass("remove");
     }
 };
 

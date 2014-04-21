@@ -42,24 +42,6 @@ var app = {
             var element = document.getElementById('deviceProperties');
             element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
 
-            logit("Local Notificaition Demo");
-            window.plugin.notification.local.onadd = function(id, state, json) {
-                logit("added a new local notification " + id + " " + state + " " + json);
-            };
-            window.plugin.notification.local.ontrigger = function(id, state, json) {
-                logit("a notification is triggered " + id + " " + state + " " + json);
-            };
-            window.plugin.notification.local.add({
-                message: 'Great app!'
-            });
-
-            var title = 'Reminder';
-            var message = 'Dont forget to buy some flowers.';
-            var repeat = 'weekly';
-            var date = new Date().getTime();
-            var new_date = new Date(date + 6 * 1000);
-            setLocalNotificaiton(new_date, title, message, repeat);
-
             //logit("Report Demo");
             //generatePDFReport();
 
@@ -133,20 +115,6 @@ $('.hbpm-timepicker').datetimepicker({
     pickDate: false
 });
 
-//==============================
-// Local Notification
-//==============================
-function setLocalNotificaiton(date_c, title_c, message_c, repeat_c) {
-    var id_c = parseInt(Math.random() * 1000);
-    logit("Notification ID " + id_c);
-    window.plugin.notification.local.add({
-        id: id_c,
-        title: title_c,
-        message: message_c,
-        repeat: repeat_c,
-        date: date_c,
-    });
-}
 //==============================
 // Files
 //==============================
@@ -281,5 +249,3 @@ function generatePDFReport() {
 
 //==============================
 // Bluetooth Serial
-
-
