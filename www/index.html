@@ -146,10 +146,11 @@
                     <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div class="container" style = "position:relative; top:60px;margin: 0px 10px">
+            <div class="container" style = "position:relative; top:60px;margin: 0px auto;">
                 <h3 class = "text-info">Select a mode:</h3>
                 <a type="button" class="btn btn-info btn-mode" href="#setupHBPM">HBPM Mode</a><br>
-                <a  type="button" class="btn btn-info btn-mode" href="#manual-measure">Free Mode</a>
+                <a type="button" class="btn btn-info btn-mode" href="#manual-measure" id="free-mode-btn">Free Mode</a>
+
             </div>
         </div>
         <!-- Start of setup HBPM page -->
@@ -163,7 +164,7 @@
                 </div>
             </nav>
             <div data-role="content" class="container">
-                <form class="form-horizontal" role="form" style = "margin: 15px">
+                <form class="form-horizontal" role="form" style = "width: 90%;margin: 0 auto;">
                     <h2 class = "text-info" style="margin-bottom:20px;">HBPM Mode Setup</h2>
                     <div class="input-daterange">
                         <div class="form-group">
@@ -195,12 +196,12 @@
                         <input type="checkbox" name="checkbox-1" id="bluetooth-toggle"/>
                         <label for="bluetooth-toggle" style="color: #3a87ad;">Turn on bluetooth</label>
                     </div>
-                    <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
-                    <a  class = "btn btn-info" type = "button" href ="#bluetooth-measure">Start</a>
+                    <a class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
+                    <a class = "btn btn-info" type = "button" href ="#bluetooth-measure">Start</a>
                 </form>
                 <div id="toggle-progress">
                     <img src="img/sw.gif" alt="sw">
-                    <span>Turning on</span>
+                    <span>Turning on...</span>
                 </div>
             </div>
             <div data-role="footer">
@@ -275,7 +276,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 visible-xs"></div>
+                        <div class="col-xs-4 visible-xs-4"></div>
                         <div class="col-xs-4 text-info">Reading 1</div>
                         <div class="col-xs-4 text-info">Reading 2</div>
                     </div>
@@ -411,7 +412,7 @@
                     <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
-            <div data-role="content" class="container" style="top:10%;">
+            <div data-role="content" class="container">
                 <h2 class="text-info">Information</h2>
                 <div class="panel panel-info" id="instructions">
                     <div class="panel-heading text-info">Instructions</div>
@@ -492,6 +493,10 @@
                     <a  class = "btn btn-info btn-back" type = "button" href ="#setupHBPM">Edit Setup</a>
                     <a  class = "btn btn-info" type = "button" href ="#bluetooth-measure">New Measurement</a>
                 </form>
+                <div id="toggle-progress">
+                    <img src="img/sw.gif" alt="sw">
+                    <span>Turning on...</span>
+                </div>
             </div>
         </div>
         <script src="phonegap.js"></script>
@@ -511,6 +516,8 @@
         <script src="js/welcome.js"></script>
         <script src="js/userinfo.js"></script>
         <script src="js/menu.js"></script>
+        <script src="js/mode.js"></script>
+        <script src="js/hbpm.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">
         app.initialize();

@@ -6,6 +6,8 @@ function loadCurrentActivityButton() {
     }
 };
 
-$(document).delegate("#menu", "pageshow", function() {
+$(document).delegate("#mainMenu", "pageshow", function() {
+    $("#currentActivity-btn").addClass("remove");
+    $("#modeSelection-btn").addClass("remove");
     loadCurrentActivityButton();
 });
