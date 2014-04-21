@@ -24,7 +24,7 @@
     <body>
         <div id="debug" >
             <div id="deviceProperties"></div>
-            <div id="log"></div>
+
         </div>
         <!-- Start of Welcome page -->
         <div class = "page" data-role = "page" id = "welcome" >
@@ -33,6 +33,7 @@
                 <h1 align = "center">Welcome</h1>
                 <a class = "btn btn-info btn-white" type = "button" id="register-button" href="#userinfo-1">Register</a>
                 <a class = "btn btn-info btn-white" type = "button" id="menu-button" href="#mainMenu">Menu</a>
+                <div id="log"></div>
             </div>
         </div>
         <!-- Start of First Medical Info page -->
@@ -362,8 +363,8 @@
                     <h2 class="text-info" style="margin-top:30px;">Personal Information</h2>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Name:</label>
-                        <div class="col-xs-6 form-control-static text-info" id = "outname">User
-                        </div>
+                        <span class="col-xs-6 form-control-static text-info" id = "outname">
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">NHS Number:</label>
@@ -486,7 +487,7 @@
         <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
         <script src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
         <script src="js/index.js"></script>
-        <script src="js/userinfo.js"></script>
+
        <script type="text/javascript">
                                                                                     app.initialize();
         </script>

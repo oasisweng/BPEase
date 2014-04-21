@@ -54,14 +54,15 @@ function readUserInfo(){
 });
 }
 
- $("#next").bind("click",function(event){
+ $("#btn-next").bind("click",function(event){
     saveUserInfo();
-}
+    alert("data saved");
+});
 
  $("#pi-save-btn").bind("click",function(event){
     readUserInfo();
 
- }
+ });
 
 
 //JSON.stringify
