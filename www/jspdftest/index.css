@@ -3,7 +3,7 @@
    border : 1px solid white;
    position : absolute;
    left: 400px;
-   top: 10px;
+   top: 30px;
 }
 
 
@@ -21,14 +21,18 @@
 }
 
 
-#page2body {
+#page2 {
 	font-size : 20;
-	margin: 0px 200px;
+	position: absolute;
+	left: 100px;
+	top: 400px;
 }
 
-#page3body{
+#page3{
 	font-size : 20;
-	margin: 0px 200px;
+	position: absolute;
+	left: 100px;
+	top: 600px;
 }
 
 
