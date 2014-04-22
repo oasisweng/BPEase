@@ -64,18 +64,6 @@ function generatePDFReport() {
 
     var doc = new jsPDF('p', 'pt', 'a4');
 
-    // doc.addHTML(document.body, function() {
-    //     alert("finished");
-    //     var string = pdf.output('datauristring');
-    //     $('.preview-pane').attr('src', string);
-    // });
-
-
-
-    //======================================
-    //Functions written on April 21,2014
-    //======================================
-
     //For Table 1
     var content = "<tr>";
     for (var i = 0; i < systolic.length; i++) {
@@ -118,15 +106,12 @@ function generatePDFReport() {
         content2 += '</tr>';
     }
 
-
-
-    //======================================
-    //Functions written on April 21,2014
-    //====================================== 
-
+    var rst;
     doc.addHTML(document.body, function() {
         var string = doc.output('datauristring');
         $('.preview-pane').attr('src', string);
+
+        rst += string;
     });
 }
 //Parse a JSON String JSON.parse(json).test

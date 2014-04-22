@@ -1,89 +1,128 @@
 <!DOCTYPE html>
-
-<style>
-
-
-th {
-	background-color: RoyalBlue;
-}
-
-td {
-	background-color: Lavender;
-}
-</style>
-
 <head>
     <script src="../js/vendor/jspdf/html2canvas.js"></script>
-	<script src="../js/vendor/jquery.min.js"></script>
-	<script src="../js/vendor/jspdf/jspdf.js"></script>
+    <script src="../js/vendor/jquery.min.js"></script>
+    <script src="../js/vendor/jspdf/jspdf.js"></script>
     <script src="../js/vendor/jspdf/jspdf.plugin.addimage.js"></script>
     <script src="../js/vendor/jspdf/jspdf.plugin.addhtml.js"></script>
-	<script src="index.js"></script>
-	<link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-	<h1>Home blood pressure</h1>
-	<h1>monitoring (HBPM)</h1>
-	<p>Personal Details:<br>Name:<br>DOB:<br>NHS Number:<br>GP Surgery:<br>Named GP:<br>Medical History:<br>HTN:<br>Arrythmia:</p>
-	<table id = "bp-table1">
-		<tr>
-			<th>Date</th>
-			<th>Time</th>
-			<th>Systolic</th>
-			<th>Diastolic</th>
-			<th>Pulse</th>
-		</tr>	
-	</table>
-	<div id = "summary">
-	<p><u>SUMMARY:</u></p>
-	<p>Readings from to</p>
-	<p>Total number of readings: </p>
-	<p>*Remember to discard the first days reading in the averages</p>
-	<p>   calculation.</p>
-	<table id = "bp-table2">
-		<tr>
-			<th>BP</th>
-			<th>Minimum</th>
-			<th>Maximum</th>
-			<th>Average</th>
-		</tr>
-	</table>
-    </div>
-    <h1>Recall- instructions on the HBPM-could flash</h1>
-    <h1>up when pxs start this mode</h1>
-    <p>* When using home blood pressure monitoring (HBPM) to confirm a</p>
-    <p>diagnosis of hypertension,</p>
-    <p>* ensure that:</p>
-    <p>* - for each blood pressure recording, two consecutive</p>
-    <p>measurements are taken, atleast 1 min</p>
-    <p>* apart and with the person seated and</p>
-    <p>* - blood pressure is recorded twice daily, ideally in the morning</p>
-    <p>and evening and</p>
-    <p>* - blood pressure recording continues for at least 4 days, ideally</p>
-    <p>for 7 days.</p>
-    <p>* Discard the measurements taken on the first day and use the</p>
-    <p>average value of all the remaining</p>
-    <p>* measurements to confirm a diagnosis of hypertension.</p>
-    <h1>NICE guidance reminder for GP:</h1>
-    <h1>http://www.nice.org.uk/guidance/CG127/QuickRefGuide</h1>
-    <p>* Stage 1 hypertension Clinic blood pressure is 140/90 mmHg</p>
-    <p>or higher and subsequent ambulatory</p>
-    <p>* blood pressure monitoring(ABPM) daytime average or</p>
-    <p>home blood pressure monitoring (HBPM)</p>
-    <p>* average blood pressure is 135/85 mmHg or higher.</p>
-    <p>* Stage 2 hypertension Clinic blood pressure is 160/100</p>
-    <p>mmHg or higher and subsequent ABPM</p>
-    <p>* daytime average or HBPM average blood pressure is 150/95</p>
-    <p>mmHg or higher.</p>
-    <p>* Severe hypertension Clinic systolic blood pressure is 180</p>
-    <p>mmHg or higher, or clinic diastolic blood</p>
-    <p>* pressure is 110 mmHg or higher.</p>
+    <div id="page1" class="page">
+        <div id="left-col">
+            <h1>Home blood pressure monitoring (HBPM)</h1>
+            <p>Personal Details:<br>Name:<br>DOB:<br>NHS Number:<br>GP Surgery:<br>Named GP:<br></p>
+            <p>Medical History:<br>HTN:<br>Arrythmia:</p>
+        </div>
+        <div id = "right-col">
+            <table id = "bp-table1">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Systolic</th>
+                    <th>Diastolic</th>
+                    <th>Pulse</th>
+                </tr>
+                <tr>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                </tr>
+                <tr>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                    <td>love</td>
+                </tr>
+            </table>
+            <div id="summary">
+                <div>
+                    <span id="s-title">SUMMARY:</span>
+                    <br>
+                    <span class="s-sub">Readings from <span id="startdate">date,time to <span id="enddate">date,time</span></span>
+                    <br>
+                    <span class="s-sub">Total number of readings: <span id="n-readings"></span></span>
+                    <br><br>
+                    <span class="s-a">*</span><span id="sidenode">Remember to discard the first days reading in the averages calculation.</span>
+                </div>
+                <table id = "bp-table2">
+                    <tr>
+                        <th>BP</th>
+                        <th>Minimum</th>
+                        <th>Maximum</th>
+                        <th>Average</th>
+                    </tr>
+                    <tr>
+                        <td>Syst BP</td>
+                        <td>love</td>
+                        <td>love</td>
+                        <td>love</td>
+                    </tr>
+                    <tr>
+                        <td>Diast BP</td>
+                        <td>love</td>
+                        <td>love</td>
+                        <td>love</td>
 
+                    </tr>
+                    <tr>
+                        <td>Pulse</td>
+                        <td>love</td>
+                        <td>love</td>
+                        <td>love</td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="page2" class="page">
+            <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        <h1>Recall- instructions on the HBPM-could flash</h1>
+        <h1>up when pxs start this mode</h1>
+        <p>* When using home blood pressure monitoring (HBPM) to confirm a</p>
+        <p>diagnosis of hypertension,</p>
+        <p>* ensure that:</p>
+        <p>* - for each blood pressure recording, two consecutive</p>
+        <p>measurements are taken, atleast 1 min</p>
+        <p>* apart and with the person seated and</p>
+        <p>* - blood pressure is recorded twice daily, ideally in the morning</p>
+        <p>and evening and</p>
+        <p>* - blood pressure recording continues for at least 4 days, ideally</p>
+        <p>for 7 days.</p>
+        <p>* Discard the measurements taken on the first day and use the</p>
+        <p>average value of all the remaining</p>
+        <p>* measurements to confirm a diagnosis of hypertension.</p>
+    </div>
+    <div id="page3" class="page">
+        <h1>NICE guidance reminder for GP:</h1>
+        <h1>http://www.nice.org.uk/guidance/CG127/QuickRefGuide</h1>
+        <p>* Stage 1 hypertension Clinic blood pressure is 140/90 mmHg</p>
+        <p>or higher and subsequent ambulatory</p>
+        <p>* blood pressure monitoring(ABPM) daytime average or</p>
+        <p>home blood pressure monitoring (HBPM)</p>
+        <p>* average blood pressure is 135/85 mmHg or higher.</p>
+        <p>* Stage 2 hypertension Clinic blood pressure is 160/100</p>
+        <p>mmHg or higher and subsequent ABPM</p>
+        <p>* daytime average or HBPM average blood pressure is 150/95</p>
+        <p>mmHg or higher.</p>
+        <p>* Severe hypertension Clinic systolic blood pressure is 180</p>
+        <p>mmHg or higher, or clinic diastolic blood</p>
+        <p>* pressure is 110 mmHg or higher.</p>
+    </div>
     
     <iframe class="preview-pane" width="100%" height="650" frameborder="0" style="position:relative;z-index:999" src=""></iframe>
-
-
-
-
-
 </body>

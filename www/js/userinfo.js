@@ -27,7 +27,7 @@ function saveUserInfo() {
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
                     logit("write success");
-                    alert("saving " + userinfo_json);
+                    //alert("saving " + userinfo_json);
                 };
                 logit("writing to file " + userinfo_json);
                 writer.write(userinfo_json);
@@ -84,7 +84,7 @@ function readUserInfo(isEditing) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
                         userinfo_json = evt.target.result;
-                        alert("Reading " + userinfo_json);
+                        //alert("Reading " + userinfo_json);
                         userinfo = $.parseJSON(userinfo_json);
                         if (isEditing)
                             setPersonalInformation();

@@ -64,12 +64,12 @@ var app = {
                     bluetoothSerial.disconnect(function() {
                         bluetoothSerial.unsubscribe(
                             function(data) {
-                                logit("unsubscribing " + data)
+                                logit("unsubscribing " + data);
                             },
                             function(error) {
                                 logit("unsubscribe error.." + error);
                             }
-                        )
+                        );
                     }, function(error) {
                         logit("unable to disconnect.." + error);
                     });
@@ -81,8 +81,10 @@ var app = {
             });
 
             document.addEventListener("pause", appPause, false);
+
+            $('#datepicker,.hbpm-datepicker').style.zoom = 1.5;
         });
-    },
+    }
 };
 
 function logit(s) {

@@ -1,6 +1,17 @@
 //==============================
 //Validating Manual results
 //==============================
+
+var time_v;
+var date_v;
+var diastole1_v;
+var diastole2_v;
+var systole1_v;
+var systole2_v;
+var pulse1_v;
+var pulse2_v;
+
+
 function onConfirmError(button) {
     if (button == 1) {
         $.mobile.navigate("#mainMenu");
@@ -14,51 +25,76 @@ function errorMessage() {
         'Error!', // title
         'No,Yes' // buttonLabels
     );
-
 }
 
 function validateResults(index1, index2) {
     var pass = true;
-    var time = $('#time' + index1).val();
-    var date = $('#date' + index1).val();
-    var diastole1 = $('#diastole' + index1).val();
-    var diastole2 = $('#diastole' + index2).val();
-    var systole1 = $('#systole' + index1).val();
-    var systole2 = $('#systole' + index2).val();
-    var pulse1 = $('#pulse' + index1).val();
-    var pulse2 = $('#pulse' + index2).val();
 
-    if (time == "") {
+    if (time_v === "") {
         alert("Time is empty");
         pass = false;
-    } else if (date == "") {
+    } else if (date_v === "") {
         alert("Date is empty");
         pass = false;
-    } else if (diastole1 == "") {
+    } else if (diastole1_v === "") {
         alert("Diastole Reading 1 is empty");
         pass = false;
-    } else if (diastole2 == "") {
+    } else if (diastole2_v === "") {
         alert("Diastole Reading 2 is empty");
         pass = false;
-    } else if (systole1 == "") {
+    } else if (systole1_v === "") {
         alert("Systole Reading 1 is empty");
         pass = false;
-    } else if (systole2 == "") {
+    } else if (systole2_v === "") {
         alert("Systole Reading 2 is empty");
         pass = false;
-    } else if (pulse1 == "") {
+    } else if (pulse1_v === "") {
         alert("Pule Reading 1 is empty");
         pass = false;
-    } else if (pulse2 == "") {
+    } else if (pulse2_v === "") {
         alert("pulse2 Reading 2 is empty");
         pass = false;
     }
 
-    if (pass && diastole1 < 60 && diastole2 < 60 && diastole1 > 120 && diastole2 > 120 && systole1 < 80 && systole2 < 80 && systole1 > 220 && systole2 > 220) {
-        errorMessage();
+    if (diastole1_v < 60 && diastole2_v < 60 && diastole1_v > 120 && diastole2_v > 120 && systole1_v < 80 && systole2_v < 80 && systole1_v > 220 && systole2_v > 220) {
+        pass = false;
     }
+
+    return pass;
 }
 
-$("#button-save").click(function(event) {
-    validateResults(3, 4);
+$("#manual-button-save").click(function(event) {
+    time_v = $('#time' + 3).val();
+    date_v = $('#date' + 3).datepicker("getDate").toJSON();
+    diastole1_v = $('#diastole' + 3).val();
+    diastole2_v = $('#diastole' + 4).val();
+    systole1_v = $('#systole' + 3).val();
+    systole2_v = $('#systole' + 4).val();
+    pulse1_v = $('#pulse' + 3).val();
+    pulse2_v = $('#pulse' + 4).val();
+
+    if (validateResults(3, 4)) {
+        //save the record
+        var data_arr = new Array();
+        var data1 = {
+            time: time_v,
+            date: date_v,
+            diastole: diastole1_v,
+            systole: systole1_v,
+            pulse: pulse1_v
+        };
+        var data2 = {
+            time: time_v,
+            date: date_v,
+            diastole: diastole2_v,
+            systole: systole2_v,
+            pulse: pulse2_v
+        };
+        data_arr.push(JSON.stringify(data1));
+        data_arr.push(JSON.stringify(data2));
+        saveRecord(data_arr);
+    } else {
+        event.preventDefault();
+    }
+
 });

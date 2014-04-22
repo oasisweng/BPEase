@@ -6,7 +6,6 @@ $(document).delegate("#modeSelection", "pageshow", function() {
 });
 
 // process the confirmation dialog result
-var isManual = false;
 
 function onConfirm(button) {
 
@@ -21,9 +20,9 @@ function onConfirm(button) {
 //
 function showConfirm() {
     navigator.notification.confirm(
-        'Do you want to turn on bluetooth', // message
-        onConfirm, // callback to invoke with index of button pressed
-        'Bluetooth', // title
-        'No,Yes' // buttonLabels
+        'Do you want to turn on bluetooth',
+        onConfirm,
+        'Bluetooth',
+        'No,Yes'
     );
 }

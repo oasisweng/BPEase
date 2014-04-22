@@ -52,41 +52,38 @@ function saveSettings() {
 }
 
 function loadSettings(success) {
-    if (settings.firsttime)
-        success();
-    else {
-        logit("loading settings " + isCreating);
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-            logit("get file system");
-            fileSystem.root.getFile("settings.txt", {
-                create: false
-            }, function(entry) {
-                entry.file(function(txtFile) {
-                    var reader = new FileReader();
-                    reader.onloadend = function(evt) {
-                        var settingsJson = evt.target.result;
-                        var settingsObj = $.parseJSON(settingsJson);
-                        settings.firsttime = settingsObj.firsttime;
-                        settings.hbpm = settingsObj.hbpm;
-                        settings.bluetooth = settingsObj.bluetooth;
-                        settings.hbpmFileName = settingsObj.hbpmFileName;
-                        settings.hbpmStartDate = new Date(settingsObj.hbpmStartDate);
-                        settings.hbpmEndDate = new Date(settingsObj.hbpmEndDate);
-                        settings.totalFiles = settingsObj.totalFiles;
-                        logit("setting is set " + settingsJson);
-                        success();
-                    }
-                    reader.readAsText(txtFile);
-                }, function(error) {
-                    logit("can't read" + error);
-                });
+    logit("loading settings");
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+        logit("get file system");
+        fileSystem.root.getFile("settings.txt", {
+            create: false
+        }, function(entry) {
+            entry.file(function(txtFile) {
+                var reader = new FileReader();
+                reader.onloadend = function(evt) {
+                    var settingsJson = evt.target.result;
+                    var settingsObj = $.parseJSON(settingsJson);
+                    settings.firsttime = settingsObj.firsttime;
+                    settings.hbpm = settingsObj.hbpm;
+                    settings.bluetooth = settingsObj.bluetooth;
+                    settings.hbpmFileName = settingsObj.hbpmFileName;
+                    settings.hbpmStartDate = new Date(settingsObj.hbpmStartDate);
+                    settings.hbpmEndDate = new Date(settingsObj.hbpmEndDate);
+                    settings.totalFiles = settingsObj.totalFiles;
+                    logit("setting is set " + settingsJson);
+                    success();
+                };
+                reader.readAsText(txtFile);
             }, function(error) {
-                logit("failed to load setting " + error);
+                logit("can't read" + error);
             });
-        }, function(event) {
-            logit("failed to load setting " + event);
+        }, function(error) {
+            logit("failed to load setting " + error);
         });
-    }
+    }, function(event) {
+        logit("failed to load setting " + event);
+        success();
+    });
 }
 
 //  $("#pi-save-btn").bind("click",function(event){

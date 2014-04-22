@@ -127,8 +127,8 @@
                 </div>
             </nav>
             <div data-role="content" class="menu">
-                <a class = "btn btn-info btn-block normal" type = "button" href="#modeSelection" id="modeSelection-btn">Select a Mode</a>
-                <a class = "btn btn-info btn-block normal" type = "button" href="#current-activity" id="currentActivity-btn">Current Activity</a>
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#modeSelection" id="modeSelection-btn">Select a Mode</a>
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#current-activity" id="currentActivity-btn">Current Activity</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#records">View Records</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info" id="pi-view-btn">Personal Info</a>
                 <a class = "btn btn-info btn-block normal" type = "button" href="#information">Information</a>
@@ -246,7 +246,7 @@
                             </div>
                         </div>
                     </div>
-                    <a  class = "btn btn-info btn-back" type = "button" href ="#" id="button-back" style = "width: 47%" data-rel="back">Back</a>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back" style = "width: 47%">Discard</a>
                     <a  class = "btn btn-info" type = "button" href ="#mainMenu" style = "width: 47%">Save</a>
                 </div>
             </div>
@@ -307,8 +307,8 @@
                             <input class="form-control" id="pulse4" type="text">
                         </div>
                     </div>
-                    <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
-                    <a  class = "btn btn-info" id="button-save" type = "button" href ="mainMenuView.html">Save</a>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back">Discard</a>
+                    <a  class = "btn btn-info" id="manual-button-save" type = "button" href ="#date">Save</a>
                 </form>
             </div>
         </div>
@@ -325,20 +325,9 @@
             <div data-role="content" class="container">
                 <h2 class = "text-info" style="margin-bottom:20px;">Records</h2>
                 <table class="table-hover" id="records-table" style="width:100%;margin-bottom:20px;">
-                    <tr>
-                        <td>
-                            <label><input type="checkbox" name="record-toggle" class="record-toggle"/><span id="startdate-0">00/00/0000 00:00</span>-<span id="enddate-0">00/00/0000 00:00</span></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label><input type="checkbox" name="record-toggle" class="record-toggle"/><span id="startdate-1">00/00/0000 00:00</span>-<span id="enddate-1">00/00/0000 00:00</span></label>
-                        </td>
-                    </tr>
                 </table>
-                <a  class = "btn btn-info btn-triple" type = "button" href ="#" data-rel="back" id="button-back" >Back</a>
-                <a  class = "btn btn-info btn-triple" type = "button" href ="#" >Delete</a>
-                <a  class = "btn btn-info btn-triple" type = "button" href ="#" >Send</a>
+                <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="button-back" >Back</a>
+                <a  class = "btn btn-info" type = "button" href ="#" >Send</a>
             </div>
         </div>
         <!-- Start of Personal Details page -->
@@ -356,37 +345,37 @@
                     <h2 class="text-info" style="margin-top:30px;">Personal Information</h2>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Name:</label>
-                        <div class="col-xs-6 form-control-static text-info" id = "pi-name">User
+                        <div class="col-xs-6 form-control-static text-info" id = "pi-name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">NHS Number:</label>
-                        <div class="col-xs-6 form-control-static text-info" id="pi-no">123456
+                        <div class="col-xs-6 form-control-static text-info" id="pi-no">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Date of Birth:</label>
-                        <div class="col-xs-6 form-control-static text-info" id="pi-dob">00/00/00
+                        <div class="col-xs-6 form-control-static text-info" id="pi-dob">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">GP Email:</label>
-                        <div class="col-xs-6 form-control-static text-info" id="pi-em">GP@email.com
+                        <div class="col-xs-6 form-control-static text-info" id="pi-em">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Hypertension?</label>
-                        <div class="col-xs-6 form-control-static text-info" id="pi-h">Yes
+                        <div class="col-xs-6 form-control-static text-info" id="pi-h">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Heart Arrythmia?</label>
-                        <div class="col-xs-6 form-control-static text-info" id="pi-a">No
+                        <div class="col-xs-6 form-control-static text-info" id="pi-a">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Medication Taken:</label>
-                        <p class="col-xs-6 form-control-static text-info" id="pi-medication">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, impedit, ullam, quisquam voluptatum beatae quas corrupti dolores maxime saepe perspiciatis illo repudiandae molestiae eligendi alias atque a itaque autem cum.</p>
+                        <p class="col-xs-6 form-control-static text-info" id="pi-medication"></p>
                     </div>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
                     <a  class = "btn btn-info" type = "button" href ="#userinfo-1" id="pi-edit-btn">Edit</a>
@@ -475,8 +464,9 @@
                         <input type="checkbox" name="checkbox-1" id="bluetooth-toggle-2"/>
                         <label for="bluetooth-toggle-2" style="color: #3a87ad;">Use bluetooth</label>
                     </div>
-                    <a  class = "btn btn-info btn-back" type = "button" href ="#setupHBPM">Edit Setup</a>
-                    <a  class = "btn btn-info" type = "button" href ="#bluetooth-measure">New Measurement</a>
+                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#setupHBPM">Edit Setup</a>
+                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#mainMenu" id="cancelHBPM-btn">Cancel</a>
+                    <a  class = "btn btn-info btn-triple" type = "button" href ="#bluetooth-measure" id="new-measurement-btn">New Measurement</a>
                 </form>
                 <div id="toggle-progress-2">
                     <canvas width="27" height="27" id="sw-canvas-2"></canvas>

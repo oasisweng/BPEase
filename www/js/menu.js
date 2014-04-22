@@ -4,10 +4,11 @@ function loadCurrentActivityButton() {
     } else {
         $("#currentActivity-btn").removeClass("remove");
     }
-};
+}
 
 $(document).delegate("#mainMenu", "pageshow", function() {
-    $("#currentActivity-btn").addClass("remove");
+    alert("pageshow");
     $("#modeSelection-btn").addClass("remove");
+    $("#currentActivity-btn").addClass("remove");
     loadCurrentActivityButton();
 });
