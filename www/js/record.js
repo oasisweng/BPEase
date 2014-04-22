@@ -88,6 +88,4 @@ function saveRecord(data_json) {
     }
 }
 
-$(document).delegate("#records", "pageshow", function() {
-    alert("records showing");
-});
+$(document).delegate("#records", "pageshow", function() {});

@@ -34,19 +34,27 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         //navigator.notification.alert("PhoneGap is ready!");
-        alert("device ready");
         logit("Phonegap is ready.");
         loadSettings(function() {
             logit("File system demo:");
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
-            var element = document.getElementById('deviceProperties');
-            element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
+            //var element = document.getElementById('deviceProperties');
+            //element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
 
-            //logit("Report Demo");
-            //generatePDFReport();
-
+            logit("Initiating local notification plugin..");
+            window.plugin.notification.local.onadd = function(id, state, json) {
+                logit("added a new local notification " + id + " " + state + " " + json);
+            };
+            window.plugin.notification.local.ontrigger = function(id, state, json) {
+                logit("a notification is triggered " + id + " " + state + " " + json);
+                date = new Date($.parseJSON(json));
+                today = new Date();
+                if (date.getDate() == today.getDate()) {
+                    alert("HBPM Mode finished");
+                }
+            };
             //bluetooth
-            logit("bluetooth serial starts working...");
+            logit("Bluetooth demo:");
             var macaddress = "00:09:1F:80:39:5C";
             bluetoothSerial.connect(macaddress, function() {
                 // if connected
@@ -77,12 +85,6 @@ var app = {
     },
 };
 
-//potentially have to add it back to ondeviceready
-
-$(document).delegate("#records", "pageshow", function() {
-    alert("records showing");
-});
-
 function logit(s) {
     document.getElementById("log").innerHTML += s;
     document.getElementById("log").innerHTML += "<br/>";
@@ -101,9 +103,6 @@ function appPause() {
 //==============================
 // Datepicker
 //==============================
-$('.input-daterange').datepicker({
-    todayBtn: "linked"
-});
 $('#datepicker').datepicker({
     startDate: "-95y",
     endDate: "+0d",
@@ -114,7 +113,8 @@ $('.hbpm-datepicker').datepicker({
     startDate: "+0d",
     endDate: "+1y",
     autoclose: true,
-    todayHighlight: true
+    todayHighlight: true,
+    todayBtn: "linked"
 });
 
 $('.hbpm-timepicker').datetimepicker({
@@ -252,79 +252,3 @@ function generatePDFReport() {
         logit(evt.target.error.code);
     });
 }
-
-//==============================
-// Bluetooth Serial
-
-//==============================
-//Validating Manual results
-//==============================
-function onConfirmError(button) {
-    if (button == 1) {
-        $.mobile.navigate("#mainMenu");
-    } else {
-
-    }
-}
-
-function errorMessage() {
-    navigator.notification.confirm(
-        'Your measurements may contain errors, do you want to retake?', // message
-        onConfirmError, // callback to invoke with index of button pressed
-        'Error!', // title
-        'No,Yes' // buttonLabels
-    );
-
-}
-
-function validateResults(index1, index2) {
-    var diastole1 = $('#diastole' + index1).val();
-    var systole1 = $('#systole' + index1).val();
-    var diastole2 = $('#diastole' + index2).val();
-    var systole2 = $('#systole' + index2).val();
-    if (diastole1 < 60 || diastole2 < 60 || diastole1 > 120 || diastole2 > 120 || systole1 < 80 || systole2 < 80 || systole1 > 220 || systole2 > 220) {
-        errorMessage();
-    }
-}
-
-function checkIfEmpty(index1, index2) {
-    var time = $('#time' + index1).val();
-    var date = $('#date' + index1).val();
-    var diastole1 = $('#diastole' + index1).val();
-    var diastole2 = $('#diastole' + index2).val();
-    var systole1 = $('#systole' + index1).val();
-    var systole2 = $('#systole' + index2).val();
-    var pulse1 = $('#pulse' + index1).val();
-    var pulse2 = $('#pulse' + index2).val();
-
-    if (time == "") {
-        alert("Time is empty");
-        event.preventDefault();
-    } else if (date == "") {
-        alert("Date is empty");
-        event.preventDefault();
-    } else if (diastole1 == "") {
-        alert("Diastole Reading 1 is empty");
-        event.preventDefault();
-    } else if (diastole2 == "") {
-        alert("Diastole Reading 2 is empty");
-        event.preventDefault();
-    } else if (systole1 == "") {
-        alert("Systole Reading 1 is empty");
-        event.preventDefault();
-    } else if (systole2 == "") {
-        alert("Systole Reading 2 is empty");
-        event.preventDefault();
-    } else if (pulse1 == "") {
-        alert("Pule Reading 1 is empty");
-        event.preventDefault();
-    } else if (pulse2 == "") {
-        alert("pulse2 Reading 2 is empty");
-        event.preventDefault();
-    }
-}
-
-$("#button-save").click(function(event) {
-    validateResults(3, 4);
-    checkIfEmpty(3, 4);
-});

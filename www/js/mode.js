@@ -6,11 +6,14 @@ $(document).delegate("#modeSelection", "pageshow", function() {
 });
 
 // process the confirmation dialog result
+var isManual = false;
+
 function onConfirm(button) {
+
     if (button == 1) {
-        $.mobile.navigate("#manual-measure");
+        window.setTimeout("$.mobile.navigate('#manual-measure');", 1000);
     } else {
-        $.mobile.navigate("#bluetooth-measure");
+        window.setTimeout("$.mobile.navigate('#bluetooth-measure');", 1000);
     }
 }
 

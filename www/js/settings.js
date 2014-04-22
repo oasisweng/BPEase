@@ -30,16 +30,14 @@ function setHBMPFileName(v) {
 
 function saveSettings() {
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        logit("get file system");
         fileSystem.root.getFile("settings.txt", {
             create: true
         }, function(entry) {
             logit(entry);
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
-                    logit("write success");
+                    alert("settings saved!");
                 };
-                logit("writing settings");
                 var json = JSON.stringify(settings);
                 writer.write(json);
             }, function(error) {

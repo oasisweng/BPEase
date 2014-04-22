@@ -84,7 +84,7 @@ function readUserInfo(isEditing) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
                         userinfo_json = evt.target.result;
-                        logit("Reading " + userinfo_json);
+                        alert("Reading " + userinfo_json);
                         userinfo = $.parseJSON(userinfo_json);
                         if (isEditing)
                             setPersonalInformation();

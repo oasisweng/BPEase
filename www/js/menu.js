@@ -1,5 +1,5 @@
 function loadCurrentActivityButton() {
-    if (settings.hbpm) {
+    if (!settings.hbpm) {
         $("#modeSelection-btn").removeClass("remove");
     } else {
         $("#currentActivity-btn").removeClass("remove");

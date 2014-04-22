@@ -115,10 +115,16 @@ div[data-role="content"]
     visibility: hidden;
 }
 
+.panel-body{
+    text-align: left;
 
-
-#toggle-progress{
-    background-color:rgba(0,0,0,0.6);
+}
+.panel-body h4{
+        text-align: center;
+}
+#toggle-progress,#toggle-progress-2{
+    background-color:rgba(240,255,255,0.8);
+    border:1px solid black;
     width:150px;
     height: 80px;
     margin: auto;
@@ -128,21 +134,21 @@ div[data-role="content"]
     border-radius: 5px;
 }
 
-#toggle-progress span{
-    color: white;
+#toggle-progress span,#toggle-progress-2 span{
+    color: black;
 font-weight: 100;
 font-size: 13px;
 position: absolute;
-top: 20px;
+top: 15px;
 left: 0;
 right: 0;
 margin: 0 auto;
 }
 
-#toggle-progress img{
-    position: absolute;
-margin: 0 auto;
+#toggle-progress canvas,#toggle-progress-2 canvas{
+position: absolute;
 left: 0;
 right: 0;
-top: 45px;
+margin: 0 auto;
+top: 35px;
 }
