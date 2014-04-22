@@ -7,7 +7,59 @@ $(document).ready(function() {
 // PDF Generator
 // For more information, check: http://parall.ax/products/jspdf
 //==============================
-function generatePDFReport(date_time, systolic, diastolic, pulse, personalDetais) {
+
+
+var date_time =  new Array()
+date_time[0] = "01/04/14";
+date_time[1] = "08:30";
+date_time[2] = "01/04/14";
+date_time[3] = "17:30";
+date_time[4] = "02/04/14";
+date_time[5] = "09:15";
+date_time[6] = "02/04/14";
+date_time[7] = "18:00";
+date_time[8] = "03/04/14";
+date_time[9] = "09:00";
+date_time[10] = "03/04/14";
+date_time[11] = "17:45";
+
+var systolic = new Array();
+systolic[0] = 115;
+systolic[1] = 110;
+systolic[2] = 113;
+systolic[3] = 115;
+systolic[4] = 125;
+systolic[5] = 117;
+
+var diastolic = new Array();
+diastolic[0] = 74;
+diastolic[1] = 85;
+diastolic[2] = 70;
+diastolic[3] = 70;
+diastolic[4] = 85;
+diastolic[5] = 79;
+
+var pulse = new Array();
+pulse[0] = 74;
+pulse[1] = 85;
+pulse[2] = 70;
+pulse[3] = 70;
+pulse[4] = 85;
+pulse[5] = 79;
+
+var personalDetais = new Array();
+personalDetais[0] = "Viraj Makol";
+personalDetais[1] = "12/05/1995";
+personalDetais[2] = "92147637523";
+personalDetais[3] = "";
+personalDetais[4] = "P Garcha";
+personalDetais[5] = "I am a fit and healthy boy.";
+personalDetais[6] = "No";
+personalDetais[7] = "No";
+
+
+
+function generatePDFReport() {
     // @TODO: Need to simplify this demo
 
     var doc = new jsPDF('p', 'pt', 'a4');
