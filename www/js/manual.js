@@ -11,9 +11,31 @@ var systole2_v;
 var pulse1_v;
 var pulse2_v;
 
+function saveResults() {
+    //save the record
+    var data_arr = new Array();
+    var data1 = {
+        time: time_v,
+        date: date_v,
+        diastole: diastole1_v,
+        systole: systole1_v,
+        pulse: pulse1_v
+    };
+    var data2 = {
+        time: time_v,
+        date: date_v,
+        diastole: diastole2_v,
+        systole: systole2_v,
+        pulse: pulse2_v
+    };
+    data_arr.push(data1);
+    data_arr.push(data2);
+    saveRecord(data_arr);
+}
 
 function onConfirmError(button) {
     if (button == 1) {
+        saveResults();
         $.mobile.navigate("#mainMenu");
     }
 }
@@ -56,7 +78,8 @@ function validateResults(index1, index2) {
         pass = false;
     }
 
-    if (diastole1_v < 60 && diastole2_v < 60 && diastole1_v > 120 && diastole2_v > 120 && systole1_v < 80 && systole2_v < 80 && systole1_v > 220 && systole2_v > 220) {
+    if (diastole1_v < 60 || diastole2_v < 60 || diastole1_v > 120 || diastole2_v > 120 || systole1_v < 80 || systole2_v < 80 || systole1_v > 220 || systole2_v > 220) {
+        errorMessage();
         pass = false;
     }
 
@@ -65,7 +88,7 @@ function validateResults(index1, index2) {
 
 $("#manual-button-save").click(function(event) {
     time_v = $('#time' + 3).val();
-    date_v = $('#date' + 3).datepicker("getDate").toJSON();
+    date_v = $('#date' + 3).datepicker("getDate");
     diastole1_v = $('#diastole' + 3).val();
     diastole2_v = $('#diastole' + 4).val();
     systole1_v = $('#systole' + 3).val();
@@ -74,25 +97,8 @@ $("#manual-button-save").click(function(event) {
     pulse2_v = $('#pulse' + 4).val();
 
     if (validateResults(3, 4)) {
-        //save the record
-        var data_arr = new Array();
-        var data1 = {
-            time: time_v,
-            date: date_v,
-            diastole: diastole1_v,
-            systole: systole1_v,
-            pulse: pulse1_v
-        };
-        var data2 = {
-            time: time_v,
-            date: date_v,
-            diastole: diastole2_v,
-            systole: systole2_v,
-            pulse: pulse2_v
-        };
-        data_arr.push(JSON.stringify(data1));
-        data_arr.push(JSON.stringify(data2));
-        saveRecord(data_arr);
+        saveResults();
+        $.mobile.navigate("#mainMenu");
     } else {
         event.preventDefault();
     }

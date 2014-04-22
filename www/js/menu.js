@@ -7,7 +7,6 @@ function loadCurrentActivityButton() {
 }
 
 $(document).delegate("#mainMenu", "pageshow", function() {
-    alert("pageshow");
     $("#modeSelection-btn").addClass("remove");
     $("#currentActivity-btn").addClass("remove");
     loadCurrentActivityButton();

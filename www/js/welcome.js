@@ -1,6 +1,6 @@
 //load either register or main menu button
 function loadWelcomeButton() {
-    if (settings.firstTime) {
+    if (settings.firsttime) {
         $("#menu-button").removeClass("remove");
     } else {
         $("#register-button").removeClass("remove");

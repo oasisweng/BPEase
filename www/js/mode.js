@@ -1,6 +1,5 @@
 $(document).delegate("#modeSelection", "pageshow", function() {
     $("#free-mode-btn").click(function() {
-        event.preventDefault();
         showConfirm();
     });
 });
@@ -8,11 +7,10 @@ $(document).delegate("#modeSelection", "pageshow", function() {
 // process the confirmation dialog result
 
 function onConfirm(button) {
-
     if (button == 1) {
-        window.setTimeout("$.mobile.navigate('#manual-measure');", 1000);
-    } else {
-        window.setTimeout("$.mobile.navigate('#bluetooth-measure');", 1000);
+        $.mobile.navigate('#manual-measure');
+    } else if (button == 2) {
+        $.mobile.navigate('#bluetooth-measure');
     }
 }
 

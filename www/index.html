@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/report.css">
         <link rel="stylesheet" href="css/vendor/jquery.jqplot.min.css" />
         <link rel="stylesheet" href="css/vendor/jquery.mobile.min.css">
     </head>
@@ -28,8 +29,9 @@
             <div data-role="content" id = "main" align = "center">
                 <img src="img/bpeaseblue.png" alt="bpeaseblue.png" id="logo" width="110px" height="150px" >
                 <h1 align = "center">Welcome</h1>
-                <a class = "btn btn-info btn-white" type = "button" id="register-button" href="#userinfo-1">Register</a>
-                <a class = "btn btn-info btn-white" type = "button" id="menu-button" href="#mainMenu">Menu</a>
+                <a class = "btn btn-info btn-white remove" type = "button" id="register-button" href="#userinfo-1">Register</a>
+                <a class = "btn btn-info btn-white remove" type = "button" id="menu-button" href="#mainMenu">Menu</a>
+                <a class = "btn btn-info btn-white" type = "button" href="#information" id="info-button">Information</a>
                 <div id="debug" >
                     <!-- <div id="deviceProperties"></div> -->
                     <div id="log"></div>
@@ -51,25 +53,25 @@
                     <div class="form-group" name="input">
                         <label class="col-xs-4 control-label text-info" for="name">Name: </label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text" name="name" id="user-name" placeholder="Enter name">
+                            <input class="form-control" type="text" name="name" id="user-name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info" for="dob">Date of Birth: </label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control" id="datepicker" data-date-format="dd-mm-yyyy" placeholder="Enter Your DOB">
+                            <input type="text" class="form-control" id="datepicker" data-date-format="dd-mm-yyyy" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info" for="nhsno">NHS Number: </label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text" name="nshno" id="nhsno" placeholder="Enter NHS No.">
+                            <input class="form-control" type="number" name="nshno" id="nhsno">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info" for="gpemail">GP Email: </label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text" name="gpemail" id="gpemail" placeholder="Enter GP Email">
+                            <input class="form-control" type="email" name="gpemail" id="gpemail">
                         </div>
                     </div>
                     <a class = "btn btn-info btn-block" type = "button" value="Next" href ="#userinfo-2" id="user-btn-next" style="width: 100%;">Next</a>
@@ -149,8 +151,8 @@
             </nav>
             <div class="container" style = "position:relative; top:60px;margin: 0px auto;">
                 <h3 class = "text-info">Select a mode:</h3>
-                <a type="button" class="btn btn-info btn-mode" href="#setupHBPM">HBPM Mode</a><br>
-                <a type="button" class="btn btn-info btn-mode" href="" id="free-mode-btn">Free Mode</a>
+                <a type="text" class="btn btn-info btn-mode" href="#setupHBPM">HBPM Mode</a><br>
+                <a type="text" class="btn btn-info btn-mode" href="" id="free-mode-btn">Free Mode</a>
             </div>
         </div>
         <!-- Start of setup HBPM page -->
@@ -228,7 +230,7 @@
                             <p>Systolic: </p><span id="systolic1"></span>
                             <p>Pulse: </p><span id="pulse1"></span>
                             <div align = "center">
-                                <a type="button" class="btn btn-info btn-measure" href="#" id="measurement-button-1">Start
+                                <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-1">Start
                                 </a>
                             </div>
                         </div>
@@ -241,7 +243,7 @@
                             <p>Systolic: </p><span id="systolic2"></span>
                             <p>Pulse: </p><span id="pulse2"></span>
                             <div align = "center">
-                                <a type="button" class="btn btn-info btn-measure" href="#" id="measurement-button-2">Start
+                                <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-2">Start
                                 </a>
                             </div>
                         </div>
@@ -283,28 +285,28 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Diatolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="diastole3" type="text">
+                            <input class="form-control" id="diastole3" type="number" value="66">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="diastole4" type="text">
+                            <input class="form-control" id="diastole4" type="number" value="66">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Systolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="systole3" type="text">
+                            <input class="form-control" id="systole3" type="number" value="66">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="systole4" type="text">
+                            <input class="form-control" id="systole4" type="number"value="66">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Pulse:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="pulse3" type="text">
+                            <input class="form-control" id="pulse3" type="number" value="66">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="pulse4" type="text">
+                            <input class="form-control" id="pulse4" type="number"value="66">
                         </div>
                     </div>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back">Discard</a>
@@ -327,7 +329,7 @@
                 <table class="table-hover" id="records-table" style="width:100%;margin-bottom:20px;">
                 </table>
                 <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="button-back" >Back</a>
-                <a  class = "btn btn-info" type = "button" href ="#" >Send</a>
+                <a  class = "btn btn-info" type = "button" href ="#" id="send-button" >Send</a>
             </div>
         </div>
         <!-- Start of Personal Details page -->
@@ -464,7 +466,7 @@
                         <input type="checkbox" name="checkbox-1" id="bluetooth-toggle-2"/>
                         <label for="bluetooth-toggle-2" style="color: #3a87ad;">Use bluetooth</label>
                     </div>
-                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#setupHBPM">Edit Setup</a>
+                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#setupHBPM" id="editHBPM-btn">Edit Setup</a>
                     <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#mainMenu" id="cancelHBPM-btn">Cancel</a>
                     <a  class = "btn btn-info btn-triple" type = "button" href ="#bluetooth-measure" id="new-measurement-btn">New Measurement</a>
                 </form>
@@ -483,10 +485,8 @@
         <script src="js/vendor/bootstrap-datetimepicker.js"></script>
         <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
         <script src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
-        <script src="js/vendor/jspdf/html2canvas.js"></script>
-        <script src="js/vendor/jspdf/jspdf.js"></script>
-        <script src="js/vendor/jspdf/jspdf.plugin.addimage.js"></script>
-        <script src="js/vendor/jspdf/jspdf.plugin.addhtml.js"></script>
+        <script src="js/vendor/jsPDF/html2canvas.js"></script>
+        <script src="js/jspdf.min.js"></script>
         <script src="js/settings.js"></script>
         <script src="js/welcome.js"></script>
         <script src="js/userinfo.js"></script>
@@ -495,6 +495,7 @@
         <script src="js/hbpm.js"></script>
         <script src="js/manual.js"></script>
         <script src="js/record.js"></script>
+        <script src="js/report.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">
         app.initialize();

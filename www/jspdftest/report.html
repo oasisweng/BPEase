@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <head>
-    <script src="html2canvas.js"></script>
-    <script src="../js/vendor/jquery.min.js"></script>
-    <script src="../js/vendor/jspdf/jspdf.js"></script>
-    <script src="../js/vendor/jspdf/jspdf.plugin.addimage.js"></script>
-    <script src="../js/vendor/jspdf/jspdf.plugin.addhtml.js"></script>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="report.css">
 </head>
 <body>
-    <div id="page1" class="page">
+    <div id="report" class="hidden">
         <div id="left-col">
             <h1>Home blood pressure monitoring (HBPM)</h1>
-            <p><span style="font-weight:bold;">Patient Details:</span><br>Name: <span id="name">Dingzhong Weng</span><br>DOB: <span id="dob">123</span><br>NHS Number: <span id="nhsno">123</span><br>GP Surgery: Unknown<br>Named GP: Afsana Bhuiya<br></p>
+            <p><span style="font-weight:bold;">Patient Details:</span><br>Name: <span id="name">Dingzhong Weng</span><br>DOB: <span id="dob">123</span><br>NHS Number: <span id="nhsno">123</span><br>GP Surgery: <span id="gs"><span><br>Named GP: Afsana Bhuiya<br></p>
             <p>Medical History: <span id="history"></span><br>HTN-<span id="h"></span><br>Arrythmia-<span id="a"></span></p>
         </div>
-        <div id = "right-col">
+        <div id="right-col">
             <table id = "bp-table1">
                 <tr>
                     <th>Date</th>
@@ -48,3 +42,9 @@
     </div>
     <iframe class="preview-pane" width="100%" height="650" frameborder="0" style="position:relative;z-index:999" src=""></iframe>
 </body>
+<script src="../js/vendor/jspdf/html2canvas.js"></script>
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/vendor/jspdf/jspdf.js"></script>
+<script src="../js/vendor/jspdf/jspdf.plugin.addimage.js"></script>
+<script src="../js/vendor/jspdf/jspdf.plugin.addhtml.js"></script>
+<script src="report.js"></script>

@@ -4,7 +4,7 @@ var settings = {
     bluetooth: false,
     hbpmFileName: "H0",
     hbpmStartDate: new Date(),
-    hbpmEndDate: new Date,
+    hbpmEndDate: new Date(),
     totalFiles: 0
 };
 
@@ -36,7 +36,7 @@ function saveSettings() {
             logit(entry);
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
-                    alert("settings saved!");
+                    alert("settings saved!" + JSON.stringify(settings));
                 };
                 var json = JSON.stringify(settings);
                 writer.write(json);

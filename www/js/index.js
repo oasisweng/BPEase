@@ -46,13 +46,14 @@ var app = {
                 logit("added a new local notification " + id + " " + state + " " + json);
             };
             window.plugin.notification.local.ontrigger = function(id, state, json) {
-                logit("a notification is triggered " + id + " " + state + " " + json);
+                alert('Time to measure your blood pressure, please! :-)~~~');
                 date = new Date($.parseJSON(json));
                 today = new Date();
                 if (date.getDate() == today.getDate()) {
                     alert("HBPM Mode finished");
                 }
             };
+
             //bluetooth
             logit("Bluetooth demo:");
             var macaddress = "00:09:1F:80:39:5C";
@@ -83,9 +84,26 @@ var app = {
             document.addEventListener("pause", appPause, false);
 
             $('#datepicker,.hbpm-datepicker').style.zoom = 1.5;
+
         });
     }
 };
+
+
+$(document).delegate("#current-activity", "pageshow", function() {
+    if (settings.bluetooth) {
+        $("#bluetooth-toggle-2").prop("checked", true).checkboxradio('refresh');;
+    } else {
+        $("#bluetooth-toggle-2").prop("checked", false).checkboxradio('refresh');
+    }
+})
+$(document).delegate("#setupHBPM", "pageshow", function() {
+    if (settings.bluetooth) {
+        $("#bluetooth-toggle").prop("checked", true).checkboxradio('refresh');;
+    } else {
+        $("#bluetooth-toggle").prop("checked", false).checkboxradio('refresh');
+    }
+})
 
 function logit(s) {
     document.getElementById("log").innerHTML += s;
@@ -167,7 +185,6 @@ function readText() {
                 file.reader.available = true;
                 var text = evt.target.result;
                 logit("Reading " + text);
-                //sendEmail();
             }
             reader.readAsText(txtFile);
         }, onError);
@@ -190,67 +207,4 @@ function saveText() {
         logit("Writer is unavailable!");
     }
     return false;
-}
-//==============================
-// Email Composer
-//==============================
-function sendEmail() {
-    logit("Email Demo");
-    subject = "subject";
-    body = "body";
-    toRecipients = ["oasisweng@gmail.com"];
-    ccRecipients = ["chaitanya.agrawal.13@ucl.ac.uk"];
-    bccRecipients = [""];
-    isHtml = true;
-    logit("Sending with Attachments:" + file.fullPath);
-    attachments = [file.fullPath];
-    attachmentsData = null;
-    window.plugins.emailComposer.showEmailComposerWithCallback(sendEmail_Result, subject, body, toRecipients, ccRecipients, bccRecipients, isHtml, attachments, attachmentsData);
-}
-
-function sendEmail_Result() {
-    logit("Email calling back");
-}
-
-//==============================
-// PDF Generator
-// For more information, check: http://parall.ax/products/jspdf
-//==============================
-function generatePDFReport() {
-    //FIRST GENERATE THE PDF DOCUMENT
-    logit("generating pdf...");
-    var doc = new jsPDF();
-    doc.text(20, 20, 'HELLO!');
-    doc.setFont("courier");
-    doc.setFontType("normal");
-    doc.text(20, 30, 'This is a PDF document generated using JSPDF.');
-    doc.text(20, 50, 'YES, Inside of PhoneGap!');
-    var pdfOutput = doc.output();
-    logit(pdfOutput);
-    //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
-    logit("saving to file system...");
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        logit(fileSystem.name);
-        logit(fileSystem.root.name);
-        logit(fileSystem.root.fullPath);
-        fileSystem.root.getFile("test.pdf", {
-            create: true
-        }, function(entry) {
-            var fileEntry = entry;
-            logit(entry);
-            entry.createWriter(function(writer) {
-                writer.onwrite = function(evt) {
-                    logit("write success");
-                };
-                logit("writing to file");
-                writer.write(pdfOutput);
-            }, function(error) {
-                logit(error);
-            });
-        }, function(error) {
-            logit(error);
-        });
-    }, function(event) {
-        logit(evt.target.error.code);
-    });
 }

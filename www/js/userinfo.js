@@ -127,6 +127,8 @@ $('#user-btn-next').click(function(event) {
 
 $("#pi-save-btn").click(function(event) {
     saveUserInfo();
+    settings.firsttime = false;
+    saveSettings();;
 });
 $("#pi-edit-btn").click(function(event) {
     readUserInfo(true);

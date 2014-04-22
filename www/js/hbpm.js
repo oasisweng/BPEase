@@ -24,6 +24,7 @@ $("#bluetooth-toggle-2").bind("click", function(event) {
         // the checkbox was unchecked
         settings.bluetooth = false;
     }
+    saveSettings();
 });
 
 $("#b-start-btn").click(function(event) {
@@ -32,7 +33,6 @@ $("#b-start-btn").click(function(event) {
     var mr = $("#morning-reminder").val();
     var er = $("#evening-reminder").val();
     var bt = $("#bluetooth-toggle").is(':checked');
-    alert(sd);
     event.preventDefault();
     if (sd.toJSON() == "") {
         alert("Start date is empty!");
@@ -47,6 +47,7 @@ $("#b-start-btn").click(function(event) {
         alert("Evening reminder is empty!");
         return;
     }
+    alert("sd " + sd + "ed " + ed + "mr " + mr + "er ");
     startHBPM(sd, ed, mr, er);
     if (bt) {
         $.mobile.navigate("#bluetooth-measure");
@@ -54,6 +55,15 @@ $("#b-start-btn").click(function(event) {
         $.mobile.navigate("#manual-measure");
     }
 });
+
+$("#editHBPM-btn").click(function(event) {
+    $("#startdate").datepicker("setDate", settings.hbpmStartDate);
+    $("#enddate").datepicker("setDate", settings.hbpmEndDate);
+    $("#morning-reminder").data("DateTimePicker").setDate(settings.hbpmStartDate);
+    $("#evening-reminder").data("DateTimePicker").setDate(settings.hbpmStartDate);
+
+});
+
 
 $("#new-measurement-btn").click(function(event) {
     event.preventDefault();
@@ -68,6 +78,7 @@ $("#new-measurement-btn").click(function(event) {
 $("#cancelHBPM-btn").click(function(event) {
     alert("the program is cancelled");
     settings.hbpm = false;
+    settings.totalFiles++;
     saveSettings();
 });
 
@@ -102,11 +113,11 @@ function startHBPM(startDate, endDate, morning, evening) {
     setLocalNotificaiton(startDate_m, title, message, repeat, endDate);
     setLocalNotificaiton(startDate_e, title, message, repeat, endDate);
 
+    settings.firsttime = false;
     settings.hbpm = true;
     settings.hbpmFileName = "H" + settings.totalFiles;
     settings.hbpmStartDate = startDate;
     settings.hbpmEndDate = endDate;
-    settings.totalFiles++;
     saveSettings();
     alert("HBPM starts!" + JSON.stringify(settings));
 }

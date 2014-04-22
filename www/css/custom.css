@@ -17,11 +17,16 @@ a.btn-info:hover{
     width:50%;
 
 }
-#register-button,#menu-button
+#register-button,#menu-button,#info-button
 {
     width: 50%;
     font-size: 20px;
     border-radius: 8px;
+}
+
+#info-button{
+    margin-top:10px;
+    font-size: 16px;
 }
 div[data-role="content"]
 {
@@ -32,6 +37,11 @@ div[data-role="content"]
     left: 0;
     right: 0;
 }
+
+input[type="button"]{
+    text-align: left;
+}
+
 .normal
 {
     height:62px;
