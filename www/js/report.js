@@ -156,35 +156,36 @@ function generatePDFReport(dates, times, d, s, p, pd) {
     }
 
     $('#bp-table2').append($(content2)).trigger('create');
-    $("#welcome-footer").width = "1200px";
+    $("#welcome").width("1200px");
     //$("#main").css("background-color", "white");
     doc.addHTML(document.getElementById("rpage"), function() {
-        // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        //     fs.URL = fileSystem.root.toURL();
-        //     fileSystem.root.getFile("test.pdf", {
-        //         create: true,
-        //         exclusive: false
-        //     }, function(entry) {
-        //         entry.createWriter(function(writer) {
-        //             writer.onwrite = function(evt) {
-        //                 file.URL = entry.toURL();
-        //                 $('#toggle-progress-3').hide("fast", function() {
-        //                     clearInterval(sw3_interval);
-        //                     sendEmail();
-        //                 });
-        //             };
-        //             writer.write(doc.output("arraybuffer"));
-        //         }, function(error) {
-        //             logit(error);
-        //         });
+        $("#welcome").width("100%");
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+            fs.URL = fileSystem.root.toURL();
+            fileSystem.root.getFile("test.pdf", {
+                create: true,
+                exclusive: false
+            }, function(entry) {
+                entry.createWriter(function(writer) {
+                    writer.onwrite = function(evt) {
+                        file.URL = entry.toURL();
+                        $('#toggle-progress-3').hide("fast", function() {
+                            clearInterval(sw3_interval);
+                            sendEmail();
+                        });
+                    };
+                    writer.write(doc.output("arraybuffer"));
+                }, function(error) {
+                    logit(error);
+                });
 
-        //     }, function(error) {
-        //         logit(error);
-        //     });
-        // }, function(event) {
-        //     logit(event.target.error.code);
-        // });
-        var string = doc.output('datauristring');
-        $('.preview-pane').attr('src', string);
+            }, function(error) {
+                logit(error);
+            });
+        }, function(event) {
+            logit(event.target.error.code);
+        });
+        // var string = doc.output('datauristring');
+        // $('.preview-pane').attr('src', string);
     });
 }
