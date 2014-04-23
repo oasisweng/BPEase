@@ -1,4 +1,4 @@
-#left-col{
+#report #left-col{
    float:left;
    width:35%;
 }
@@ -22,7 +22,7 @@ margin-top: 40px;
    clear:both;
    margin:40px auto;
    width:90%;
-position: absolute;
+   position: absolute;
 }
 table{
    border-spacing:0;

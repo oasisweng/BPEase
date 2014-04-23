@@ -16,53 +16,73 @@
         <link href="css/vendor/datepicker.css" rel="stylesheet">
         <link href="css/vendor/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <!-- CSS -->
+        <link rel="stylesheet" href="css/report.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/custom.css">
-        <link rel="stylesheet" href="css/report.css">
         <link rel="stylesheet" href="css/vendor/jquery.jqplot.min.css" />
         <link rel="stylesheet" href="css/vendor/jquery.mobile.min.css">
+
+        <script src="js/vendor/html2canvas.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/jspdf.debug.js"></script>
+        <script src="js/report.js"></script>
     </head>
     <body align="center">
-        <div id="report">
-            <div id="left-col">
-                <h1>Home blood pressure monitoring (HBPM)</h1>
-                <p><span style="font-weight:bold;">Patient Details:</span><br>Name: <span id="rname">Dingzhong Weng</span><br>DOB: <span id="rdob">123</span><br>NHS Number: <span id="rnhsno">123</span><br>GP Surgery: <span id="rgs"><span><br>Named GP: Afsana Bhuiya<br></p>
-                <p>Medical History: <span id="rhistory"></span><br>HTN-<span id="rh"></span><br>Arrythmia-<span id="ra"></span></p>
-            </div>
-            <div id="right-col">
-                <table id = "bp-table1">
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Systolic</th>
-                        <th>Diastolic</th>
-                        <th>Pulse</th>
-                    </tr>
-                </table>
-                <div id="summary">
-                    <div>
-                        <span id="s-title">SUMMARY:</span>
-                        <br>
-                        <span class="s-sub">Readings from <span id="startdate">date,time</span> to <span id="enddate">date,time</span></span>
-                        <br>
-                        <span class="s-sub">Total number of readings: <span id="n-readings"></span></span>
-                        <br><br>
-                        <span class="s-a">*</span><span id="sidenode">Remember to discard the first days reading in the averages calculation.</span>
-                    </div>
-                    <table id = "bp-table2">
-                        <tr>
-                            <th>BP</th>
-                            <th>Minimum</th>
-                            <th>Maximum</th>
-                            <th>Average</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
         <!-- Start of Welcome page -->
         <div class = "page" data-role = "page" id = "welcome" >
+            <div data-role="footer" id="welcome-footer">
+                <a href="#welcome">come again</a>
+                <iframe class="preview-pane" height="150" frameborder="0" style="position:relative;z-index:999" src=""></iframe>
+                <div id="rpage" class="rpage">
+                    <div id="rleft-col">
+                        <h1>Home blood pressure monitoring (HBPM)</h1>
+                        <p>
+                        <span style="font-weight:bold;">Patient Details:</span>
+                        <br>Name: <span id="rname">Dingzhong Weng</span>
+                        <br>DOB: <span id="rdob">123</span>
+                        <br>NHS Number: <span id="rnhsno">123</span>
+                        <br>GP Surgery: Unknown<br>Named GP: Afsana Bhuiya
+                        <br>
+                        </p>
+                        <p>
+                        Medical History: <span id="rhistory"></span>
+                        <br>HTN-<span id="rh"></span>
+                        <br>Arrythmia-<span id="ra"></span>
+                        </p>
+                    </div>
+                    <div id="rright-col">
+                        <table id = "bp-table1" class="rtable">
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Systolic</th>
+                                <th>Diastolic</th>
+                                <th>Pulse</th>
+                            </tr>
+                        </table>
+                        <div id="summary">
+                            <div>
+                                <span id="s-title">SUMMARY:</span>
+                                <br>
+                                <span class="s-sub">Readings from <span id="rstartdate">date,time</span> to <span id="renddate">date,time</span></span>
+                                <br>
+                                <span class="s-sub">Total number of readings: <span id="n-readings"></span></span>
+                                <br><br>
+                                <span class="s-a">*</span><span id="sidenode">Remember to discard the first days reading in the averages calculation.</span>
+                            </div>
+                            <table id = "bp-table2" class="rtable">
+                                <tr>
+                                    <th>BP</th>
+                                    <th>Minimum</th>
+                                    <th>Maximum</th>
+                                    <th>Average</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div data-role="content" id = "main" align = "center">
                 <img src="img/bpeaseblue.png" alt="bpeaseblue.png" id="logo" width="110px" height="150px" >
                 <h1 align = "center">Welcome</h1>
@@ -74,6 +94,7 @@
                     <div id="log"></div>
                 </div>
             </div>
+            
         </div>
         <!-- Start of First Medical Info page -->
         <div data-role="page" id="userinfo-1">
@@ -518,7 +539,6 @@
             </div>
         </div>
         <script src="phonegap.js"></script>
-        <script src="js/vendor/jquery.min.js"></script>
         <script src="js/vendor/jquery.mobile.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/bootstrap-datepicker.js"></script>
@@ -526,8 +546,6 @@
         <script src="js/vendor/bootstrap-datetimepicker.js"></script>
         <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
         <script src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
-        <script src="js/vendor/jsPDF/html2canvas.js"></script>
-        <script src="js/jspdf.min.js"></script>
         <script src="js/settings.js"></script>
         <script src="js/welcome.js"></script>
         <script src="js/userinfo.js"></script>
@@ -536,7 +554,6 @@
         <script src="js/hbpm.js"></script>
         <script src="js/manual.js"></script>
         <script src="js/record.js"></script>
-        <script src="js/report.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">
         app.initialize();

@@ -198,9 +198,9 @@ $("#send-button").click(function() {
         for (var i = 0; i < settings.totalFiles; i++) {
             if ($("#record-toggle-" + i).is(':checked')) {
                 var record = records[i].records;
-                alert(record.length);
                 for (var j = 0; j < record.length; j++) {
-                    var measurement = $.parseJSON(record[j]);
+                    //alert(JSON.stringify(record[j]) + record[j].date);
+                    var measurement = record[j];
                     times.push(measurement.time);
                     dates.push(measurement.date);
                     systolic.push(measurement.systole);
@@ -209,8 +209,9 @@ $("#send-button").click(function() {
                 }
             };
         }
+        //alert(dates + "|||||" + times + "||||" + systolic + "||||||" + diastolic + "||||" + personalDetais);
         generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
-        // alert("dates " + dates);
+        //alert("dates " + dates);
         // alert("times " + times);
     });
 });

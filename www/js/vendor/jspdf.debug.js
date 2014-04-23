@@ -1852,7 +1852,6 @@ var jsPDF = (function(global) {
             this.text(60, 330, '* Severe hypertension Clinic systolic blood pressure is 180');
             this.text(72, 360, 'mmHg or higher, or clinic diastolic blood');
             this.text(60, 390, '* pressure is 110 mmHg or higher.');
-            this.addPage();
 
             callback(w, h, alias, args);
         }.bind(this);

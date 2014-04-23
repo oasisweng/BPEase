@@ -1,39 +1,41 @@
-#left-col{
+#rpage{
+   position: absolute;
+   background-color: white;
+   padding:30px;
+   width:1200px;
+   top:0;
+}
+
+#rleft-col{
    float:left;
    width:35%;
 }
 
-#left-col h1{
+#rleft-col h1{
    font-size:1.5em;
 }
 
-#left-col p{
+#rleft-col p{
    line-height: 30px;
 font-weight: 100;
 margin-top: 40px;
-}
-
-#right-col{
-   float:right;
-   width:60%;
-}
-
-#report{
-   clear:both;
-   width:1324px;
-position: absolute;
 text-align: left;
-left: 0;
-right: 0;
-text-shadow:none;
 }
-#report table{
+
+#rright-col{
+   float:right;
+   width:65%;
+   text-align: left;
+   font-weight: 100;
+}
+
+.rtable{
    border-spacing:0;
    border:1px solid white;
    width:100%;
 }
 
-#report table tr td,#report table tr th{
+.rtable tr td,.rtable tr th{
    border-left: 1px solid white;
     border-bottom: 1px solid white;
    text-align: left;
@@ -43,23 +45,23 @@ text-shadow:none;
 font-weight: 500;
 }
 
-#report table tr:nth-child(even) {
+.rtable tr:nth-child(even) {
     background-color: rgb(208,216,232);
 }
-#report table tr:nth-child(odd) {
+.rtable tr:nth-child(odd) {
     background-color: rgb(233,237,244);
 }
 
-#report table tr th{
+.rtable tr th{
    color:white;
    background-color: rgb(79,129,189);
 }
 
-#report table tr td{
+.rtable tr td{
    color:black;
 }
 
-#report table tr td:first-child,#report table tr th:first-child{
+.rtable tr td:first-child,.rtable tr th:first-child{
    border-left:none;
 }
 
@@ -72,10 +74,6 @@ font-weight: 500;
 
 #bp-table2 tr td:last-child{
    background-color: red;
-}
-
-#summary{
-
 }
 
 #s-title{

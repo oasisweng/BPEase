@@ -14,6 +14,7 @@ dates[3] = new Date();
 dates[4] = new Date();
 dates[5] = new Date();
 
+
 var times = new Array()
 times[0] = new Date();
 times[1] = new Date();
@@ -42,7 +43,7 @@ var pulse = new Array();
 pulse[0] = 74;
 pulse[1] = 85;
 pulse[2] = 70;
-pulse[3] = 70;
+pulse[3] = 65;
 pulse[4] = 85;
 pulse[5] = 79;
 
@@ -55,7 +56,6 @@ personalDetais[4] = "P Garcha";
 personalDetais[5] = "I am a fit and healthy boy.";
 personalDetais[6] = "No";
 personalDetais[7] = "No";
-
 
 $(document).ready(function() {
     generatePDFReport(dates, times, diastolic, systolic, pulse);
@@ -105,7 +105,6 @@ function generatePDFReport(dates, times, d, s, p) {
 
     var doc = new jsPDF('p', 'pt', 'a4');
 
-
     //For Table 1
     var content = "<tr>";
     for (var i = 0; i < systolic.length; i++) {
@@ -124,9 +123,9 @@ function generatePDFReport(dates, times, d, s, p) {
     var fullStartDate = day + " " + monthNames[month] + " " + hours + ":" + minutes;
     getDateInfo(systolic.length - 1);
     var fullEndDate = day + " " + monthNames[month] + " " + hours + ":" + minutes;
-    $('#startdate').html(fullStartDate);
-    $('#enddate').html(fullEndDate);
-    $('#n-readings').html(6);
+    $('#rstartdate').html(fullStartDate);
+    $('#renddate').html(fullEndDate);
+    $('#n-readings').html(systolic.length);
 
     //For Table 2 
     var min_max_avg = new Array();
@@ -179,49 +178,8 @@ function generatePDFReport(dates, times, d, s, p) {
     }
     $('#bp-table2').append($(content2)).trigger('create');
 
-    doc.addHTML(document.body, function() {
-        //Page 2-Instructions for HBPM 
-        doc.addPage();
-        doc.setFontSize(24);
-        doc.setFontType('bold');
-        doc.text(40, 30, 'Recall- instructions on the HBPM-could flash');
-        doc.text(130, 75, 'up when pxs start this mode');
-        doc.setFontSize(16);
-        doc.setFontType('normal');
-        doc.text(60, 120, '* When using home blood pressure monitoring (HBPM) to confirm a');
-        doc.text(72, 150, 'diagnosis of hypertension,');
-        doc.text(60, 180, '* ensure that:');
-        doc.text(60, 210, '* - for each blood pressure recording, two consecutive');
-        doc.text(72, 240, 'measurements are taken, atleast 1 min');
-        doc.text(60, 270, '* apart and with the person seated and');
-        doc.text(60, 300, '* - blood pressure is recorded twice daily, ideally in the morning');
-        doc.text(72, 330, 'and evening and');
-        doc.text(60, 360, '* - blood pressure recording continues for at least 4 days, ideally');
-        doc.text(72, 390, 'for 7 days.');
-        doc.text(60, 420, '* Discard the measurements taken on the first day and use the');
-        doc.text(60, 450, 'average value of all the remaining');
-        doc.text(60, 480, '* measurements to confirm a diagnosis of hypertension.');
-
-        //Page 3-Nice guidance reminder for GP
-        doc.addPage();
-        doc.setFontSize(20);
-        doc.setFontType('bold');
-        doc.text(145, 40, 'NICE guidance reminder for GP:');
-        doc.text(40, 75, 'http://www.nice.org.uk/guidance/CG127/QuickRefGuide');
-        doc.setFontSize(16);
-        doc.setFontType('normal');
-        doc.text(60, 120, '* blood pressure monitoring(ABPM) daytime average or');
-        doc.text(72, 150, 'home blood pressure monitoring (HBPM)');
-        doc.text(60, 180, '* average blood pressure is 135/85 mmHg or higher.');
-        doc.text(60, 210, '* Stage 2 hypertension Clinic blood pressure is 160/100');
-        doc.text(72, 240, 'mmHg or higher and subsequent ABPM');
-        doc.text(60, 270, '* daytime average or HBPM average blood pressure is 150/95');
-        doc.text(72, 300, 'mmHg or higher.');
-        doc.text(60, 330, '* Severe hypertension Clinic systolic blood pressure is 180');
-        doc.text(72, 360, 'mmHg or higher, or clinic diastolic blood');
-        doc.text(60, 390, '* pressure is 110 mmHg or higher.');
+    doc.addHTML(document.getElementById("rpage"), function() {
         var string = doc.output('datauristring');
         $('.preview-pane').attr('src', string);
-
     });
 }
