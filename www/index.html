@@ -24,6 +24,43 @@
         <link rel="stylesheet" href="css/vendor/jquery.mobile.min.css">
     </head>
     <body align="center">
+        <div id="report">
+            <div id="left-col">
+                <h1>Home blood pressure monitoring (HBPM)</h1>
+                <p><span style="font-weight:bold;">Patient Details:</span><br>Name: <span id="rname">Dingzhong Weng</span><br>DOB: <span id="rdob">123</span><br>NHS Number: <span id="rnhsno">123</span><br>GP Surgery: <span id="rgs"><span><br>Named GP: Afsana Bhuiya<br></p>
+                <p>Medical History: <span id="rhistory"></span><br>HTN-<span id="rh"></span><br>Arrythmia-<span id="ra"></span></p>
+            </div>
+            <div id="right-col">
+                <table id = "bp-table1">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Systolic</th>
+                        <th>Diastolic</th>
+                        <th>Pulse</th>
+                    </tr>
+                </table>
+                <div id="summary">
+                    <div>
+                        <span id="s-title">SUMMARY:</span>
+                        <br>
+                        <span class="s-sub">Readings from <span id="startdate">date,time</span> to <span id="enddate">date,time</span></span>
+                        <br>
+                        <span class="s-sub">Total number of readings: <span id="n-readings"></span></span>
+                        <br><br>
+                        <span class="s-a">*</span><span id="sidenode">Remember to discard the first days reading in the averages calculation.</span>
+                    </div>
+                    <table id = "bp-table2">
+                        <tr>
+                            <th>BP</th>
+                            <th>Minimum</th>
+                            <th>Maximum</th>
+                            <th>Average</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
         <!-- Start of Welcome page -->
         <div class = "page" data-role = "page" id = "welcome" >
             <div data-role="content" id = "main" align = "center">
@@ -330,6 +367,10 @@
                 </table>
                 <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="button-back" >Back</a>
                 <a  class = "btn btn-info" type = "button" href ="#" id="send-button" >Send</a>
+                <div id="toggle-progress-3">
+                    <canvas width="27" height="27" id="sw-canvas-3"></canvas>
+                    <span>Generating Report... Please do not touch the screen</span>
+                </div>
             </div>
         </div>
         <!-- Start of Personal Details page -->

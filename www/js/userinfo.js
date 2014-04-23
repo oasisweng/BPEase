@@ -1,5 +1,13 @@
 var userinfo_json;
-var userinfo;
+var userinfo = {
+    name: "Lulu Wang",
+    dob: "9/27/1994",
+    nhsno: "123456789",
+    gpemail: "gpemail@gmail.com",
+    hypertension: "Yes",
+    arrythmia: "Yes",
+    medication: "No previous symptoms of hypertension nor arrythmia"
+};
 
 function saveUserInfo() {
     var aName = $('#user-name').val();

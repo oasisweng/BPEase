@@ -35,8 +35,12 @@ var app = {
     onDeviceReady: function() {
         //navigator.notification.alert("PhoneGap is ready!");
         logit("Phonegap is ready.");
+
         loadSettings(function() {
             logit("File system demo:");
+            $("#register-button").addClass("remove");
+            $("#menu-button").addClass("remove");
+            loadWelcomeButton();
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
             //var element = document.getElementById('deviceProperties');
             //element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';

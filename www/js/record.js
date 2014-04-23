@@ -1,4 +1,5 @@
 var records = new Array();
+var sw3_interval = null;
 
 function saveRecord(data_json) {
     var data_arr = new Array();
@@ -123,7 +124,7 @@ function saveRecord(data_json) {
 }
 
 function readRecord(fileSystem, i) {
-    alert("reading i" + i + " t" + settings.totalFiles);
+    //alert("reading i" + i + " t" + settings.totalFiles);
     if (i >= settings.totalFiles || settings.totalFiles == 0) {
         return;
     } else {
@@ -133,7 +134,7 @@ function readRecord(fileSystem, i) {
             create: false
         }, function(entry) {
             var fileEntry = entry;
-            alert("receving file entry.");
+            //alert("receving file entry.");
             if (fileEntry) {
                 fileEntry.file(function(txtFile) {
                     var reader = new FileReader();
@@ -165,7 +166,7 @@ function displayRecords() {
     records = new Array();
     $('#records-table').empty();
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        alert("reading records");
+        //alert("reading records");
         readRecord(fileSystem, 0);
     }, function(error) {
         alert("can't access files.");
@@ -178,81 +179,61 @@ $(document).delegate("#records", "pageshow", function() {
 });
 
 $("#send-button").click(function() {
-    var dates = new Array()
-    dates[0] = new Date();
-    dates[1] = new Date();
-    dates[2] = new Date();
-    dates[3] = new Date();
-    dates[4] = new Date();
-    dates[5] = new Date();
+    drawSW3();
+    $('#toggle-progress-3').show("slow", function() {
+        var dates = new Array();
+        var times = new Array();
+        var systolic = new Array();
+        var diastolic = new Array();
+        var pulse = new Array();
+        var personalDetais = new Array();
+        //readUserInfo(false);
+        personalDetais.push(
+            userinfo.name,
+            userinfo.dob,
+            userinfo.nhsno,
+            userinfo.medication,
+            userinfo.hypertension,
+            userinfo.arrythmia);
+        for (var i = 0; i < settings.totalFiles; i++) {
+            if ($("#record-toggle-" + i).is(':checked')) {
+                var record = records[i].records;
+                alert(record.length);
+                for (var j = 0; j < record.length; j++) {
+                    var measurement = $.parseJSON(record[j]);
+                    times.push(measurement.time);
+                    dates.push(measurement.date);
+                    systolic.push(measurement.systole);
+                    diastolic.push(measurement.diastole);
+                    pulse.push(measurement.pulse);
+                }
+            };
+        }
+        generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
+        // alert("dates " + dates);
+        // alert("times " + times);
+    });
+});
 
-    var times = new Array()
-    times[0] = new Date();
-    times[1] = new Date();
-    times[2] = new Date();
-    times[3] = new Date();
-    times[4] = new Date();
-    times[5] = new Date();
+//Draw spinning wheel
+var cog = new Image();
 
-    var systolic = new Array();
-    systolic[0] = 115;
-    systolic[1] = 110;
-    systolic[2] = 113;
-    systolic[3] = 115;
-    systolic[4] = 125;
-    systolic[5] = 117;
+function drawSW3() {
+    cog.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABK1JREFUeNqMVt1ZGzkUvVfS4IW1l8GO82w6IBXE7mCpAFMB+Pt4Z6iApALcAe4AU0HoAJfg7BPYHinnXmmciX+y0YdmJHnQ0bk/R5cvh5cUyFPwRD4EChgEvGWMB36R3+JaiTkmD5gOs8yNb25uLlerFf1pM2yIGA82TEY7xow1oj4GBU6S6yywPNG4JwDH+XGv0Whs7ndN8n97mmPsLCSYgy7ImPQE/pFDyAF+7L0fgTNFUDBcLal90taD1doQ/T6NT9DnW8zkT+jJuQVYukG3hifCVk/L3JOxMBa8VVlSp9MhHKLaB+zpNo1fdgEpmByuMqUAV5viOQLwXNax9KBAFNEEpN1pUwnQmvl6aTza6zNjrCKaymeyOdYAMgfg18iG4T/qw+AC94zvpzDjcwqOXo3VGH26H0xMZ7jPxgT0R2zUi4BYt6bAfEbJvJFZKA4ODgZ5nhcJLE9mk35X21vWC/TXKmiwr2xszoQd/PQv3t/QCzY2twpqBpb5FKOp+hCgzWaTWq0W1Xx0ij5An9WC5VtiLMwvNBrVaSGMvQk5jHQVPN7sb0HzAtE+QJrNgrcUNEARieWCut0ugR0tl8sKcJ5Ahc3jRviPK8ZGTaaBwGKyT+gTiwM4a3Jrba6MbeVXo5F4kp9shn29ndUYC9vLirGDXzRhrYhD8DME5Hkg22df5rDYS/RXmVIsaP/Q/SXs600YnifTjbeSWliEdTYb3QyTqYfdDKTL4B1KS6tVqf6SgGq3P9BvZGpvNIrPCgVKZlGlCDQDxJiCjVppCab05DJHzb+b1Gm36X80cVjLuzozexs0f6IgRkA5XRhzIixRL1+IzhwdHVHrn1Y9oXe1i10aKT6bGGhg1CKK+cT0zCGCs0oXTIogybJMw/779//o48duMvnO9rzLn+Kz8wgS5Shqo4njpCoOQA5Ajb8adHh4SMvVghaLhYb/HsBip88krNVISSEigOlhjmi0LziNhr6wOsgO9C1339vbGznnNAU2AM9Svk235cqKieKGkldAf7DGvTrjnjJnzyQoMu0ZTuZgUqvmlYR+f39XIE4uqCX1E/rDZpCYmKwOOmivAfYK9KF1AM7EdG4uAMLAOjmQideQXOJQkyUisqYiFRhtSFbxCxj8do0T30dmTvLhC+an0MZZVBHX09tBTG4qFigZEJEChjTIEwtRik81Qa7uOQU0IrYAe7FRjqYw6SlYjgAyN1GmHsFIGPfVnxzFuFITKEkfYK+oWZ5qKlIkcZ7UE92oXBmeIgIxtAO5UtSHqo9uiLW+sme5ejSIRASeAFR4LYy8MMzL1aq3EYWzJF28BgMEzGYpBkrMKelgl+P6uTcVY8NjLYyYPwMTCcufSaouH6al9xNJcjC82vDb9uVZKbrWIumNO+waVsu1TCC+Wxcg6xaSpsZSYM2wLO9/U8qZWH+wztQnsfAxV/E3MIKZVf1FsmJVV8mamhEmxZ0X7sSsABsGv1tZJGejmptU7FBUDYzPAXQBwFEEl+9+stFEroJEci2ELwIMmZuWoSTE9DYYcWVCjlJrZWMpeBhlAEqBiulPE84S3ixU5gSTwGGOdyEVNJXxA8nPevshwABHktBS1YoQ+QAAAABJRU5ErkJggg=='; // Set source path
+    sw3_interval = setInterval(draw3, 10);
+}
 
-    var diastolic = new Array();
-    diastolic[0] = 74;
-    diastolic[1] = 85;
-    diastolic[2] = 70;
-    diastolic[3] = 70;
-    diastolic[4] = 85;
-    diastolic[5] = 79;
+var rotation = 0;
 
-    var pulse = new Array();
-    pulse[0] = 74;
-    pulse[1] = 85;
-    pulse[2] = 70;
-    pulse[3] = 70;
-    pulse[4] = 85;
-    pulse[5] = 79;
-
-    var personalDetais = new Array();
-    personalDetais[0] = "Viraj Makol";
-    personalDetais[1] = "12/05/1995";
-    personalDetais[2] = "92147637523";
-    personalDetais[3] = "I am a fit and healthy boy love love love.";
-    personalDetais[4] = "No";
-    personalDetais[5] = "No";
-
-    generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
-
-    var dates = new Array();
-    var times = new Array();
-    var systolic = new Array();
-    var diastolic = new Array();
-    var pulse = new Array();
-    var personalDetais = new Array();
-    readUserInfo(false);
-    personalDetais[0] = userinfo.name;
-    personalDetais[1] = userinfo.dob;
-    personalDetais[2] = userinfo.nhsno;
-    personalDetais[3] = userinfo.medication;
-    personalDetais[4] = userinfo.hypertension;
-    personalDetais[5] = userinfo.arrythmia;
-
-
-    for (var i = 0; i < settings.totalFiles; i++) {
-        if ($("#record-toggle-" + i).is(':checked')) {
-            for (var j = 0; j < records[i].length; j++) {
-                times.push(records[i][j].time);
-                dates.push(records[i][j].date);
-                diastolic.push(records[i][j].diastole);
-                pulse.push(records[i][j].pulse);
-            }
-        };
-    }
-    alert("dates " + dates);
-    alert("times " + times);
-})
+function draw3() {
+    var ctx = document.getElementById('sw-canvas-3').getContext('2d');
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.save();
+    ctx.clearRect(0, 0, 27, 27);
+    ctx.translate(13.5, 13.5); // to get it in the origin
+    rotation += 1;
+    ctx.rotate(rotation * Math.PI / 64); //rotate in origin
+    ctx.translate(-13.5, -13.5); //put it back
+    ctx.drawImage(cog, 0, 0);
+    ctx.restore();
+}

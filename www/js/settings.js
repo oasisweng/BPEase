@@ -36,7 +36,7 @@ function saveSettings() {
             logit(entry);
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
-                    alert("settings saved!" + JSON.stringify(settings));
+                    //alert("settings saved!" + JSON.stringify(settings));
                 };
                 var json = JSON.stringify(settings);
                 writer.write(json);
@@ -81,7 +81,7 @@ function loadSettings(success) {
             logit("failed to load setting " + error);
         });
     }, function(event) {
-        logit("failed to load setting " + event);
+        logit("failed to load setting, use default setting instead");
         success();
     });
 }
