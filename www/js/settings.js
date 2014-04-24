@@ -75,10 +75,12 @@ function loadSettings(success) {
                 };
                 reader.readAsText(txtFile);
             }, function(error) {
-                logit("can't read" + error);
+                logit("failed to load setting, use default setting instead");
+                success();
             });
         }, function(error) {
-            logit("failed to load setting " + error);
+            logit("failed to load setting, use default setting instead");
+            success();
         });
     }, function(event) {
         logit("failed to load setting, use default setting instead");

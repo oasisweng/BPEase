@@ -31,7 +31,6 @@
         <!-- Start of Welcome page -->
         <div class = "page" data-role = "page" id = "welcome" >
             <div data-role="footer" id="welcome-footer">
-                <iframe class="preview-pane" height="150" frameborder="0" style="position:relative;z-index:999" src=""></iframe>
                 <div id="rpage" class="rpage">
                     <div id="rleft-col">
                         <h1>Home blood pressure monitoring (HBPM)</h1>
@@ -80,7 +79,6 @@
                         </div>
                     </div>
                 </div>
-                <a href="" onclick="javascript:location.reload();">come again</a>
             </div>
             <div data-role="content" id = "main" align = "center">
                 <div id="main-box">
@@ -95,10 +93,6 @@
                     <div id="log"></div>
                 </div>
             </div>
-
-
-
-            
             
         </div>
         <!-- Start of First Medical Info page -->
@@ -391,7 +385,7 @@
                 <h2 class = "text-info" style="margin-bottom:20px;">Records</h2>
                 <table class="table-hover" id="records-table" style="width:100%;margin-bottom:20px;">
                 </table>
-                <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="button-back" >Back</a>
+                <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="record-button-back" >Back</a>
                 <a  class = "btn btn-info" type = "button" href ="#" id="send-button" >Send</a>
                 <div id="toggle-progress-3">
                     <canvas width="27" height="27" id="sw-canvas-3"></canvas>
@@ -457,7 +451,6 @@
                 <div>
                     <img src="img/bpeaseblue.png">
                     <h1 class="brand"align = "center">BPEase</h1>
-                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
                 </div>
             </nav>
             <div data-role="content" class="container">
@@ -551,6 +544,7 @@
         <script src="js/vendor/bootstrap-datetimepicker.js"></script>
         <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/vendor/jsplot/excanvas.js"></script><![endif]-->
         <script src="js/vendor/jsplot/jquery.jqplot.min.js"></script>
+        <script src="js/vendor/fastclick.js"></script>
         <script src="js/settings.js"></script>
         <script src="js/welcome.js"></script>
         <script src="js/userinfo.js"></script>

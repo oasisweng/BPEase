@@ -156,10 +156,12 @@ function generatePDFReport(dates, times, d, s, p, pd) {
     }
 
     $('#bp-table2').append($(content2)).trigger('create');
-    $("#welcome").width("1200px");
-    //$("#main").css("background-color", "white");
+    $("#welcome").css("overflow-x", "visible");
+    logit("Ready to generate report");
+    //$("#main").css("background-color", "white");;
     doc.addHTML(document.getElementById("rpage"), function() {
-        $("#welcome").width("100%");
+        $("#welcome").css("overflow-x", "hidden");
+        alert("Report HTML is added");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
             fs.URL = fileSystem.root.toURL();
             fileSystem.root.getFile("test.pdf", {
@@ -169,9 +171,31 @@ function generatePDFReport(dates, times, d, s, p, pd) {
                 entry.createWriter(function(writer) {
                     writer.onwrite = function(evt) {
                         file.URL = entry.toURL();
+                        logit("Report saved" + doc.output("datauristring"));
                         $('#toggle-progress-3').hide("fast", function() {
                             clearInterval(sw3_interval);
                             sendEmail();
+                        });
+
+                        fileSystem.root.getFile("test2.pdf", {
+                            create: true,
+                            exclusive: false
+                        }, function(entry) {
+                            entry.createWriter(function(writer) {
+                                writer.onwrite = function(evt) {
+                                    file.URL = entry.toURL();
+                                    $('#toggle-progress-3').hide("fast", function() {
+                                        clearInterval(sw3_interval);
+                                        sendEmail();
+                                    });
+                                };
+                                writer.write(doc.output("datauristring"));
+                            }, function(error) {
+                                logit(error);
+                            });
+
+                        }, function(error) {
+                            logit(error);
                         });
                     };
                     writer.write(doc.output("arraybuffer"));
@@ -185,7 +209,8 @@ function generatePDFReport(dates, times, d, s, p, pd) {
         }, function(event) {
             logit(event.target.error.code);
         });
-        // var string = doc.output('datauristring');
-        // $('.preview-pane').attr('src', string);
+
+        //var string = doc.output('datauristring');
+        //$('.preview-pane').attr('src', string);
     });
 }

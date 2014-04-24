@@ -1808,7 +1808,7 @@ var jsPDF = (function(global) {
             var format = 'JPEG';
             if (options.format)
                 format = options.format;
-
+            alert("rendered successfully");
             var alias = Math.random().toString(35);
             var args = [canvas, x, y, w, h, format, alias, 'SLOW'];
             this.addImage.apply(this, args);

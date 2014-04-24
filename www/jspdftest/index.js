@@ -179,7 +179,8 @@ function generatePDFReport(dates, times, d, s, p) {
     $('#bp-table2').append($(content2)).trigger('create');
 
     doc.addHTML(document.getElementById("rpage"), function() {
-        var string = doc.output('datauristring');
-        $('.preview-pane').attr('src', string);
+        //var string = doc.output('datauristring');
+        //$('.preview-pane').attr('src', string);
+        doc.save();
     });
 }

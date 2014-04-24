@@ -58,6 +58,61 @@ var app = {
                 }
             };
 
+            var dates = new Array()
+            dates[0] = new Date();
+            dates[1] = new Date();
+            dates[2] = new Date();
+            dates[3] = new Date();
+            dates[4] = new Date();
+            dates[5] = new Date();
+
+
+            var times = new Array()
+            times[0] = new Date();
+            times[1] = new Date();
+            times[2] = new Date();
+            times[3] = new Date();
+            times[4] = new Date();
+            times[5] = new Date();
+
+            var systolic = new Array();
+            systolic[0] = 115;
+            systolic[1] = 110;
+            systolic[2] = 113;
+            systolic[3] = 115;
+            systolic[4] = 125;
+            systolic[5] = 117;
+
+            var diastolic = new Array();
+            diastolic[0] = 74;
+            diastolic[1] = 85;
+            diastolic[2] = 70;
+            diastolic[3] = 70;
+            diastolic[4] = 85;
+            diastolic[5] = 79;
+
+            var pulse = new Array();
+            pulse[0] = 74;
+            pulse[1] = 85;
+            pulse[2] = 70;
+            pulse[3] = 65;
+            pulse[4] = 85;
+            pulse[5] = 79;
+
+            var personalDetais = new Array();
+            personalDetais[0] = "Viraj Makol";
+            personalDetais[1] = "12/05/1995";
+            personalDetais[2] = "92147637523";
+            personalDetais[3] = "";
+            personalDetais[4] = "P Garcha";
+            personalDetais[5] = "I am a fit and healthy boy.";
+            personalDetais[6] = "No";
+            personalDetais[7] = "No";
+
+            logit("Generating PDF Report");
+
+            generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
+
             //bluetooth
             logit("Bluetooth demo:");
             var macaddress = "00:09:1F:80:39:5C";
@@ -84,16 +139,13 @@ var app = {
             }, function(error) {
                 logit("Please check connection.." + error);
             });
-
-            document.addEventListener("pause", appPause, false);
-
-            $('#datepicker,.hbpm-datepicker').style.zoom = 1.5;
-
         });
     }
 };
 
-$(document).delegate("#welcome", "pageshow", function() {
+$(function() {
+    FastClick.attach(document.body);
+
     var dates = new Array()
     dates[0] = new Date();
     dates[1] = new Date();
@@ -145,9 +197,10 @@ $(document).delegate("#welcome", "pageshow", function() {
     personalDetais[6] = "No";
     personalDetais[7] = "No";
 
+    logit("Generating PDF Report");
+
     generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
 });
-
 
 $(document).delegate("#current-activity", "pageshow", function() {
     if (settings.bluetooth) {

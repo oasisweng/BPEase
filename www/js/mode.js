@@ -8,9 +8,9 @@ $(document).delegate("#modeSelection", "pageshow", function() {
 
 function onConfirm(button) {
     if (button == 1) {
-        $.mobile.navigate('#manual-measure');
+        setTimeout($.mobile.navigate('#manual-measure'), 1500);
     } else if (button == 2) {
-        $.mobile.navigate('#bluetooth-measure');
+        setTimeout($.mobile.navigate('#bluetooth-measure'), 1500);
     }
 }
 
