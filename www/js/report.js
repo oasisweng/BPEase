@@ -162,6 +162,7 @@ function generatePDFReport(dates, times, d, s, p, pd) {
     doc.addHTML(document.getElementById("rpage"), function() {
         $("#welcome").css("overflow-x", "hidden");
         alert("Report HTML is added");
+        doc.save();
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
             fs.URL = fileSystem.root.toURL();
             fileSystem.root.getFile("test.pdf", {

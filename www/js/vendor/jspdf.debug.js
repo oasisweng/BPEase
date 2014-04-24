@@ -1808,7 +1808,7 @@ var jsPDF = (function(global) {
             var format = 'JPEG';
             if (options.format)
                 format = options.format;
-            alert("rendered successfully");
+            console.log("rendered successfully");
             var alias = Math.random().toString(35);
             var args = [canvas, x, y, w, h, format, alias, 'SLOW'];
             this.addImage.apply(this, args);
@@ -2332,6 +2332,7 @@ var jsPDF = (function(global) {
             cached_info,
             dataAsBinaryString;
 
+        alert("getImages");
         compression = checkCompressValue(compression);
         format = (format || 'JPEG').toLowerCase();
 
