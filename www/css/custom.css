@@ -92,11 +92,12 @@ input[type="button"]{
 }
 
 .btn-info{
-    font-size: 13px;
+    font-size: 17px;
 }
 
 .btn-triple{
     width:32%;
+    font-size:13px;
 }
 
 .btn-mode{
@@ -196,4 +197,8 @@ margin: 0 auto;
 
 label{
     font-size: 14px!important;
+}
+
+#new-measurement-btn{
+    line-height: 25px!important;
 }

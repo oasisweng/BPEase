@@ -51,13 +51,14 @@ $("#b-start-btn").click(function(event) {
     } else if (er === "") {
         alert("Evening reminder is empty!");
         return;
-    }
-    //alert("sd " + sd + "ed " + ed + "mr " + mr + "er ");
-    startHBPM(sd, ed, mr, er);
-    if (bt) {
-        $.mobile.navigate("#bluetooth-measure");
     } else {
-        $.mobile.navigate("#manual-measure");
+        //alert("sd " + sd + "ed " + ed + "mr " + mr + "er ");
+        startHBPM(sd, ed, mr, er);
+        if (bt) {
+            $.mobile.navigate("#bluetooth-measure");
+        } else {
+            $.mobile.navigate("#manual-measure");
+        }
     }
 });
 
@@ -84,7 +85,6 @@ $("#cancelHBPM-btn").click(function(event) {
     alert("HBPM is cancelled, record saved.");
     settings.hbpm = false;
     settings.totalFiles++;
-    saveRecord(null);
     saveSettings();
 });
 

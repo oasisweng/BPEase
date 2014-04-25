@@ -76,11 +76,11 @@ function validateResults(index1, index2) {
     } else if (pulse2_v === "") {
         alert("pulse2 Reading 2 is empty");
         pass = false;
-    }
-
-    if (diastole1_v < 60 || diastole2_v < 60 || diastole1_v > 120 || diastole2_v > 120 || systole1_v < 80 || systole2_v < 80 || systole1_v > 220 || systole2_v > 220) {
-        errorMessage();
-        pass = false;
+    } else {
+        if (diastole1_v < 60 || diastole2_v < 60 || diastole1_v > 120 || diastole2_v > 120 || systole1_v < 80 || systole2_v < 80 || systole1_v > 220 || systole2_v > 220) {
+            errorMessage();
+            pass = false;
+        }
     }
 
     return pass;

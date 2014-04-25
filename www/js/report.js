@@ -16,8 +16,9 @@ function getDateInfo(i, dates, times) {
     var time = new Date(times[i]);
     month = date.getMonth();
     day = date.getDate();
-    hours = time.getHours();
-    minutes = time.getMinutes();
+    var t = times[i].split(":");
+    hours = t[0];
+    minutes = t[1];
     if (day % 10 == 1)
         day = day + "st";
     else if (day % 10 == 2)

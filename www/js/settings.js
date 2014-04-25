@@ -47,14 +47,14 @@ function saveSettings() {
             console.log(error);
         });
     }, function(event) {
-        console.log("cant save");
+        logit("cant save");
     });
 }
 
 function loadSettings(success) {
-    console.log("loading settings");
+    logit("loading settings");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        console.log("get file system");
+        logit("get file system");
         fileSystem.root.getFile("settings.txt", {
             create: false
         }, function(entry) {
@@ -70,20 +70,20 @@ function loadSettings(success) {
                     settings.hbpmStartDate = new Date(settingsObj.hbpmStartDate);
                     settings.hbpmEndDate = new Date(settingsObj.hbpmEndDate);
                     settings.totalFiles = settingsObj.totalFiles;
-                    console.log("setting is set " + settingsJson);
+                    logit("setting is set " + settingsJson);
                     success();
                 };
                 reader.readAsText(txtFile);
             }, function(error) {
-                console.log("failed to load setting, use default setting instead");
+                logit("failed to load setting, use default setting instead");
                 success();
             });
         }, function(error) {
-            console.log("failed to load setting, use default setting instead");
+            logit("failed to load setting, use default setting instead");
             success();
         });
     }, function(event) {
-        console.log("failed to load setting, use default setting instead");
+        logit("failed to load setting, use default setting instead");
         success();
     });
 }

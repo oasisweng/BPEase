@@ -63,14 +63,14 @@ function saveRecord(data_json) {
                     ed: enddate,
                     records: data_arr
                 };
-                alert("startdate:" + startdate);
+                //alert("startdate:" + startdate);
                 fileSystem.root.getFile(fileName, {
                     create: true
                 }, function(entry) {
                     var fileEntry = entry;
                     entry.createWriter(function(writer) {
                         writer.onwrite = function(evt) {
-                            alert("saving new record succeeded " + JSON.stringify(new_result) + " in " + settings.hbpmFileName);
+                            //alert("saving new record succeeded " + JSON.stringify(new_result) + " in " + settings.hbpmFileName);
                         };
                         writer.write(JSON.stringify(new_result));
                     }, function(error) {
@@ -98,7 +98,7 @@ function saveRecord(data_json) {
             records: data_arr
         };
 
-        alert("saving records " + JSON.stringify(new_result));
+        //alert("saving records " + JSON.stringify(new_result));
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
             fileSystem.root.getFile("H" + settings.totalFiles + ".txt", {
                 create: true
@@ -106,7 +106,7 @@ function saveRecord(data_json) {
                 var fileEntry = entry;
                 entry.createWriter(function(writer) {
                     writer.onwrite = function(evt) {
-                        alert("free mode writing succeeded, saving to " + "H" + settings.totalFiles + ".txt");
+                        //alert("free mode writing succeeded, saving to " + "H" + settings.totalFiles + ".txt");
                         settings.totalFiles++;
                     };
                     writer.write(JSON.stringify(new_result));
@@ -145,7 +145,7 @@ function readRecord(fileSystem, i) {
                         $('#records-table').append(
                             $('<tr><td><label><input type="checkbox" id="record-toggle-' + i + '" class="record-toggle"><span id="startdate-' + i + '">' + sd + '</span>-<span id="enddate-' + i + '">' + ed + '</span></label></td></tr>')
                         ).trigger('create');
-                        alert("receiving result " + evt.target.result + " " + sd);
+                        //alert("receiving result " + evt.target.result + " " + sd);
                         records.push(result);
                         readRecord(fileSystem, i + 1);
                     };
@@ -164,7 +164,6 @@ function readRecord(fileSystem, i) {
 
 function displayRecords() {
     records = new Array();
-    $('#records-table').empty();
     if (sw3_interval) {
         clearInterval(sw3_interval);
     }
@@ -220,6 +219,7 @@ $("#send-button").click(function() {
 
 $("#record-button-back").click(function() {
     clearInterval(sw3_interval);
+    $('#records-table').empty();
 })
 
 //Draw spinning wheel

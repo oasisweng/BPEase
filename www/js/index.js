@@ -134,15 +134,15 @@ var app = {
 };
 $(function() {
     if ($(window).width() > 800) {
-        $(".btn-info").css("font-size", "17px");
+        $(".btn-triple").css("font-size", "17px");
     } else {
-        $(".btn-info").css("font-size", "13px");
+        $(".btn-triple").css("font-size", "13px");
     }
     $(window).resize(function() {
         if ($(window).width() > 800) {
-            $(".btn-info").css("font-size", "17px");
+            $(".btn-triple").css("font-size", "17px");
         } else {
-            $(".btn-info").css("font-size", "13px");
+            $(".btn-triple").css("font-size", "13px");
         }
     });
 
