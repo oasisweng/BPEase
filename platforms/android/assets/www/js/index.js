@@ -102,7 +102,7 @@ function readText() {
 
 function saveText() {
     if (file.writer.available) {
-        file.writer.available = false; 
+        file.writer.available = false;
         logit("saving text 'hello world!'");
         file.writer.object.onwriteend = function (evt) {
             file.writer.available = true;
