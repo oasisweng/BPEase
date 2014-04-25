@@ -92,7 +92,7 @@ input[type="button"]{
 }
 
 .btn-info{
-    font-size: 17px;
+    font-size: 13px;
 }
 
 .btn-triple{
@@ -124,6 +124,10 @@ input[type="button"]{
 
 .remove{
     display:none;
+}
+
+#new-measurement-btn{
+    line-height: 25px!important;
 }
 
 .panel-body{

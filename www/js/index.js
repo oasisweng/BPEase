@@ -133,6 +133,19 @@ var app = {
     }
 };
 $(function() {
+    if ($(window).width() > 800) {
+        $(".btn-info").css("font-size", "17px");
+    } else {
+        $(".btn-info").css("font-size", "13px");
+    }
+    $(window).resize(function() {
+        if ($(window).width() > 800) {
+            $(".btn-info").css("font-size", "17px");
+        } else {
+            $(".btn-info").css("font-size", "13px");
+        }
+    });
+
     FastClick.attach(document.body);
     // var dates = new Array()
     // dates[0] = new Date();
@@ -199,12 +212,12 @@ $(document).delegate("#current-activity", "pageshow", function() {
         var sd = settings.hbpmStartDate;
         var ed = settings.hbpmEndDate;
         $("#startdate-txt").html(sd.getDate() + "/" + sd.getMonth() + "/" + sd.getFullYear());
-        $("#endate-txt").html(ed.getDate() + "/" + ed.getMonth() + "/" + ed.getFullYear());
+        $("#enddate-txt").html(ed.getDate() + "/" + ed.getMonth() + "/" + ed.getFullYear());
         $("#morning-reminder-txt").html(sd.getHours() + ":" + sd.getMinutes());
         $("#evening-reminder-txt").html(ed.getHours() + ":" + ed.getMinutes());
     } else {
         $("#startdate-txt").html("");
-        $("#endate-txt").html("");
+        $("#enddate-txt").html("");
         $("#morning-reminder-txt").html("");
         $("#evening-reminder-txt").html("");
     }
