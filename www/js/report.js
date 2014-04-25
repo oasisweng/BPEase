@@ -160,6 +160,7 @@ function generatePDFReport(dates, times, d, s, p, pd) {
     $('#toggle-progress-3').hide("fast", function() {
         clearInterval(sw3_interval);
         sendEmail(content);
+        $("#send-button").removeAttr('disabled');
     });
     console.log("Ready to generate report");
     doc.addHTML(document.getElementById("rpage"), function(canvas, w, h) {
