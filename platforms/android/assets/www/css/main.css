@@ -1,0 +1,118 @@
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+
+}
+
+
+h2.text-info{
+	text-align: center;
+}
+
+nav.navbar{
+	background-color: #5bc0de;
+	border-color: #3fb5d8;
+	background-image: -webkit-gradient(linear, left 0%, left 100%, from(#85d0e7), to(#5bc0de));
+	background-image: -webkit-linear-gradient(top, #85d0e7, 0%, #5bc0de, 100%);
+	background-image: -moz-linear-gradient(top, #85d0e7 0%, #5bc0de 100%);
+	background-image: linear-gradient(to bottom, #85d0e7 0%, #5bc0de 100%);
+	background-repeat: repeat-x;
+	position:fixed;
+}
+
+nav.navbar div img{
+	height: 50px;
+	float:left;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+a.btn-info:hover{
+	color: #B9D5DD;
+}
+
+.btn-info{
+	line-height: 50px !important;
+	font-size: 22px;
+	width: 47%;
+	color:white !important;
+	padding:0 !important;
+}
+
+
+/*===============
+ /| Special ids |
+ /===============
+*/
+#main{
+    width:100%;
+    height:100%;
+    top:0!important;
+}
+#main-box{
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    width:300px;
+    height:350px;
+}
+#main h1{
+	margin:0;
+	margin-bottom: 20px;
+	margin-top: 14px;
+}
+
+body form{
+	margin: 10px 15px;
+}
+
+
+#debug{
+	font-size: 12px;
+	text-align: left;
+	position: absolute;
+	bottom: 0;
+	left:0;
+	right:0;
+	text-align: center;
+	height: 200px;
+	overflow: scroll;
+}
+
+/*=============
+ /| User info |
+ /=============
+*/
+#nav-header{
+	padding: 0;
+}
+
+#btn-next{
+	color: #FFFFFF;
+	font-size:22px;
+}
+
+.form-group{
+	margin-bottom:20px !important;
+}
+
+textarea{
+	resize:none !important;
+	height:100px !important;
+}
+
+.home-btn{
+	padding-left:5px;
+}
+
+.table-hover tr td .ui-checkbox{
+	margin:0;
+}
+}
+
