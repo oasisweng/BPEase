@@ -18,106 +18,217 @@
  */
 var app = {
     // Application Constructor
-    initialize: function () {
+    initialize: function() {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function () {
+    bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
+    onDeviceReady: function() {
         //navigator.notification.alert("PhoneGap is ready!");
         logit("Phonegap is ready.");
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024, gotFS, onError);
-        var element = document.getElementById('deviceProperties');
-        element.innerHTML = 'Device Name: '     + device.name     + '<br />' +
-                            'Device Cordova: '  + device.cordova  + '<br />' +
-                            'Device Platform: ' + device.platform + '<br />' +
-                            'Device UUID: '     + device.uuid     + '<br />' +
-                            'Device Model: '    + device.model    + '<br />' +
-                            'Device Version: '  + device.version  + '<br />';
+        loadSettings(function() {
+            logit("Loading welcome screen");
+            $("#register-button").addClass("remove");
+            $("#menu-button").addClass("remove");
+            loadWelcomeButton();
+            //var element = document.getElementById('deviceProperties');
+            //element.innerHTML = 'Device Name: ' + device.name + '<br />' + 'Device Cordova: ' + device.cordova + '<br />' + 'Device Platform: ' + device.platform + '<br />' + 'Device UUID: ' + device.uuid + '<br />' + 'Device Model: ' + device.model + '<br />' + 'Device Version: ' + device.version + '<br />';
 
-    },
+            logit("Initializing local notification plugin");
+            window.plugin.notification.local.onadd = function(id, state, json) {
+                logit("added a new local notification " + id + " " + state + " " + json);
+            };
+            window.plugin.notification.local.ontrigger = function(id, state, json) {
+                date = new Date($.parseJSON(json));
+                today = new Date();
+                if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth()) {
+                    alert("HBPM Mode finished");
+                }
+                $.mobile.navigate("#current-activity");
+            };
+
+            //generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
+
+            //bluetooth
+            logit("Bluetooth demo:");
+            var macaddress = "00:09:1F:80:39:5C";
+            //var macaddress = "E4:25:E7:E1:DE:06";
+            bluetoothSerial.list(function(results) {
+                logit(JSON.stringify(results));
+            }, function(error) {
+                logit("Failed to retrieve mac ad list " + error);
+            });
+            bluetoothSerial.isEnabled(function() {
+                logit("bluetooth is enabled");
+            }, function(error) {
+                logit(error);
+            });
+            bluetoothSerial.connectInsecure(macaddress, function() {
+                // if connected
+                logit("bluetooth connected");
+                bluetoothSerial.subscribe('\n', function(data) {
+                    logit("Receiving data " + data);
+                    //disconnect
+                    bluetoothSerial.disconnect(function() {
+                        bluetoothSerial.unsubscribe(
+                            function(data) {
+                                logit("unsubscribing " + data);
+                            },
+                            function(error) {
+                                logit("unsubscribe error.." + error);
+                            }
+                        );
+                    }, function(error) {
+                        logit("Drop the love! Unable to disconnect.." + error);
+                    });
+                }, function(error) {
+                    logit("Unable to subscribe to love.." + error);
+                });
+            }, function(error) {
+                logit("Please check connection.. " + error);
+            });
+
+            //==============================
+            // Datepicker
+            //==============================
+            $(".input-daterange").datepicker({
+                startDate: "+0d",
+                endDate: "+1y",
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: "linked"
+            });
+
+            $('#datepicker').datepicker({
+                startDate: "-95y",
+                endDate: "+0d",
+                autoclose: true
+            });
+
+            $("#date3").datepicker({
+                startDate: "+0d",
+                endDate: "+1y",
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: "linked"
+            });
+
+            $('.hbpm-timepicker').datetimepicker({
+                pickDate: false
+            });
+
+            //tweak
+            $("#bluetooth-toggle").prop("checked", false).checkboxradio('refresh');
+            $("#bluetooth-toggle-2").prop("checked", false).checkboxradio('refresh');
+        });
+    }
 };
+$(function() {
+    FastClick.attach(document.body);
+    // var dates = new Array()
+    // dates[0] = new Date();
+    // dates[1] = new Date();
+    // dates[2] = new Date();
+    // dates[3] = new Date();
+    // dates[4] = new Date();
+    // dates[5] = new Date();
 
-function logit(s){
+
+    // var times = new Array()
+    // times[0] = new Date();
+    // times[1] = new Date();
+    // times[2] = new Date();
+    // times[3] = new Date();
+    // times[4] = new Date();
+    // times[5] = new Date();
+
+    // var systolic = new Array();
+    // systolic[0] = 115;
+    // systolic[1] = 110;
+    // systolic[2] = 113;
+    // systolic[3] = 115;
+    // systolic[4] = 125;
+    // systolic[5] = 117;
+
+    // var diastolic = new Array();
+    // diastolic[0] = 74;
+    // diastolic[1] = 85;
+    // diastolic[2] = 70;
+    // diastolic[3] = 70;
+    // diastolic[4] = 85;
+    // diastolic[5] = 79;
+
+    // var pulse = new Array();
+    // pulse[0] = 74;
+    // pulse[1] = 85;
+    // pulse[2] = 70;
+    // pulse[3] = 65;
+    // pulse[4] = 85;
+    // pulse[5] = 79;
+
+    // var personalDetais = new Array();
+    // personalDetais[0] = "Viraj Makol";
+    // personalDetais[1] = "12/05/1995";
+    // personalDetais[2] = "92147637523";
+    // personalDetais[3] = "I am a fit and healthy boy.";
+    // personalDetais[4] = "No";
+    // personalDetais[5] = "No";
+
+    // logit("Generating PDF Report");
+
+    // generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
+});
+
+$(document).delegate("#current-activity", "pageshow", function() {
+    if (settings.bluetooth) {
+        $("#bluetooth-toggle-2").prop("checked", true).checkboxradio('refresh');
+    } else {
+        $("#bluetooth-toggle-2").prop("checked", false).checkboxradio('refresh');
+    }
+
+    if (settings.hbpm) {
+        var sd = settings.hbpmStartDate;
+        var ed = settings.hbpmEndDate;
+        $("#startdate-txt").html(sd.getDate() + "/" + sd.getMonth() + "/" + sd.getFullYear());
+        $("#endate-txt").html(ed.getDate() + "/" + ed.getMonth() + "/" + ed.getFullYear());
+        $("#morning-reminder-txt").html(sd.getHours() + ":" + sd.getMinutes());
+        $("#evening-reminder-txt").html(ed.getHours() + ":" + ed.getMinutes());
+    } else {
+        $("#startdate-txt").html("");
+        $("#endate-txt").html("");
+        $("#morning-reminder-txt").html("");
+        $("#evening-reminder-txt").html("");
+    }
+
+})
+$(document).delegate("#setupHBPM", "pageshow", function() {
+    if (settings.bluetooth) {
+        $("#bluetooth-toggle").prop("checked", true).checkboxradio('refresh');;
+    } else {
+        $("#bluetooth-toggle").prop("checked", false).checkboxradio('refresh');
+    }
+})
+
+function logit(s) {
     document.getElementById("log").innerHTML += s;
     document.getElementById("log").innerHTML += "<br/>";
+    var objDiv = document.getElementById("debug");
+    objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 function onError(err) {
     logit(err.code);
 }
 
-var FILENAME = "readme.txt",
-    file = {
-        writer: { available: false },
-        reader: { available: false }
-    },
-    $ = function (id) {
-        return document.getElementById(id);
-    };
-
-function gotFileWriter(fileWriter) {
-    logit("Got File Writer");
-    file.writer.available = true;
-    file.writer.object = fileWriter;
-    saveText(); 
-}
-
-function gotFileEntry(fileEntry) {
-    logit("Got File Entry!");
-    file.entry = fileEntry;
-    fileEntry.createWriter(gotFileWriter, onError);
-}
-
-function gotFS(fs) {
-    fs.root.getFile(FILENAME, {create: true, exclusive: false},
-                    gotFileEntry, onError);
-}
-
-function readText() {
-    if (file.entry) {
-        file.entry.file(function (txtFile) {
-            var reader = new FileReader();
-            file.reader.available = false;
-            reader.onloadend = function (evt) {
-                file.reader.available = true;
-                var text = evt.target.result;
-                logit("Reading "+text);
-            }
-            reader.readAsText(txtFile);
-        }, onError);
-    }
-
-    return false;
-}
-
-function saveText() {
-    if (file.writer.available) {
-        file.writer.available = false; 
-        logit("saving text 'hello world!'");
-        file.writer.object.onwriteend = function (evt) {
-            file.writer.available = true;
-            file.writer.object.seek(0);
-            logit("saving complete");
-            readText();
-        }
-        file.writer.object.write("hello world!");
-    } else {
-        logit("Writer is unavaiable!");
-    }
-
-    return false;
-}
-
-function onload() {
-    //alert("abc");
+function appPause() {
+    saveSettings();
 }
