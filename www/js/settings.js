@@ -33,7 +33,7 @@ function saveSettings() {
         fileSystem.root.getFile("settings.txt", {
             create: true
         }, function(entry) {
-            logit(entry);
+            console.log(entry);
             entry.createWriter(function(writer) {
                 writer.onwrite = function(evt) {
                     //alert("settings saved!" + JSON.stringify(settings));
@@ -41,20 +41,20 @@ function saveSettings() {
                 var json = JSON.stringify(settings);
                 writer.write(json);
             }, function(error) {
-                logit(error);
+                console.log(error);
             });
         }, function(error) {
-            logit(error);
+            console.log(error);
         });
     }, function(event) {
-        logit("cant save");
+        console.log("cant save");
     });
 }
 
 function loadSettings(success) {
-    logit("loading settings");
+    console.log("loading settings");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        logit("get file system");
+        console.log("get file system");
         fileSystem.root.getFile("settings.txt", {
             create: false
         }, function(entry) {
@@ -70,20 +70,20 @@ function loadSettings(success) {
                     settings.hbpmStartDate = new Date(settingsObj.hbpmStartDate);
                     settings.hbpmEndDate = new Date(settingsObj.hbpmEndDate);
                     settings.totalFiles = settingsObj.totalFiles;
-                    logit("setting is set " + settingsJson);
+                    console.log("setting is set " + settingsJson);
                     success();
                 };
                 reader.readAsText(txtFile);
             }, function(error) {
-                logit("failed to load setting, use default setting instead");
+                console.log("failed to load setting, use default setting instead");
                 success();
             });
         }, function(error) {
-            logit("failed to load setting, use default setting instead");
+            console.log("failed to load setting, use default setting instead");
             success();
         });
     }, function(event) {
-        logit("failed to load setting, use default setting instead");
+        console.log("failed to load setting, use default setting instead");
         success();
     });
 }

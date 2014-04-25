@@ -41,19 +41,18 @@ var file = {
     URL: ""
 };
 
-function sendEmail() {
+function sendEmail(content) {
     var date = new Date().toDateString();
-    subject = userinfo.name + "\'s BP Report on " + date;
-    body = "";
-    toRecipients = ["oasisweng@gmail.com"];
-    ccRecipients = ["chaitanya.agrawal.13@ucl.ac.uk", "delia.gander.13@ucl.ac.uk"];
-    bccRecipients = [""];
-    isHtml = false;
-    attachments = ["/storage/emulated/0/test.pdf", file.URL];
-    attachmentsData = null;
-    alert(fs.URL);
-
+    var subject = userinfo.name + "\'s BP Report on " + date;
+    var body = content;
+    var toRecipients = ["oasisweng@gmail.com"];
+    var ccRecipients = ["chaitanya.agrawal.13@ucl.ac.uk", "delia.gander.13@ucl.ac.uk"];
+    var bccRecipients = null;
+    var isHtml = true;
+    var attachments = null;
+    var attachmentsData = null;
     window.plugins.emailComposer.showEmailComposerWithCallback(sendEmail_Result, subject, body, toRecipients, ccRecipients, bccRecipients, isHtml, attachments, attachmentsData);
+
 }
 
 function sendEmail_Result(res) {
@@ -156,13 +155,15 @@ function generatePDFReport(dates, times, d, s, p, pd) {
     }
 
     $('#bp-table2').append($(content2)).trigger('create');
-    $("#welcome").css("overflow-x", "visible");
-    logit("Ready to generate report");
-    //$("#main").css("background-color", "white");;
-    doc.addHTML(document.getElementById("rpage"), function() {
-        $("#welcome").css("overflow-x", "hidden");
-        alert("Report HTML is added");
-        doc.save();
+    $("#main").css("background-color", "white");;
+    var content = $("#records-footer").html();
+    $('#toggle-progress-3').hide("fast", function() {
+        clearInterval(sw3_interval);
+        sendEmail(content);
+    });
+    console.log("Ready to generate report");
+    doc.addHTML(document.getElementById("rpage"), function(canvas, w, h) {
+        $("#send-button").removeAttr('disabled');
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
             fs.URL = fileSystem.root.toURL();
             fileSystem.root.getFile("test.pdf", {
@@ -172,7 +173,7 @@ function generatePDFReport(dates, times, d, s, p, pd) {
                 entry.createWriter(function(writer) {
                     writer.onwrite = function(evt) {
                         file.URL = entry.toURL();
-                        logit("Report saved" + doc.output("datauristring"));
+                        console.log("Report saved" + doc.output("datauristring"));
                         $('#toggle-progress-3').hide("fast", function() {
                             clearInterval(sw3_interval);
                             sendEmail();
@@ -192,23 +193,23 @@ function generatePDFReport(dates, times, d, s, p, pd) {
                                 };
                                 writer.write(doc.output("datauristring"));
                             }, function(error) {
-                                logit(error);
+                                console.log(error);
                             });
 
                         }, function(error) {
-                            logit(error);
+                            console.log(error);
                         });
                     };
                     writer.write(doc.output("arraybuffer"));
                 }, function(error) {
-                    logit(error);
+                    console.log(error);
                 });
 
             }, function(error) {
-                logit(error);
+                console.log(error);
             });
         }, function(event) {
-            logit(event.target.error.code);
+            console.log(event.target.error.code);
         });
 
         //var string = doc.output('datauristring');

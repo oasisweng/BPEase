@@ -1805,13 +1805,13 @@ var jsPDF = (function(global) {
             var h = dim.h || 0;
             var w = dim.w || Math.min(this.internal.pageSize.width, canvas.width / this.internal.scaleFactor) - x;
 
-            var format = 'JPEG';
+            var format = 'PNG';
             if (options.format)
                 format = options.format;
-            console.log("rendered successfully");
             var alias = Math.random().toString(35);
-            var args = [canvas, x, y, w, h, format, alias, 'SLOW'];
-            this.addImage.apply(this, args);
+            //var args = [canvas, x, y, w, h, format, alias, 'SLOW'];
+            var args = [canvas, format, x, y, w, h, alias, 'SLOW'];
+            //this.addImage.apply(this, args);
             this.addPage();
             //Page 2-Instructions for HBPM 
             this.setFontSize(24);
@@ -1852,8 +1852,7 @@ var jsPDF = (function(global) {
             this.text(60, 330, '* Severe hypertension Clinic systolic blood pressure is 180');
             this.text(72, 360, 'mmHg or higher, or clinic diastolic blood');
             this.text(60, 390, '* pressure is 110 mmHg or higher.');
-
-            callback(w, h, alias, args);
+            callback(canvas, w, h);
         }.bind(this);
 
         return html2canvas(element, options);
@@ -2318,7 +2317,6 @@ var jsPDF = (function(global) {
 
     jsPDFAPI.addImage = function(imageData, format, x, y, w, h, alias, compression) {
         'use strict'
-
         if (typeof format === 'number') {
             var tmp = h;
             h = w;
@@ -2327,14 +2325,12 @@ var jsPDF = (function(global) {
             x = format;
             format = tmp;
         }
-
         var images = getImages.call(this), //initalises internals and events on first run
             cached_info,
             dataAsBinaryString;
 
-        alert("getImages");
         compression = checkCompressValue(compression);
-        format = (format || 'JPEG').toLowerCase();
+        format = (format || 'PNG').toLowerCase();
 
         if (notDefined(alias))
             alias = generateAliasFromData(imageData);

@@ -25,7 +25,7 @@ function saveRecord(data_json) {
                                 ed: settings.hbpmEndDate,
                                 records: data_arr
                             };
-                            alert("saving records " + evt.target.result);
+                            //alert("saving records " + evt.target.result);
                             //save it again
                             fileSystem.root.getFile(fileName, {
                                 create: true
@@ -34,7 +34,7 @@ function saveRecord(data_json) {
                                 logit(entry);
                                 entry.createWriter(function(writer) {
                                     writer.onwrite = function(evt) {
-                                        alert("updating existing records succeeded " + JSON.stringify(new_result));
+                                        //alert("updating existing records succeeded " + JSON.stringify(new_result));
                                     };
                                     writer.write(JSON.stringify(new_result));
                                 }, function(error) {
@@ -165,8 +165,9 @@ function readRecord(fileSystem, i) {
 function displayRecords() {
     records = new Array();
     $('#records-table').empty();
-    clearInterval(sw3_interval);
-    $('#toggle-progress-3').hide();
+    if (sw3_interval) {
+        clearInterval(sw3_interval);
+    }
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         //alert("reading records");
         readRecord(fileSystem, 0);
@@ -181,6 +182,7 @@ $(document).delegate("#records", "pageshow", function() {
 });
 
 $("#send-button").click(function() {
+    $(this).attr('disabled', 'disabled');
     drawSW3();
     $('#toggle-progress-3').show("slow", function() {
         var dates = new Array();

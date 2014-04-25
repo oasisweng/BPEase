@@ -6,7 +6,10 @@ var userinfo = {
     gpemail: "gpemail@gmail.com",
     hypertension: "Yes",
     arrythmia: "Yes",
-    medication: "No previous symptoms of hypertension nor arrythmia"
+    medication: "No previous symptoms of hypertension nor arrythmia",
+    gpname: "Afsana S",
+    gpsurgery: "Unknown state",
+    uuid: "00:09:1F:80:39:5C"
 };
 
 function saveUserInfo() {
@@ -17,6 +20,9 @@ function saveUserInfo() {
     var isHypertension = $('#user-hypertension option:selected').val();
     var isArrythmia = $('#user-arrythmia option:selected').val();
     var med = $("#medication").val();
+    var gn = "Afsana S";
+    var gs = "Unknown state";
+    var uid = "00:09:1F:80:39:5C";
     userinfo_json = JSON.stringify({
         name: aName,
         dob: aDOB,
@@ -24,7 +30,10 @@ function saveUserInfo() {
         gpemail: aGPEMAIL,
         hypertension: isHypertension,
         arrythmia: isArrythmia,
-        medication: med
+        medication: med,
+        gpname: gn,
+        gpsurgery: gs,
+        uuid: uid
     }, null, '\t');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         fileSystem.root.getFile("userinfo.txt", {
@@ -108,7 +117,7 @@ function readUserInfo(isEditing) {
             logit(error);
         });
     }, function(event) {
-        logit(evt.target.error.code);
+        logit(event.target.error.code);
     });
 }
 

@@ -57,7 +57,7 @@ public class EmailComposer extends CordovaPlugin {
 		
 		//String callback = parameters.getString("callback");
 
-		boolean isHTML = false;
+		boolean isHTML = true;
 		try {
 			isHTML = parameters.getBoolean("bIsHTML");
 		} catch (Exception e) {

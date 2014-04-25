@@ -52,7 +52,7 @@ $("#b-start-btn").click(function(event) {
         alert("Evening reminder is empty!");
         return;
     }
-    alert("sd " + sd + "ed " + ed + "mr " + mr + "er ");
+    //alert("sd " + sd + "ed " + ed + "mr " + mr + "er ");
     startHBPM(sd, ed, mr, er);
     if (bt) {
         $.mobile.navigate("#bluetooth-measure");
@@ -81,9 +81,10 @@ $("#new-measurement-btn").click(function(event) {
 });
 
 $("#cancelHBPM-btn").click(function(event) {
-    alert("the program is cancelled");
+    alert("HBPM is cancelled, record saved.");
     settings.hbpm = false;
     settings.totalFiles++;
+    saveRecord(null);
     saveSettings();
 });
 
@@ -93,7 +94,7 @@ $("#cancelHBPM-btn").click(function(event) {
 function setLocalNotificaiton(date_c, title_c, message_c, repeat_c, endDate) {
     var id_c = parseInt(Math.random() * 1000, 10);
     var ed_json = endDate.toJSON();
-    alert("adding notification json:" + ed_json);
+    //alert("adding notification json:" + ed_json);
     window.plugin.notification.local.add({
         id: id_c,
         title: title_c,
@@ -105,26 +106,33 @@ function setLocalNotificaiton(date_c, title_c, message_c, repeat_c, endDate) {
 }
 
 function startHBPM(startDate, endDate, morning, evening) {
+    if (settings.hbpm) {
+        //if there is one already existed, cancel it
+        window.plugin.notification.local.cancelAll();
+    }
     var title = 'BPEase Reminder';
     var message = 'Time to measure your blood pressure, please! :-)~~~';
     var repeat = 'daily';
     var year = startDate.getFullYear();
     var month = startDate.getMonth();
-    var day = startDate.getDay();
+    var day = startDate.getDate();
     var m = morning.split(":");
     var e = evening.split(":");
     var startDate_m = new Date(year, month, day, m[0], m[1], 0);
     var startDate_e = new Date(year, month, day, e[0], e[1], 0);
     setLocalNotificaiton(startDate_m, title, message, repeat, endDate);
     setLocalNotificaiton(startDate_e, title, message, repeat, endDate);
-
     settings.firsttime = false;
     settings.hbpm = true;
     settings.hbpmFileName = "H" + settings.totalFiles;
-    settings.hbpmStartDate = startDate;
+    settings.hbpmStartDate = startDate_m;
     settings.hbpmEndDate = endDate;
+    settings.hbpmEndDate.setHours(e[0]);
+    settings.hbpmEndDate.setMinutes(e[1]);
     saveSettings();
-    alert("HBPM starts!" + JSON.stringify(settings));
+    alert("HBPM starts! It will continue during " +
+        day + "/" + month + "/" + year + " ~ " +
+        endDate.getDate() + "/" + endDate.getMonth() + "/" + endDate.getFullYear());
 }
 
 

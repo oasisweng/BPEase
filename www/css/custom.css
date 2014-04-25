@@ -1,4 +1,6 @@
-
+.subnote{
+    font-size: 14px;
+}
 a.btn-info:hover{
     color: #B9D5DD;
 }
@@ -32,7 +34,7 @@ div[data-role="content"]
 {
     position: absolute;
     width: 90%;
-    margin:0 auto;
+    margin:-1px auto;
     top:50px;
     left: 0;
     right: 0;
@@ -173,4 +175,21 @@ input[type="button"]{
 }
 #toggle-progress-3 canvas{
     top:55px;
+}
+
+#record-content{
+width: 100%;
+height: 100%;
+background-color: white;
+left:0px;
+}
+
+.content-box{
+    position: relative;
+width: 90%;
+margin: 0 auto;
+}
+
+label{
+    font-size: 14px!important;
 }
