@@ -1,5 +1,4 @@
 .DC_Store
 platforms/android/**
 platforms/ios/**
-android.json
 !.cordova
