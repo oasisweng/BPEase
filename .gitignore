@@ -1,2 +1,3 @@
 .DC_Store
+platforms/**
 !.cordova
