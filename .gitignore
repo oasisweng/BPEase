@@ -1,0 +1,5 @@
+.DC_Store
+platforms/android/**
+platforms/ios/**
+plugins/android.json
+!.cordova

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Bootstrap -->
+        <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+        <link href="css/vendor/datepicker.css" rel="stylesheet">
+        <link href="css/vendor/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/report.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/vendor/jquery.jqplot.min.css" />
+        <link rel="stylesheet" href="css/vendor/jquery.mobile.min.css">
+    </head>
+    <body align="center">
+        <!-- Start of Welcome page -->
+        <div class = "page" data-role = "page" id = "welcome" >
+            <div data-role="content" id = "main" align = "center">
+                <div id="main-box">
+                    <img src="img/bpeaseblue.png" alt="bpeaseblue.png" id="logo" width="110px" height="150px" >
+                    <h1 align = "center">Welcome</h1>
+                    <a class = "btn btn-info btn-white remove" type = "button" id="register-button" href="#userinfo-1">Register</a>
+                    <a class = "btn btn-info btn-white remove" type = "button" id="menu-button" href="#mainMenu">Menu</a>
+                    <a class = "btn btn-info btn-white" type = "button" href="#information" id="info-button">Information</a>
+                </div>
+                <div id="debug" >
+                    <!-- <div id="deviceProperties"></div> -->
+                    <div id="log"></div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- Start of First Medical Info page -->
+        <div data-role="page" id="userinfo-1">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content">
+                <form class="form-horizontal" role="form">
+                    <h3>Enter personal details:</h3>
+                    <div class="form-group" name="input">
+                        <label class="col-xs-4 control-label text-info" for="name">Name: </label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" name="name" id="user-name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info" for="dob">Date of Birth: </label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="datepicker" data-date-format="dd-mm-yyyy" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info" for="nhsno">NHS Number: </label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="number" name="nshno" id="nhsno">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info" for="gpemail">GP Email: </label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="email" name="gpemail" id="gpemail">
+                        </div>
+                    </div>
+                    <a class = "btn btn-info btn-block" type = "button" value="Next" href ="#userinfo-2" id="user-btn-next" style="width: 100%;">Next</a>
+                </form>
+            </div>
+        </div>
+        <!-- Start of Second Medical Info page -->
+        <div data-role="page" id="userinfo-2" data-add-back-btn="true">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                </div>
+            </nav>
+            <div data-role="content">
+                <form class="form-horizontal" role="form"  style = "margin: 10px 10px">
+                    <h4>Please enter your medical data:</h4>
+                    <div class="form-group" name="input">
+                        <label class="col-xs-6 control-label text-info" for="hypertension">Do you have hypertension?</label>
+                        <div class="col-xs-6">
+                            <select class="form-control" id="user-hypertension">
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" name="input">
+                        <label class="col-xs-6 control-label text-info" for="arrythmia">Do you have a heart arrythmia?</label>
+                        <div class="col-xs-6">
+                            <select class="form-control" id="user-arrythmia">
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="alert alert-info">If you have a heart arrythmia consult your doctor. This application may not be suitable for you.</div>
+                    <p class = "text-info">Enter any medication taken(optional):</p>
+                    <textarea class="form-control" rows="10" id="medication" placeholder = "Enter Medication..."></textarea>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="" style ="font-size: 17px; margin-top:10px;" id="pi-back-btn" data-rel="back">Back</a>
+                    <a  class = "btn btn-info" type = "button" href ="#mainMenu" style ="font-size: 14px; margin-top:10px;" id="pi-save-btn">Finish and Save</a>
+                </form>
+            </div>
+            <div data-role="footer">
+                <h4>BP Ease Demo</h4>
+            </div>
+        </div>
+        <!-- Start of Main Menu page -->
+        <div data-role="page" id="mainMenu">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                </div>
+            </nav>
+            <div data-role="content" class="menu">
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#modeSelection" id="modeSelection-btn">Select a Mode</a>
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#current-activity" id="currentActivity-btn">Current Activity</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#records">View Records</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info" id="pi-view-btn">Personal Info</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#information">Information</a>
+            </div>
+            <div data-role="footer">
+                <h4>BP Ease Demo</h4>
+            </div>
+        </div>
+        <!-- Start of mode selection page -->
+        <div data-role="page" id="modeSelection">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div class="container" style = "position:relative; top:60px;margin: 0px auto;">
+                <h3 class = "text-info">Select a mode:</h3>
+                <a type="text" class="btn btn-info btn-mode" href="#setupHBPM">HBPM Mode</a><br>
+                <a type="text" class="btn btn-info btn-mode" href="#bluetooth-measure" id="free-mode-btn" disabled>Free Mode <span class="subnote">with bluetooth</span></a>
+                <a type="text" class="btn btn-info btn-mode" href="#manual-measure" id="free-mode-btn">Free Mode <span class="subnote">manual mode</span></a>
+            </div>
+        </div>
+        <!-- Start of setup HBPM page -->
+        <div data-role="page" id="setupHBPM">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <form class="form-horizontal" role="form" style = "width: 90%;margin: 0 auto;">
+                    <h2 class = "text-info" style="margin-bottom:20px;">HBPM Mode Setup</h2>
+                    <div class="input-daterange">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label text-info">Start date:</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control hbpm-datepicker" id="startdate" data-date-format="dd-mm-yyyy">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label text-info">End date:</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control hbpm-datepicker" id="enddate" data-date-format="dd-mm-yyyy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Morning reminder:</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control hbpm-timepicker" name="morning-reminder" id="morning-reminder" class="needsclick" data-date-format="HH:mm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Evening reminder:</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control hbpm-timepicker" name="evening-reminder" id="evening-reminder" class="needsclick" data-date-format="HH:mm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle" disabled/>
+                        <label for="bluetooth-toggle" style="color: #3a87ad;">Use bluetooth</label>
+                    </div>
+                    <a class = "btn btn-info btn-back" type = "button" href ="" data-rel="back" id="button-back">Back</a>
+                    <a class = "btn btn-info" type = "button" href="" id="b-start-btn">Start</a>
+                </form>
+                <div id="toggle-progress">
+                    <canvas width="27" height="27" id="sw-canvas"></canvas>
+                    <span>Turning on...</span>
+                </div>
+            </div>
+            <div data-role="footer">
+                <h4>BP Ease Demo</h4>
+            </div>
+        </div>
+        <!-- Start of bluetooth measurement page -->
+        <div data-role="page" id="bluetooth-measure">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <div style = "margin: 15px">
+                    <div class="panel panel-info" id="reading-1">
+                        <div class="panel-heading text-info">Reading 1:</div>
+                        <div class="panel-body text-info">
+                            <p>Time/Date: </p><span id="time1"></span>
+                            <p>Diastolic: </p><span id="diastolic1"></span>
+                            <p>Systolic: </p><span id="systolic1"></span>
+                            <p>Pulse: </p><span id="pulse1"></span>
+                            <div align = "center">
+                                <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-1">Start
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" id="reading-2">
+                        <div class="panel-heading text-info">Reading 2:</div>
+                        <div class="panel-body text-info">
+                            <p>Time/Date: </p><span id="time2"></span>
+                            <p>Diastolic: </p><span id="diastolic2"></span>
+                            <p>Systolic: </p><span id="systolic2"></span>
+                            <p>Pulse: </p><span id="pulse2"></span>
+                            <div align = "center">
+                                <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-2">Start
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back" style = "width: 47%">Discard</a>
+                    <a  class = "btn btn-info" type = "button" href ="#mainMenu" style = "width: 47%">Save</a>
+                </div>
+            </div>
+        </div>
+        <!-- Start of Manual Measurement page -->
+        <div data-role="page" id="manual-measure">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <form class="form-horizontal" role="form" style="margin-left:35px;margin-right:35px;margin-top: 25px;">
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Date:</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control hbpm-datepicker" id="date3" data-date-format="dd-mm-yyyy" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Time:</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control hbpm-timepicker" name="time-manual" id="time3" data-date-format="HH:mm">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 visible-xs-4"></div>
+                        <div class="col-xs-4 text-info">Reading 1</div>
+                        <div class="col-xs-4 text-info">Reading 2</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Diatolic:</label>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="diastole3" type="number" value="66">
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="diastole4" type="number" value="66">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Systolic:</label>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="systole3" type="number" value="66">
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="systole4" type="number"value="66">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Pulse:</label>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="pulse3" type="number" value="66">
+                        </div>
+                        <div class="col-xs-4">
+                            <input class="form-control" id="pulse4" type="number"value="66">
+                        </div>
+                    </div>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back">Discard</a>
+                    <a  class = "btn btn-info" id="manual-button-save" type = "button" href ="#date">Save</a>
+                </form>
+            </div>
+        </div>
+        <!-- Start of records page -->
+        <div data-role="page" id="records">
+            <div data-role="footer" id="records-footer">
+                <div id="rpage" class="rpage">
+                    <div id="rleft-col">
+                        <h1>Home blood pressure monitoring (HBPM)</h1>
+                        <p>
+                        <span style="font-weight:bold;">Patient Details:</span>
+                        <br>Name: <span id="rname">Dingzhong Weng</span>
+                        <br>DOB: <span id="rdob">123</span>
+                        <br>NHS Number: <span id="rnhsno">123</span>
+                        <br>GP Surgery: Unknown<br>Named GP: Afsana Bhuiya
+                        <br>
+                        </p>
+                        <p>
+                        Medical History: <span id="rhistory"></span>
+                        <br>HTN-<span id="rh"></span>
+                        <br>Arrythmia-<span id="ra"></span>
+                        </p>
+                    </div>
+                    <div id="rright-col">
+                        <table id = "bp-table1" class="rtable">
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Systolic</th>
+                                <th>Diastolic</th>
+                                <th>Pulse</th>
+                            </tr>
+                        </table>
+                        <div id="summary">
+                            <div>
+                                <span id="s-title">SUMMARY:</span>
+                                <br>
+                                <span class="s-sub">Readings from <span id="rstartdate">date,time</span> to <span id="renddate">date,time</span></span>
+                                <br>
+                                <span class="s-sub">Total number of readings: <span id="n-readings"></span></span>
+                                <br><br>
+                                <span class="s-a">*</span><span id="sidenode">Remember to discard the first days reading in the averages calculation.</span>
+                            </div>
+                            <table id = "bp-table2" class="rtable">
+                                <tr>
+                                    <th>BP</th>
+                                    <th>Minimum</th>
+                                    <th>Maximum</th>
+                                    <th>Average</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" id="record-content">
+                <div class="content-box">
+                    <h2 class = "text-info" style="margin-bottom:20px;">Records</h2>
+                    <table class="table-hover" id="records-table" style="width:100%;margin-bottom:20px;">
+                    </table>
+                    <a  class = "btn btn-info" type = "button" href ="#" data-rel="back" id="record-button-back" >Back</a>
+                    <a  class = "btn btn-info" type = "button" href ="#" id="send-button" >Send</a>
+                    <div id="toggle-progress-3">
+                        <canvas width="27" height="27" id="sw-canvas-3"></canvas>
+                        <span>Generating Report... Please do not touch the screen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start of Personal Details page -->
+        <div data-role="page" id="personal-info">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <form class="form-horizontal" role="form">
+                    <h2 class="text-info" style="margin-top:30px;">Personal Information</h2>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">Name:</label>
+                        <div class="col-xs-6 form-control-static text-info" id = "pi-name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">NHS Number:</label>
+                        <div class="col-xs-6 form-control-static text-info" id="pi-no">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">Date of Birth:</label>
+                        <div class="col-xs-6 form-control-static text-info" id="pi-dob">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">GP Email:</label>
+                        <div class="col-xs-6 form-control-static text-info" id="pi-em">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">Hypertension?</label>
+                        <div class="col-xs-6 form-control-static text-info" id="pi-h">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">Heart Arrythmia?</label>
+                        <div class="col-xs-6 form-control-static text-info" id="pi-a">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-6 control-label text-info">Medication Taken:</label>
+                        <p class="col-xs-6 form-control-static text-info" id="pi-medication"></p>
+                    </div>
+                    <a  class = "btn btn-info btn-back" type = "button" href ="#" data-rel="back" id="button-back">Back</a>
+                    <a  class = "btn btn-info" type = "button" href ="#userinfo-1" id="pi-edit-btn">Edit</a>
+                </form>
+            </div>
+        </div>
+        <!-- Start of Information page -->
+        <div data-role="page" id="information">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <h2 class="text-info">Information</h2>
+                <div class="panel panel-info" id="instructions">
+                    <div class="panel-heading text-info">Instructions</div>
+                    <div class="panel-body text-info">
+                        <h4>Using Bluetooth</h4>
+                        <p> Please read this thoroughly before proceed to execute the pairing instruction!!! </p>
+                        <p>1 - Exit the app and go to your settings to enable Bluetooth.<br> 2 - Take out the battery, if not already removed, from your blood pressure monitor. Insert them back in. Turning on the device is optional. 2 - Search for devices and connect to your Bluetooth enabled blood pressure monitor. Its name should start with "A&amp;D BP". <br>3 - Wait until it becomes a paired device. <br>4 - Your A&amp;D Blood Pressure Monitor will now be able to use its bluetooth enabled measuring method.
+                        <h4>Using Home Blood Pressure Monitoring (HBPM)</h4>
+                        <p>1 - Select Mode Selection on the main menu and then select HBPM Mode.<br>2 - Setup the start date, end date and the times you wish to receive reminders to take a measurement.<br>3 - Select “Use Bluetooth” if you wish to take a measurement via Bluetooth (See ‘Using Bluetooth’ section)<br>4 - Click next and take measurements. You must be seated.<br>5 - For each blood pressure recording, two consecutive measurements are taken, at least 1 minute apart<br>6 - Blood pressure should be recorded twice daily, ideally in the morning and evening 7 - Blood pressure recording continues for at least 4 days, ideally for 7 days.<br>8 - To edit the settings of your current HBPM course select Current Activity in the main menu, then select Edit Setup.<br>9 - To take another measurement in your current HBPM course select Current Activity in the main menu then select Take a Measurement.<br></p>
+                        <h4>Using Free Mode</h4><p>1 - Select Mode Selection on the main menu and then select Free Mode<br>2 - Select “Turn on Bluetooth” if you wish to take a measurement via Bluetooth (See ‘Using Bluetooth’ section)<br>3 - Enter your blood pressure measurements<br></p>
+                        <h4>Records</h4><p>1 - Select records in the Main Menu<br>2 - Send Records – select the records you wish to send to your GP and press send<br>3 - Delete Records – select the records you wish to delete and press Delete<br></p>
+                        <h4>Edit Personal Details</h4>
+                        <p>1 - Select Personal Info in the main menu then select Edit.<br></p>
+                    </div>
+                </div>
+                <div class="panel panel-info" id="disclaimer">
+                    <div class="panel-heading text-info">Disclaimer</div>
+                    <div class="panel-body text-info">
+                        The best use for this app is for GPs, who are either fully self employed or have a mixed income. Though there is scope for other specialty doctors and self employed people to use this app (as the field can be tailored to the user) - the recommendations are for the former group.<br><br>
+                        This app is designed to be used to assist the tracking of income and expenditure as well as provided enhanced features such as reminders, photo evidence and help with pension calculations for NHS pensionable incomes earned. The user would still need to do their locum forms if they are paying into a NHS pension.<br><br>
+                        By using the app, the user still has to take full responsibility of their accounts. They would be expected to monitor their own data and declare them to the appropriate bodies in their country of use (eg HMRC in UK).<br><br>
+                        It is recommended the user reviews their income and expenditure on regular intervals.<br><br>
+                        The spreadsheet is designed to be utilised straight away and carries all the data that the user inputs. The data on the spreadsheet will be a reflection of how the user manages their entries in the app.<br><br>
+                        The app makers cannot replace an accountant’s job and it is recommended the user utilises an accountant as per normal.<br><br>
+                        It is also up to the user to keep records of their documentation as per HMRC guidance.
+                    </div>
+                </div>
+                <div class="panel panel-info" id="reading-2">
+                    <div class="panel-heading text-info">Terms and Conditions</div>
+                    <div class="panel-body text-info">
+                        Assume that when they register, when they click register there will be a bit before saying 'by registering you will confirm to the terms etc'
+                    </div>
+                </div>
+                <a class = "btn btn-info" type = "button" data-rel="back" id="button-back" style="width:100%;">Back</a>
+            </div>
+        </div>
+        <!-- Start of Current Activity page -->
+        <div data-role="page" id="current-activity">
+            <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div>
+                    <img src="img/bpeaseblue.png">
+                    
+                    <h1 class="brand"align = "center">BPEase</h1>
+                    <a class="menu-btn" href="#mainMenu"><span class="glyphicon glyphicon-th-list"></span></a>
+                </div>
+            </nav>
+            <div data-role="content" class="container">
+                <form class="form-horizontal" role="form" style = "margin: 15px">
+                    <h2 class = "text-info" style="margin-bottom:20px;">Your Current Activity</h2>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Start date:</label>
+                        <div class="col-xs-8 form-control-static text-info" id="startdate-txt">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">End date:</label>
+                        <div class="col-xs-8 form-control-static text-info" id="enddate-txt">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Morning reminder:</label>
+                        <div class="col-xs-8 form-control-static text-info" id="morning-reminder-txt"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label text-info">Evening reminder:</label>
+                        <div class="col-xs-8 form-control-static text-info" id="evening-reminder-txt"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle-2" disabled/>
+                        <label for="bluetooth-toggle-2" style="color: #3a87ad;">Use bluetooth</label>
+                    </div>
+                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#setupHBPM" id="editHBPM-btn">Edit Setup</a>
+                    <a  class = "btn btn-info btn-back btn-triple" type = "button" href ="#mainMenu" id="cancelHBPM-btn">Cancel</a>
+                    <a  class = "btn btn-info btn-triple" type = "button" href ="#bluetooth-measure" id="new-measurement-btn">New Measurement</a>
+                </form>
+                <div id="toggle-progress-2">
+                    <canvas width="27" height="27" id="sw-canvas-2"></canvas>
+                    <span>Turning on...</span>
+                </div>
+            </div>
+        </div>
+        <script src="phonegap.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/html2canvas.js"></script>
+        <script src="js/vendor/jspdf.debug.js"></script>
+        <script src="js/report.js"></script>
+        <script src="js/vendor/jquery.mobile.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/bootstrap-datepicker.js"></script>
+        <script src="js/vendor/moment.min.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.js"></script>
+        <script src="js/vendor/fastclick.js"></script>
+        <script src="js/settings.js"></script>
+        <script src="js/welcome.js"></script>
+        <script src="js/userinfo.js"></script>
+        <script src="js/menu.js"></script>
+        <script src="js/mode.js"></script>
+        <script src="js/hbpm.js"></script>
+        <script src="js/manual.js"></script>
+        <script src="js/record.js"></script>
+        <script src="js/index.js"></script>
+        <script type="text/javascript">
+        app.initialize();
+        </script>
+    </body>
+</html>
