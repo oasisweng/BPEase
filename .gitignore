@@ -1,4 +1,4 @@
 .DC_Store
 platforms/android/**
 platforms/ios/**
-!.cordova
+!.cordova/**

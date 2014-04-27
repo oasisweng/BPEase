@@ -59,42 +59,56 @@ var app = {
             //generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
 
             //bluetooth
-            logit("Bluetooth demo:");
-            var macaddress = "00:09:1F:80:39:5C";
-            //var macaddress = "E4:25:E7:E1:DE:06";
-            bluetoothSerial.list(function(results) {
-                logit(JSON.stringify(results));
+            // logit("Bluetooth demo:");
+            // var macaddress = "00:09:1F:80:39:5C";
+            // //var macaddress = "E4:25:E7:E1:DE:06";
+            // bluetoothSerial.list(function(results) {
+            //     logit(JSON.stringify(results));
+            // }, function(error) {
+            //     logit("Failed to retrieve mac ad list " + error);
+            // });
+            // bluetoothSerial.isEnabled(function() {
+            //     logit("bluetooth is enabled");
+            // }, function(error) {
+            //     logit(error);
+            // });
+            // bluetoothSerial.connectInsecure(macaddress, function() {
+            //     // if connected
+            //     logit("bluetooth connected");
+            //     bluetoothSerial.subscribe('\n', function(data) {
+            //         logit("Receiving data " + data);
+            //         //disconnect
+            //         bluetoothSerial.disconnect(function() {
+            //             bluetoothSerial.unsubscribe(
+            //                 function(data) {
+            //                     logit("unsubscribing " + data);
+            //                 },
+            //                 function(error) {
+            //                     logit("unsubscribe error.." + error);
+            //                 }
+            //             );
+            //         }, function(error) {
+            //             logit("Drop the love! Unable to disconnect.." + error);
+            //         });
+            //     }, function(error) {
+            //         logit("Unable to subscribe to love.." + error);
+            //     });
+            // }, function(error) {
+            //     logit("Please check connection.. " + error);
+            // });
+
+            //bluetooth health demo
+            logit("Bluetooth health demo");
+            bt.connect(function() {
+                alert("data");
             }, function(error) {
-                logit("Failed to retrieve mac ad list " + error);
+                logit("BHD demo failed " + error);
             });
-            bluetoothSerial.isEnabled(function() {
-                logit("bluetooth is enabled");
+            logit("ANOTHER DEMO");
+            bt.xx(function(data) {
+                alert(data);
             }, function(error) {
-                logit(error);
-            });
-            bluetoothSerial.connectInsecure(macaddress, function() {
-                // if connected
-                logit("bluetooth connected");
-                bluetoothSerial.subscribe('\n', function(data) {
-                    logit("Receiving data " + data);
-                    //disconnect
-                    bluetoothSerial.disconnect(function() {
-                        bluetoothSerial.unsubscribe(
-                            function(data) {
-                                logit("unsubscribing " + data);
-                            },
-                            function(error) {
-                                logit("unsubscribe error.." + error);
-                            }
-                        );
-                    }, function(error) {
-                        logit("Drop the love! Unable to disconnect.." + error);
-                    });
-                }, function(error) {
-                    logit("Unable to subscribe to love.." + error);
-                });
-            }, function(error) {
-                logit("Please check connection.. " + error);
+                logit("BHD demo failed " + error);
             });
 
             //==============================

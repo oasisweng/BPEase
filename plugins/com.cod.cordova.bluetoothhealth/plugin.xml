@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin
+    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.cod.cordova.bluetoothhealth"
+    version="0.3.0">
+
+    <name>Bluetooth Health</name>
+    <description>Bluetooth Health Plugin</description>
+    <license>MIT</license>
+    <keywords>bluetooth</keywords>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/bluetoothSerial.js" name="bluetoothHealth">
+        <clobbers target="window.bt" />
+    </js-module>
+
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="BluetoothHealth">
+                <param name="android-package" value="com.cod.cordova.BluetoothSerial"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/cod/cordova/BluetoothSerial.java"
+            target-dir="src/com/cod/cordova"/>
+        <source-file src="src/android/com/cod/cordova/BluetoothSerialService.java"
+            target-dir="src/com/cod/cordova"/>
+        <source-file src="src/android/com/cod/cordova/BluetoothHDPService.java"
+        target-dir="src/com/cod/cordova"/>
+        <source-file src="src/android/com/cod/cordova/numericBP.java"
+        target-dir="src/com/cod/cordova"/>
+        <source-file src="src/android/com/cod/cordova/HDPdataParser.java"
+        target-dir="src/com/cod/cordova"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <service android:name="com.cod.cordova.BluetoothHDPService" />
+        </config-file>
+
+    </platform>
+</plugin>
