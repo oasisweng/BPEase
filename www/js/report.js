@@ -190,7 +190,7 @@ function generatePDFReport(dates, times, d, s, p, pd) {
 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         fs.URL = fileSystem.root.toURL();
-        fileSystem.root.getFile("test.pdf", {
+        fileSystem.root.getFile(userinfo.name.trim() + ".pdf", {
             create: true,
             exclusive: false
         }, function(entry) {

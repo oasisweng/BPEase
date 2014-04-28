@@ -138,6 +138,7 @@ input[type="button"]{
 }
 
 .panel-body{
+    position: relative;
     text-align: left;
 
 }
@@ -167,12 +168,15 @@ input[type="button"]{
     border-radius: 5px;
     z-index:99;
 }
+.toggle-progress{
+    text-align: center;
+}
 
 #toggle-progress-3{
     height:100px;
 }
 
-#toggle-progress span,#toggle-progress-2 span,#toggle-progress-3 span{
+#toggle-progress span,#toggle-progress-2 span,#toggle-progress-3 span,.toggle-span{
     color: black;
     font-weight: 100;
     font-size: 13px;
@@ -183,12 +187,19 @@ input[type="button"]{
     margin: 0 auto;
 }
 
+.toggle-span{
+    position: relative !important;
+}
+
+.toggle-canvas{
+    position: absolute;
+}
+
 #toggle-progress-3 span{
     font-size: 10px;
 }
 
-#toggle-progress canvas,#toggle-progress-2 canvas,#toggle-progress-3 canvas{
-    position: absolute;
+#toggle-progress canvas,#toggle-progress-2 canvas,#toggle-progress-3 canvas,.toggle-canvas{
     left: 0;
     right: 0;
     margin: 0 auto;

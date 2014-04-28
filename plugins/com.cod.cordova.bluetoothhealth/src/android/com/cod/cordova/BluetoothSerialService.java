@@ -23,15 +23,15 @@ import android.util.Log;
  * This code was based on the Android SDK BluetoothChat Sample
  * $ANDROID_SDK/samples/android-17/BluetoothChat
  */
-public class HDPBluetoothSerialService {
+public class BluetoothSerialService {
 
     // Debugging
-    private static final String TAG = "HDPBluetoothSerialService";
+    private static final String TAG = "BluetoothSerialService";
     private static final boolean D = true;
 
     // Name for the SDP record when creating server socket
-    private static final String NAME_SECURE = "PhoneGapHDPBluetoothSerialServiceSecure";
-    private static final String NAME_INSECURE = "PhoneGapHDPBluetoothSerialServiceInSecure";
+    private static final String NAME_SECURE = "PhoneGapBluetoothSerialServiceSecure";
+    private static final String NAME_INSECURE = "PhoneGapBluetoothSerialServiceInSecure";
 
     // Unique UUID for this application
     private static final UUID MY_UUID_SECURE = UUID.fromString("7A9C3B55-78D0-44A7-A94E-A93E3FE118CE");
@@ -59,7 +59,7 @@ public class HDPBluetoothSerialService {
      * Constructor. Prepares a new BluetoothSerial session.
      * @param handler  A Handler to send messages back to the UI Activity
      */
-    public HDPBluetoothSerialService(Handler handler) {
+    public BluetoothSerialService(Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mHandler = handler;
@@ -74,7 +74,7 @@ public class HDPBluetoothSerialService {
         mState = state;
 
         // Give the new state to the Handler so the UI Activity can update
-        mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
+        mHandler.obtainMessage(BluetoothSerial.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
     }
 
     /**
@@ -162,9 +162,9 @@ public class HDPBluetoothSerialService {
         mConnectedThread.start();
 
         // Send the name of the connected device back to the UI Activity
-        Message msg = mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_DEVICE_NAME);
+        Message msg = mHandler.obtainMessage(BluetoothSerial.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
-        bundle.putString(HDPBluetoothSerial.DEVICE_NAME, device.getName());
+        bundle.putString(BluetoothSerial.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -221,14 +221,14 @@ public class HDPBluetoothSerialService {
      */
     private void connectionFailed() {
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(BluetoothSerial.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(HDPBluetoothSerial.TOAST, "Unable to connect to device");
+        bundle.putString(BluetoothSerial.TOAST, "Unable to connect to device");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
         // Start the service over to restart listening mode
-        HDPBluetoothSerialService.this.start();
+        BluetoothSerialService.this.start();
     }
 
     /**
@@ -236,14 +236,14 @@ public class HDPBluetoothSerialService {
      */
     private void connectionLost() {
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(BluetoothSerial.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(HDPBluetoothSerial.TOAST, "Device connection was lost");
+        bundle.putString(BluetoothSerial.TOAST, "Device connection was lost");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
         // Start the service over to restart listening mode
-        HDPBluetoothSerialService.this.start();
+        BluetoothSerialService.this.start();
     }
 
     /**
@@ -292,7 +292,7 @@ public class HDPBluetoothSerialService {
 
                 // If a connection was accepted
                 if (socket != null) {
-                    synchronized (HDPBluetoothSerialService.this) {
+                    synchronized (BluetoothSerialService.this) {
                         switch (mState) {
                             case STATE_LISTEN:
                             case STATE_CONNECTING:
@@ -383,7 +383,7 @@ public class HDPBluetoothSerialService {
             }
 
             // Reset the ConnectThread because we're done
-            synchronized (HDPBluetoothSerialService.this) {
+            synchronized (BluetoothSerialService.this) {
                 mConnectThread = null;
             }
 
@@ -440,13 +440,13 @@ public class HDPBluetoothSerialService {
                     String data = new String(buffer, 0, bytes);
 
                     // Send the new data String to the UI Activity
-                    mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_READ, data).sendToTarget();
+                    mHandler.obtainMessage(BluetoothSerial.MESSAGE_READ, data).sendToTarget();
 
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
                     // Start the service over to restart listening mode
-                    HDPBluetoothSerialService.this.start();
+                    BluetoothSerialService.this.start();
                     break;
                 }
             }
@@ -461,7 +461,7 @@ public class HDPBluetoothSerialService {
                 mmOutStream.write(buffer);
 
                 // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(HDPBluetoothSerial.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
+                mHandler.obtainMessage(BluetoothSerial.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
 
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);
