@@ -176,3 +176,82 @@ function draw2() {
     ctx.drawImage(cog, 0, 0);
     ctx.restore();
 }
+
+
+
+///bluetooth-measure
+
+var time1_v;
+var time2_v;
+
+
+$(document).delegate("#bluetooth-measure", "pageshow", function() {
+    $("#measurement-button-1").removeClass("remove");
+    $("#measurement-button-2").addClass("remove");
+    $("#save-bt-btn").addClass("remove");
+    $("#measurement-button-1").click(function() {
+        bt.xx(function(data) {
+            var m = data;
+            var t = m.time;
+            //index of first ":"
+            x = t.indexOf(":");
+            time1_v = t.substring(11, x) + ":" + t.substring(x + 1, x + 3);
+            diastole1_v = m.dia;
+            systole1_v = m.sys;
+            pulse1_v = m.pulse;
+            $("#time1").html(time1_v + " " + t.substring(8, 10) + "/" + t.substring(5, 7) + "/" + t.substring(0, 4));
+            $("#diastolic1").html(m.dia);
+            $("#systolic1").html(m.sys);
+            $("#pulse1").html(m.pulse);
+            $("#measurement-button-1").addClass("remove");
+            $("#measurement-button-2").removeClass("remove");
+        }, function(error) {
+            $.mobile.navigate("#manual-measure");
+        });
+    });
+
+
+    $("#measurement-button-2").click(function() {
+        bt.xx(function(data) {
+            var m = data;
+            var t = m.time;
+            //index of first ":"
+            x = t.indexOf(":");
+            time2_v = t.substring(11, x) + ":" + t.substring(x + 1, x + 3);
+            diastole2_v = m.dia;
+            systole2_v = m.sys;
+            pulse2_v = m.pulse;
+            $("#time2").html(time2_v + " " + t.substring(8, 10) + "/" + t.substring(5, 7) + "/" + t.substring(0, 4));
+            $("#diastolic2").html(m.dia);
+            $("#systolic2").html(m.sys);
+            $("#pulse2").html(m.pulse);
+            $("#measurement-button-2").addClass("remove");
+            $("#save-bt-btn").removeClass("remove");
+        }, function(error) {
+            $.mobile.navigate("#manual-measure");
+        });
+    });
+
+    $("#save-bt-btn").click(function() {
+        date_v = new Date();
+        //save the record
+        var data_arr = new Array();
+        var data1 = {
+            time: time1_v,
+            date: date_v,
+            diastole: diastole1_v,
+            systole: systole1_v,
+            pulse: pulse1_v
+        };
+        var data2 = {
+            time: time2_v,
+            date: date_v,
+            diastole: diastole2_v,
+            systole: systole2_v,
+            pulse: pulse2_v
+        };
+        data_arr.push(data1);
+        data_arr.push(data2);
+        saveRecord(data_arr);
+    });
+});

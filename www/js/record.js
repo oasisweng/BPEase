@@ -125,7 +125,7 @@ function saveRecord(data_json) {
 
 function readRecord(fileSystem, i) {
     //alert("reading i" + i + " t" + settings.totalFiles);
-    if (i >= settings.totalFiles || settings.totalFiles == 0) {
+    if (i < 0 || settings.totalFiles == 0) {
         return;
     } else {
         var sd;
@@ -147,7 +147,7 @@ function readRecord(fileSystem, i) {
                         ).trigger('create');
                         //alert("receiving result " + evt.target.result + " " + sd);
                         records.push(result);
-                        readRecord(fileSystem, i + 1);
+                        readRecord(fileSystem, i - 1);
                     };
                     reader.readAsText(txtFile);
                 }, function(error) {
@@ -156,7 +156,7 @@ function readRecord(fileSystem, i) {
             }
         }, function(error) {
             alert("can't locate H" + i + ".txt ")
-            readRecord(fileSystem, i + 1);
+            readRecord(fileSystem, i - 1);
         });
     }
 }
@@ -169,7 +169,7 @@ function displayRecords() {
     }
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         //alert("reading records");
-        readRecord(fileSystem, 0);
+        readRecord(fileSystem, settings.totalFiles - 1);
     }, function(error) {
         alert("can't access files.");
     });
@@ -195,9 +195,9 @@ $("#send-button").click(function() {
             userinfo.name,
             userinfo.dob,
             userinfo.nhsno,
-            userinfo.medication,
             userinfo.hypertension,
-            userinfo.arrythmia);
+            userinfo.arrythmia,
+            userinfo.medication);
         for (var i = 0; i < settings.totalFiles; i++) {
             if ($("#record-toggle-" + i).is(':checked')) {
                 var record = records[i].records;

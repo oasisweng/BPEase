@@ -97,20 +97,6 @@ var app = {
             //     logit("Please check connection.. " + error);
             // });
 
-            //bluetooth health demo
-            logit("Bluetooth health demo");
-            bt.connect(function() {
-                alert("data");
-            }, function(error) {
-                logit("BHD demo failed " + error);
-            });
-            logit("ANOTHER DEMO");
-            bt.xx(function(data) {
-                alert(data);
-            }, function(error) {
-                logit("BHD demo failed " + error);
-            });
-
             //==============================
             // Datepicker
             //==============================
@@ -136,9 +122,20 @@ var app = {
                 todayBtn: "linked"
             });
 
-            $('.hbpm-timepicker').datetimepicker({
-                pickDate: false
-            });
+            $(".reminder").click(function() {
+                var element = $(this);
+                var options = {
+                    date: new Date(),
+                    allowOldDates: false,
+                    mode: 'time'
+                };
+
+                datePicker.show(options, function(date) {
+                    alert("date result " + date);
+                    element.val(date.getHours() + ":" + date.getMinutes());
+                });
+            })
+
 
             //tweak
             $("#bluetooth-toggle").prop("checked", false).checkboxradio('refresh');
@@ -147,6 +144,7 @@ var app = {
     }
 };
 $(function() {
+
     if ($(window).width() > 800) {
         $(".btn-triple").css("font-size", "17px");
     } else {
@@ -171,12 +169,12 @@ $(function() {
 
 
     // var times = new Array()
-    // times[0] = new Date();
-    // times[1] = new Date();
-    // times[2] = new Date();
-    // times[3] = new Date();
-    // times[4] = new Date();
-    // times[5] = new Date();
+    // times[0] = "13:22";
+    // times[1] = "13:22";
+    // times[2] = "13:22";
+    // times[3] = "13:22";
+    // times[4] = "13:22";
+    // times[5] = "13:22";
 
     // var systolic = new Array();
     // systolic[0] = 115;
@@ -206,11 +204,9 @@ $(function() {
     // personalDetais[0] = "Viraj Makol";
     // personalDetais[1] = "12/05/1995";
     // personalDetais[2] = "92147637523";
-    // personalDetais[3] = "I am a fit and healthy boy.";
+    // personalDetais[3] = "No";
     // personalDetais[4] = "No";
-    // personalDetais[5] = "No";
-
-    // logit("Generating PDF Report");
+    // personalDetais[5] = "I am a fit and healthy boy.";
 
     // generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
 });

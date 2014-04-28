@@ -131,6 +131,7 @@ public class BluetoothHDPService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG,"BT Service available");
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
             // Bluetooth adapter isn't available.  The client of the service is supposed to

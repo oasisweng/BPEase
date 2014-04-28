@@ -42,18 +42,17 @@ var file = {
     URL: ""
 };
 
-function sendEmail(content) {
+function sendEmail(filePath) {
     var date = new Date().toDateString();
     var subject = userinfo.name + "\'s BP Report on " + date;
-    var body = content;
+    var body = " Have a lovely day!";
     var toRecipients = ["oasisweng@gmail.com"];
     var ccRecipients = ["chaitanya.agrawal.13@ucl.ac.uk", "delia.gander.13@ucl.ac.uk"];
     var bccRecipients = null;
     var isHtml = true;
-    var attachments = null;
+    var attachments = [filePath.substring(7, filePath.length)];
     var attachmentsData = null;
     window.plugins.emailComposer.showEmailComposerWithCallback(sendEmail_Result, subject, body, toRecipients, ccRecipients, bccRecipients, isHtml, attachments, attachmentsData);
-
 }
 
 function sendEmail_Result(res) {
@@ -62,47 +61,10 @@ function sendEmail_Result(res) {
 
 
 function generatePDFReport(dates, times, d, s, p, pd) {
-    var doc = new jsPDF('p', 'pt', 'a4', false);
-    var length = dates.length;
+    // @TODO: The dates are only half in chronically desending order 
+    //        (true file wise, false individual record wise)
 
-    //alert("create new jspdf");
-    $("#rname").html(pd[0]);
-    $("#rdob").html(pd[1]);
-    $("#rnhsno").html(pd[2]);
-    $("#rhistory").html(pd[3]);
-    $("#rh").html(pd[4]);
-    $("#ra").html(pd[5]);
-
-    //alert("finish pd");
-    //For Table 1
-    var content = "<tr>";
-    for (var i = 0; i < length; i++) {
-        getDateInfo(i, dates, times);
-        content += '<td>' + day + " " + monthNames[month] + '</td>';
-        content += '<td>' + hours + ":" + minutes + '</td>';
-        content += '<td>' + s[i] + '</td>';
-        content += '<td>' + d[i] + '</td>';
-        content += '<td>' + p[i] + '</td>';
-        content += '</tr>';
-    }
-    $('#bp-table1').empty();
-    $('#bp-table1').append("<tr><th>Date</th><th>Time</th><th>Systolic</th><th>Diastolic</th><th>Pulse</th></tr>");
-    $('#bp-table1').append($(content)).trigger('create');
-
-    //For summary date range and number of readings
-    if (length > 0) {
-
-        getDateInfo(0, dates, times);
-        var fullStartDate = day + " " + monthNames[month] + " " + hours + ":" + minutes;
-        getDateInfo(length - 1, dates, times);
-        var fullEndDate = day + " " + monthNames[month] + " " + hours + ":" + minutes;
-        $('#rstartdate').html(fullStartDate);
-        $('#renddate').html(fullEndDate);
-        $('#n-readings').html(length);
-    }
-    //alert("finish sum" + length);
-
-    //For Table 2 
+    //For Summary Table 
     var min_max_avg = new Array();
     var readings = new Array(s);
     for (var k = 0; k < readings.length; k++) {
@@ -141,80 +103,116 @@ function generatePDFReport(dates, times, d, s, p, pd) {
         min_max_avg.push(min, max, avg);
     }
 
-    //alert("finish prep");
-    $('#bp-table2').empty();
-    $('#bp-table2').append('<tr><th>BP</th><th>Minimum</th><th>Maximum</th><th>Average</th></tr>');
-    var columnHeadings = new Array("Syst BP", "Diast BP", "Pulse")
-    var content2 = "";
-    for (var m = 0; m < columnHeadings.length; m++) {
-        content2 += '<tr>';
-        content2 += '<td>' + columnHeadings[m] + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3]) + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3 + 1]) + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3 + 2]) + '</td>';
-        content2 += '</tr>';
+    //pdf generator
+    var doc = new jsPDF('p', 'pt', 'a4'),
+        font = ['Helvetica', ''];
+    doc.setFont(font[0], font[1]);
+
+    //Header
+    doc.setFontType("bold");
+    doc.text(265, 20, "BPEase");
+    doc.text(210, 50, "Blood Pressure Report");
+
+    doc.setFontSize(13);
+    //Personal Info
+    doc.text(30, 80, "Personal Detais");
+    doc.setFontType("normal");
+    doc.text(30, 110, "Patient Name: " + pd[0]);
+    doc.text(378, 110, "DOB: ");
+    doc.text(428, 110, pd[1]);
+    doc.text(30, 140, "NHS Number: " + pd[2]);
+    doc.text(342, 140, "GP Name:");
+    doc.text(428, 140, "Afsana Bhuiya");
+    doc.text(30, 170, "HTN: " + pd[3]);
+    doc.text(300, 170, "Heart Arrythmia: ");
+    doc.text(428, 170, pd[4]);
+    doc.text(30, 200, "Medical Info: ");
+    lines = doc.setFont(font[0], font[1]).splitTextToSize(pd[5], 450)
+    doc.text(50, 230, lines)
+    doc.setFont("helvetica");
+
+
+    //Detail table
+    doc.setFontType("bold");
+    doc.text(30, 300, "Reading Details");
+    doc.text(30, 330, "Date");
+    doc.text(100, 330, "Time");
+    doc.text(170, 330, "Systole");
+    doc.text(270, 330, "Diastole");
+    doc.text(375, 330, "Heart Rate");
+
+    var vSet = 360;
+    doc.setFontType("normal");
+    for (var k = 0; k < 1; k++) {
+        for (var i = 0; i < s.length; i++) {
+            getDateInfo(i, dates, times);
+            var dd = day + " " + monthNames[month];
+            var tt = hours + ":" + minutes
+            doc.text(30, vSet, dd);
+            doc.text(100, vSet, tt);
+            doc.text(185, vSet, String(s[i]));
+            doc.text(289, vSet, String(d[i]));
+            doc.text(400, vSet, String(p[i]));
+            vSet += 30;
+            if (vSet >= 840) {
+                doc.addPage();
+                vSet = 30;
+            }
+        }
+    }
+    if (vSet > 660) {
+        doc.addPage();
+        vSet = 30;
+    } else
+        vSet += 40;
+
+    //Summary Table
+    doc.setFontType("bold");
+    doc.text(30, vSet, "Reading Summary");
+    doc.text(30, vSet + 30, "Type");
+    doc.text(170, vSet + 30, "Mininum");
+    doc.text(270, vSet + 30, "Maxinum");
+    doc.text(370, vSet + 30, "Average");
+    vSet += 60;
+    doc.setFontType("normal");
+    doc.text(30, vSet, "Systole:");
+    doc.text(30, vSet + 30, "Diastole:");
+    doc.text(30, vSet + 60, "Heart Rate:");
+
+    var hSet = 185;
+    for (var m = 0; m < 3; m++) {
+        doc.text(hSet, vSet, String(parseInt(min_max_avg[m * 3])));
+        doc.text(hSet + 100, vSet, String(parseInt(min_max_avg[m * 3 + 1])));
+        doc.text(hSet + 200, vSet, String(parseInt(min_max_avg[m * 3 + 2])));
+        vSet += 30;
+        hSet = 189;
     }
 
-    $('#bp-table2').append($(content2)).trigger('create');
-    $("#main").css("background-color", "white");;
-    var content = $("#records-footer").html();
-    $('#toggle-progress-3').hide("fast", function() {
-        clearInterval(sw3_interval);
-        sendEmail(content);
-        $("#send-button").removeAttr('disabled');
-    });
-    console.log("Ready to generate report");
-    doc.addHTML(document.getElementById("rpage"), function(canvas, w, h) {
-        $("#send-button").removeAttr('disabled');
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-            fs.URL = fileSystem.root.toURL();
-            fileSystem.root.getFile("test.pdf", {
-                create: true,
-                exclusive: false
-            }, function(entry) {
-                entry.createWriter(function(writer) {
-                    writer.onwrite = function(evt) {
-                        file.URL = entry.toURL();
-                        console.log("Report saved" + doc.output("datauristring"));
-                        $('#toggle-progress-3').hide("fast", function() {
-                            clearInterval(sw3_interval);
-                            sendEmail();
-                        });
-
-                        fileSystem.root.getFile("test2.pdf", {
-                            create: true,
-                            exclusive: false
-                        }, function(entry) {
-                            entry.createWriter(function(writer) {
-                                writer.onwrite = function(evt) {
-                                    file.URL = entry.toURL();
-                                    $('#toggle-progress-3').hide("fast", function() {
-                                        clearInterval(sw3_interval);
-                                        sendEmail();
-                                    });
-                                };
-                                writer.write(doc.output("datauristring"));
-                            }, function(error) {
-                                console.log(error);
-                            });
-
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    };
-                    writer.write(doc.output("arraybuffer"));
-                }, function(error) {
-                    console.log(error);
-                });
-
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+        fs.URL = fileSystem.root.toURL();
+        fileSystem.root.getFile("test.pdf", {
+            create: true,
+            exclusive: false
+        }, function(entry) {
+            entry.createWriter(function(writer) {
+                writer.onwrite = function(evt) {
+                    file.URL = entry.toURL();
+                    console.log("Report saved");
+                    $('#toggle-progress-3').hide("fast", function() {
+                        clearInterval(sw3_interval);
+                        sendEmail(entry.toURL());
+                        $("#send-button").removeAttr('disabled');
+                    });
+                };
+                writer.write(doc.output("arraybuffer"));
             }, function(error) {
                 console.log(error);
             });
-        }, function(event) {
-            console.log(event.target.error.code);
-        });
 
-        //var string = doc.output('datauristring');
-        //$('.preview-pane').attr('src', string);
+        }, function(error) {
+            console.log(error);
+        });
+    }, function(event) {
+        console.log(event.target.error.code);
     });
 }

@@ -51,14 +51,12 @@ var personalDetais = new Array();
 personalDetais[0] = "Viraj Makol";
 personalDetais[1] = "12/05/1995";
 personalDetais[2] = "92147637523";
-personalDetais[3] = "";
-personalDetais[4] = "P Garcha";
-personalDetais[5] = "I am a fit and healthy boy.";
-personalDetais[6] = "No";
-personalDetais[7] = "No";
+personalDetais[3] = "No";
+personalDetais[4] = "No";
+personalDetais[5] = "No medicine taken. Never had this before. Hopefully will never have it. Wish those who have it to live in a happy life now and then.";
 
 $(document).ready(function() {
-    generatePDFReport(dates, times, diastolic, systolic, pulse);
+    generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
 });
 
 var month;
@@ -100,23 +98,9 @@ function sendEmail(fullPath) {
     window.plugins.emailComposer.showEmailComposerWithCallback(sendEmail_Result, subject, body, toRecipients, ccRecipients, bccRecipients, isHtml, attachments, attachmentsData);
 }
 
-function generatePDFReport(dates, times, d, s, p) {
-    // @TODO: Need to simplify this demo
-
-    var doc = new jsPDF('p', 'pt', 'a4');
-
-    //For Table 1
-    var content = "<tr>";
-    for (var i = 0; i < systolic.length; i++) {
-        getDateInfo(i);
-        content += '<td>' + day + " " + monthNames[month] + '</td>';
-        content += '<td>' + hours + ":" + minutes + '</td>';
-        content += '<td>' + systolic[i] + '</td>';
-        content += '<td>' + diastolic[i] + '</td>';
-        content += '<td>' + pulse[i] + '</td>';
-        content += '</tr>';
-    }
-    $('#bp-table1').append($(content)).trigger('create');
+function generatePDFReport(dates, times, d, s, p, pd) {
+    // @TODO: The dates are only half in chronically desending order 
+    //        (true file wise, false individual record wise)
 
     //For summary date range and number of readings
     getDateInfo(0);
@@ -166,21 +150,94 @@ function generatePDFReport(dates, times, d, s, p) {
         min_max_avg.push(min, max, avg);
     }
 
-    var columnHeadings = new Array("Syst BP", "Diast BP", "Pulse")
-    var content2 = "";
-    for (var m = 0; m < columnHeadings.length; m++) {
-        content2 += '<tr>';
-        content2 += '<td>' + columnHeadings[m] + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3]) + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3 + 1]) + '</td>';
-        content2 += '<td>' + parseInt(min_max_avg[m * 3 + 2]) + '</td>';
-        content2 += '</tr>';
-    }
-    $('#bp-table2').append($(content2)).trigger('create');
+    //pdf generator
+    var doc = new jsPDF('p', 'pt', 'a4'),
+        font = ['Helvetica', ''];
+    doc.setFont(font[0], font[1]);
 
-    doc.addHTML(document.getElementById("rpage"), function() {
-        //var string = doc.output('datauristring');
-        //$('.preview-pane').attr('src', string);
-        doc.save();
-    });
+    //Header
+    doc.setFontType("bold");
+    doc.text(265, 20, "BPEase");
+    doc.text(210, 50, "Blood Pressure Report");
+
+    doc.setFontSize(13);
+    //Personal Info
+    doc.text(30, 80, "Personal Detais");
+    doc.setFontType("normal");
+    doc.text(30, 110, "Patient Name: " + personalDetais[0]);
+    doc.text(378, 110, "DOB: ");
+    doc.text(428, 110, personalDetais[1]);
+    doc.text(30, 140, "NHS Number: " + personalDetais[2]);
+    doc.text(342, 140, "GP Name:");
+    doc.text(428, 140, "Afsana Bhuiya");
+    doc.text(30, 170, "HTN: " + personalDetais[3]);
+    doc.text(300, 170, "Heart Arrythmia: ");
+    doc.text(428, 170, personalDetais[4]);
+    doc.text(30, 200, "Medical Info: ");
+    lines = doc.setFont(font[0], font[1]).splitTextToSize(personalDetais[5], 450)
+    doc.text(50, 230, lines)
+    doc.setFont("helvetica");
+
+
+    //Detail table
+    doc.setFontType("bold");
+    doc.text(30, 300, "Reading Details");
+    doc.text(30, 330, "Date");
+    doc.text(100, 330, "Time");
+    doc.text(170, 330, "Systole");
+    doc.text(270, 330, "Diastole");
+    doc.text(375, 330, "Heart Rate");
+
+    var vSet = 360;
+    doc.setFontType("normal");
+    for (var k = 0; k < 1; k++) {
+        for (var i = 0; i < systolic.length; i++) {
+            getDateInfo(i);
+            var d = day + " " + monthNames[month];
+            var t = hours + ":" + minutes
+            doc.text(30, vSet, d);
+            doc.text(100, vSet, t);
+            doc.text(185, vSet, String(systolic[i]));
+            doc.text(289, vSet, String(diastolic[i]));
+            doc.text(400, vSet, String(pulse[i]));
+            vSet += 30;
+            if (vSet >= 840) {
+                doc.addPage();
+                vSet = 30;
+            }
+        }
+    }
+    if (vSet > 660) {
+        doc.addPage();
+        vSet = 30;
+    } else
+        vSet += 40;
+
+    //Summary Table
+    doc.setFontType("bold");
+    doc.text(30, vSet, "Reading Summary");
+    doc.text(30, vSet + 30, "Type");
+    doc.text(170, vSet + 30, "Mininum");
+    doc.text(270, vSet + 30, "Maxinum");
+    doc.text(370, vSet + 30, "Average");
+    vSet += 60;
+    doc.setFontType("normal");
+    doc.text(30, vSet, "Systole:");
+    doc.text(30, vSet + 30, "Diastole:");
+    doc.text(30, vSet + 60, "Heart Rate:");
+
+    var hSet = 185;
+    for (var m = 0; m < 3; m++) {
+        doc.text(hSet, vSet, String(parseInt(min_max_avg[m * 3])));
+        doc.text(hSet + 100, vSet, String(parseInt(min_max_avg[m * 3 + 1])));
+        doc.text(hSet + 200, vSet, String(parseInt(min_max_avg[m * 3 + 2])));
+        vSet += 30;
+        hSet = 189;
+    }
+
+
+    var string = doc.output('datauristring');
+    $('.preview-pane').attr('src', string);
+    //arraybuffer
+    doc.save();
 }

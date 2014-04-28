@@ -1,3 +1,4 @@
+
 .subnote{
     font-size: 14px;
 }
@@ -65,7 +66,7 @@ input[type="button"]{
 }
 
 .btn-white{
-	color:#FFFFFF;
+    color:#FFFFFF;
 }
 
 .brand{
@@ -131,15 +132,30 @@ input[type="button"]{
     line-height: 25px!important;
 }
 
+.panel-heading{
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .panel-body{
     text-align: left;
 
 }
 .panel-body h4{
     text-align: center;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.panel-body h4:first-child{
+    margin-top:0;
 }
 
-#toggle-progress,#toggle-progress-2,#toggle-progress-3{
+#information-title{
+    margin-bottom: 30px;
+}
+
+#toggle-progress,#toggle-progress-2,#toggle-progress-3,.toggle-progress{
     background-color:rgba(240,255,255,0.8);
     border:1px solid black;
     width:150px;
@@ -187,6 +203,10 @@ width: 100%;
 height: 100%;
 background-color: white;
 left:0px;
+}
+
+.container{
+    position:relative;
 }
 
 .content-box{

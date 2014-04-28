@@ -29,10 +29,10 @@
             <div data-role="content" id = "main" align = "center">
                 <div id="main-box">
                     <img src="img/bpeaseblue.png" alt="bpeaseblue.png" id="logo" width="110px" height="150px" >
-                    <h1 align = "center">Welcome</h1>
-                    <a class = "btn btn-info btn-white remove" type = "button" id="register-button" href="#userinfo-1">Register</a>
-                    <a class = "btn btn-info btn-white remove" type = "button" id="menu-button" href="#mainMenu">Menu</a>
-                    <a class = "btn btn-info btn-white" type = "button" href="#information" id="info-button">Information</a>
+                    <h1 align = "center">WELCOME</h1>
+                    <a class = "btn btn-info btn-white remove" type = "button" id="register-button" href="#userinfo-1">REGISTER</a>
+                    <a class = "btn btn-info btn-white remove" type = "button" id="menu-button" href="#mainMenu">MENU</a>
+                    <a class = "btn btn-info btn-white" type = "button" href="#information" id="info-button">INFORMATION</a>
                 </div>
                 <div id="debug" >
                     <!-- <div id="deviceProperties"></div> -->
@@ -132,11 +132,12 @@
                 </div>
             </nav>
             <div data-role="content" class="menu">
-                <a class = "btn btn-info btn-block normal remove" type = "button" href="#modeSelection" id="modeSelection-btn">Select a Mode</a>
-                <a class = "btn btn-info btn-block normal remove" type = "button" href="#current-activity" id="currentActivity-btn">Current Activity</a>
-                <a class = "btn btn-info btn-block normal" type = "button" href="#records">View Records</a>
-                <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info" id="pi-view-btn">Personal Info</a>
-                <a class = "btn btn-info btn-block normal" type = "button" href="#information">Information</a>
+                <h2 class = "text-info" style="margin-bottom:30px;">Main Menu</h2>
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#modeSelection" id="modeSelection-btn">SELECT A MODE</a>
+                <a class = "btn btn-info btn-block normal remove" type = "button" href="#current-activity" id="currentActivity-btn">CURRENT ACTIVITY</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#records">VIEW RECORDS</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#personal-info" id="pi-view-btn">PERSONAL INFO</a>
+                <a class = "btn btn-info btn-block normal" type = "button" href="#information">INFORMATION</a>
             </div>
             <div data-role="footer">
                 <h4>BP Ease Demo</h4>
@@ -153,9 +154,9 @@
                 </div>
             </nav>
             <div class="container" style = "position:relative; top:60px;margin: 0px auto;">
-                <h3 class = "text-info">Select a mode:</h3>
+                <h3 class = "text-info">SELECT A MODE:</h3>
                 <a type="text" class="btn btn-info btn-mode" href="#setupHBPM">HBPM Mode</a><br>
-                <a type="text" class="btn btn-info btn-mode" href="#bluetooth-measure" id="free-mode-btn" disabled>Free Mode <span class="subnote">with bluetooth</span></a>
+                <a type="text" class="btn btn-info btn-mode" href="#bluetooth-measure" id="free-mode-btn" >Free Mode <span class="subnote">with bluetooth</span></a>
                 <a type="text" class="btn btn-info btn-mode" href="#manual-measure" id="free-mode-btn">Free Mode <span class="subnote">manual mode</span></a>
             </div>
         </div>
@@ -189,17 +190,17 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Morning reminder:</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control hbpm-timepicker" name="morning-reminder" id="morning-reminder" class="needsclick" data-date-format="HH:mm">
+                            <input type="text" class="reminder needsclick" name="morning-reminder" id="morning-reminder" readonly/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Evening reminder:</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control hbpm-timepicker" name="evening-reminder" id="evening-reminder" class="needsclick" data-date-format="HH:mm">
+                            <input type="text" class="reminder needsclick" name="evening-reminder" id="evening-reminder" readonly/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle" disabled/>
+                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle"/>
                         <label for="bluetooth-toggle" style="color: #3a87ad;">Use bluetooth</label>
                     </div>
                     <a class = "btn btn-info btn-back" type = "button" href ="" data-rel="back" id="button-back">Back</a>
@@ -226,13 +227,18 @@
             </nav>
             <div data-role="content" class="container">
                 <div style = "margin: 15px">
+                    <div id="warm" style="padding-bottom:20px;text-align:left;"><span style="color:rgb(209,63,42);">Warm advice:</span> Please do not forget to press the start button first before each measurement :-) Save button will show when measurements are all completed. <br><br>Also, please have at least <span style="color:rgb(72,136,239);">1 minute</span> apart between two measurements, and remain relaxed seated during measurement. Have a good day!</div>
                     <div class="panel panel-info" id="reading-1">
                         <div class="panel-heading text-info">Reading 1:</div>
                         <div class="panel-body text-info">
-                            <p>Time/Date: </p><span id="time1"></span>
-                            <p>Diastolic: </p><span id="diastolic1"></span>
-                            <p>Systolic: </p><span id="systolic1"></span>
-                            <p>Pulse: </p><span id="pulse1"></span>
+                            <p>Time/Date: <span id="time1"></span></p>
+                            <p>Diastolic: <span id="diastolic1"></span></p>
+                            <p>Systolic: <span id="systolic1"></span></p>
+                            <p>Pulse: <span id="pulse1"></span></p>
+                            <div id="toggle-progress-4" class="toggle-progress">
+                    <canvas width="27" height="27" id="sw-canvas-4"></canvas>
+                    <span>Turning on...</span>
+                </div>
                             <div align = "center">
                                 <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-1">Start
                                 </a>
@@ -242,18 +248,22 @@
                     <div class="panel panel-info" id="reading-2">
                         <div class="panel-heading text-info">Reading 2:</div>
                         <div class="panel-body text-info">
-                            <p>Time/Date: </p><span id="time2"></span>
-                            <p>Diastolic: </p><span id="diastolic2"></span>
-                            <p>Systolic: </p><span id="systolic2"></span>
-                            <p>Pulse: </p><span id="pulse2"></span>
+                            <p>Time/Date: <span id="time2"></span></p>
+                            <p>Diastolic: <span id="diastolic2"></span></p>
+                            <p>Systolic: <span id="systolic2"></span></p>
+                            <p>Pulse: <span id="pulse2"></span></p>
+                            <div id="toggle-progress-5" class="toggle-progress">
+                    <canvas width="27" height="27" id="sw-canvas-5"></canvas>
+                    <span>Turning on...</span>
+                </div>
                             <div align = "center">
-                                <a type="text" class="btn btn-info btn-measure" href="#" id="measurement-button-2">Start
+                                <a type="text" class="btn btn-info btn-measure remove " href="#" id="measurement-button-2">Start
                                 </a>
                             </div>
                         </div>
                     </div>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back" style = "width: 47%">Discard</a>
-                    <a  class = "btn btn-info" type = "button" href ="#mainMenu" style = "width: 47%">Save</a>
+                    <a  class = "btn btn-info remove" type = "button" href ="#mainMenu" style = "width: 47%" id="save-bt-btn">Save</a>
                 </div>
             </div>
         </div>
@@ -278,7 +288,7 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Time:</label>
                         <div class="col-xs-8">
-                            <input type="text" class="form-control hbpm-timepicker" name="time-manual" id="time3" data-date-format="HH:mm">
+                            <input type="text" class="reminder needsclick" name="time-manual" id="time3" readonly/>
                         </div>
                     </div>
                     <div class="row">
@@ -289,28 +299,28 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Diatolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="diastole3" type="number" value="66">
+                            <input class="form-control" id="diastole3" type="number" value="">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="diastole4" type="number" value="66">
+                            <input class="form-control" id="diastole4" type="number" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Systolic:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="systole3" type="number" value="66">
+                            <input class="form-control" id="systole3" type="number" value="">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="systole4" type="number"value="66">
+                            <input class="form-control" id="systole4" type="number"value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Pulse:</label>
                         <div class="col-xs-4">
-                            <input class="form-control" id="pulse3" type="number" value="66">
+                            <input class="form-control" id="pulse3" type="number" value="">
                         </div>
                         <div class="col-xs-4">
-                            <input class="form-control" id="pulse4" type="number"value="66">
+                            <input class="form-control" id="pulse4" type="number"value="">
                         </div>
                     </div>
                     <a  class = "btn btn-info btn-back" type = "button" href ="#mainMenu" id="button-back">Discard</a>
@@ -404,7 +414,7 @@
             </nav>
             <div data-role="content" class="container">
                 <form class="form-horizontal" role="form">
-                    <h2 class="text-info" style="margin-top:30px;">Personal Information</h2>
+                    <h2 class="text-info" style="margin-bottom:30px;">Personal Information</h2>
                     <div class="form-group">
                         <label class="col-xs-6 control-label text-info">Name:</label>
                         <div class="col-xs-6 form-control-static text-info" id = "pi-name">
@@ -435,7 +445,7 @@
                         <div class="col-xs-6 form-control-static text-info" id="pi-a">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom:30px !important;">
                         <label class="col-xs-6 control-label text-info">Medication Taken:</label>
                         <p class="col-xs-6 form-control-static text-info" id="pi-medication"></p>
                     </div>
@@ -454,12 +464,12 @@
                 </div>
             </nav>
             <div data-role="content" class="container">
-                <h2 class="text-info">Information</h2>
+                <h2 class="text-info" id="information-title">Information</h2>
                 <div class="panel panel-info" id="instructions">
                     <div class="panel-heading text-info">Instructions</div>
                     <div class="panel-body text-info">
                         <h4>Using Bluetooth</h4>
-                        <p> Please read this thoroughly before proceed to execute the pairing instruction!!! </p>
+                        <p style="color:rgb(209,63,42);"> Please read this thoroughly before proceed to execute the pairing instruction!!! </p>
                         <p>1 - Exit the app and go to your settings to enable Bluetooth.<br> 2 - Take out the battery, if not already removed, from your blood pressure monitor. Insert them back in. Turning on the device is optional. 2 - Search for devices and connect to your Bluetooth enabled blood pressure monitor. Its name should start with "A&amp;D BP". <br>3 - Wait until it becomes a paired device. <br>4 - Your A&amp;D Blood Pressure Monitor will now be able to use its bluetooth enabled measuring method.
                         <h4>Using Home Blood Pressure Monitoring (HBPM)</h4>
                         <p>1 - Select Mode Selection on the main menu and then select HBPM Mode.<br>2 - Setup the start date, end date and the times you wish to receive reminders to take a measurement.<br>3 - Select “Use Bluetooth” if you wish to take a measurement via Bluetooth (See ‘Using Bluetooth’ section)<br>4 - Click next and take measurements. You must be seated.<br>5 - For each blood pressure recording, two consecutive measurements are taken, at least 1 minute apart<br>6 - Blood pressure should be recorded twice daily, ideally in the morning and evening 7 - Blood pressure recording continues for at least 4 days, ideally for 7 days.<br>8 - To edit the settings of your current HBPM course select Current Activity in the main menu, then select Edit Setup.<br>9 - To take another measurement in your current HBPM course select Current Activity in the main menu then select Take a Measurement.<br></p>
@@ -470,15 +480,12 @@
                     </div>
                 </div>
                 <div class="panel panel-info" id="disclaimer">
-                    <div class="panel-heading text-info">Disclaimer</div>
+                    <div class="panel-heading text-info">LEGAL &amp; DISCLAIMER:</div>
                     <div class="panel-body text-info">
-                        The best use for this app is for GPs, who are either fully self employed or have a mixed income. Though there is scope for other specialty doctors and self employed people to use this app (as the field can be tailored to the user) - the recommendations are for the former group.<br><br>
-                        This app is designed to be used to assist the tracking of income and expenditure as well as provided enhanced features such as reminders, photo evidence and help with pension calculations for NHS pensionable incomes earned. The user would still need to do their locum forms if they are paying into a NHS pension.<br><br>
-                        By using the app, the user still has to take full responsibility of their accounts. They would be expected to monitor their own data and declare them to the appropriate bodies in their country of use (eg HMRC in UK).<br><br>
-                        It is recommended the user reviews their income and expenditure on regular intervals.<br><br>
-                        The spreadsheet is designed to be utilised straight away and carries all the data that the user inputs. The data on the spreadsheet will be a reflection of how the user manages their entries in the app.<br><br>
-                        The app makers cannot replace an accountant’s job and it is recommended the user utilises an accountant as per normal.<br><br>
-                        It is also up to the user to keep records of their documentation as per HMRC guidance.
+                        Blood pressure is a physiological measurement that if raised above a set number for a period of time is a risk factor for cardiovascular disease. 
+                        <br><br>This BP EASE is designed to assist both the patient and the the general practitioner in recording and monitoring the blood pressure of the user. It also has a higher function mainly the Home Blood Pressure mode - that can be used to help diagnose hypertension in conjunction with their GP.
+                        <br><br>The APP is can be used to monitor your BP for your information and if you wish to share this with your GP it is designed to produced reports for this purpose.
+                        <br><br>This app is not a substitute for medical advice or monitoring and you should always consult your regular doctor for further medical advice .
                     </div>
                 </div>
                 <div class="panel panel-info" id="reading-2">
@@ -502,7 +509,7 @@
             </nav>
             <div data-role="content" class="container">
                 <form class="form-horizontal" role="form" style = "margin: 15px">
-                    <h2 class = "text-info" style="margin-bottom:20px;">Your Current Activity</h2>
+                    <h2 class = "text-info" style="margin-bottom:30px;">Your Current Activity</h2>
                     <div class="form-group">
                         <label class="col-xs-4 control-label text-info">Start date:</label>
                         <div class="col-xs-8 form-control-static text-info" id="startdate-txt">
@@ -522,7 +529,7 @@
                         <div class="col-xs-8 form-control-static text-info" id="evening-reminder-txt"></div>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle-2" disabled/>
+                        <input type="checkbox" name="checkbox-1" id="bluetooth-toggle-2"/>
                         <label for="bluetooth-toggle-2" style="color: #3a87ad;">Use bluetooth</label>
                     </div>
                 </form>
@@ -539,22 +546,20 @@
         </div>
         <script src="phonegap.js"></script>
         <script src="js/vendor/jquery.min.js"></script>
-        <script src="js/vendor/html2canvas.js"></script>
-        <script src="js/vendor/jspdf.debug.js"></script>
-        <script src="js/report.js"></script>
         <script src="js/vendor/jquery.mobile.min.js"></script>
+        <script src="js/vendor/html2canvas.js"></script>
+        <script src="js/vendor/jspdf.js"></script>
+        <script src="js/report.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/bootstrap-datepicker.js"></script>
-        <script src="js/vendor/moment.min.js"></script>
-        <script src="js/vendor/bootstrap-datetimepicker.js"></script>
         <script src="js/vendor/fastclick.js"></script>
         <script src="js/settings.js"></script>
         <script src="js/welcome.js"></script>
         <script src="js/userinfo.js"></script>
         <script src="js/menu.js"></script>
         <script src="js/mode.js"></script>
-        <script src="js/hbpm.js"></script>
         <script src="js/manual.js"></script>
+        <script src="js/hbpm.js"></script>
         <script src="js/record.js"></script>
         <script src="js/index.js"></script>
         <script type="text/javascript">

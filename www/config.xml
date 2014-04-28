@@ -26,7 +26,6 @@
 
 
     <gap:plugin name="com.jcjee.plugins.emailcomposer"/>
-    <gap:plugin name="com.megster.cordova.bluetoothserial"/>
     <gap:plugin name="de.appplant.cordova.plugin.local-notification"/>
     <gap:plugin name="org.apache.cordova.device"/>
     <gap:plugin name="org.apache.cordova.dialogs"/>
