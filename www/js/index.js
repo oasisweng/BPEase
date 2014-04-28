@@ -55,6 +55,7 @@ var app = {
                 }
                 $.mobile.navigate("#current-activity");
             };
+            logit("Finished local notification plugin");
 
             //generatePDFReport(dates, times, diastolic, systolic, pulse, personalDetais);
 
@@ -98,18 +99,20 @@ var app = {
             // });
 
             //bluetooth health demo
-            logit("Bluetooth health demo");
-            bt.connect(function() {
-                alert("data");
-            }, function(error) {
-                logit("BHD demo failed " + error);
+            $("#info-button").click(function() {
+                logit("Bluetooth health demo");
+                bt.xx(function(data) {
+                    alert(data);
+                }, function(error) {
+                    logit("BHD demo failed " + error);
+                });
+                bt.connect("abc", function() {
+                    alert("data");
+                }, function(error) {
+                    logit("BHD demo failed " + error);
+                });
             });
-            logit("ANOTHER DEMO");
-            bt.xx(function(data) {
-                alert(data);
-            }, function(error) {
-                logit("BHD demo failed " + error);
-            });
+            logit("Finished linking info button");
 
             //==============================
             // Datepicker

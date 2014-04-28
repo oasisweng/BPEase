@@ -14,21 +14,21 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module src="www/bluetoothSerial.js" name="bluetoothHealth">
+    <js-module src="www/bluetoothSerial.js" name="HDPBluetoothSerial">
         <clobbers target="window.bt" />
     </js-module>
 
     <platform name="android">
 
         <config-file target="res/xml/config.xml" parent="/widget">
-            <feature name="BluetoothHealth">
-                <param name="android-package" value="com.cod.cordova.BluetoothSerial"/>
+            <feature name="HDPBluetoothSerial">
+                <param name="android-package" value="com.cod.cordova.HDPBluetoothSerial"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/cod/cordova/BluetoothSerial.java"
+        <source-file src="src/android/com/cod/cordova/HDPBluetoothSerial.java"
             target-dir="src/com/cod/cordova"/>
-        <source-file src="src/android/com/cod/cordova/BluetoothSerialService.java"
+        <source-file src="src/android/com/cod/cordova/HDPBluetoothSerialService.java"
             target-dir="src/com/cod/cordova"/>
         <source-file src="src/android/com/cod/cordova/BluetoothHDPService.java"
         target-dir="src/com/cod/cordova"/>
@@ -37,6 +37,12 @@
         <source-file src="src/android/com/cod/cordova/HDPdataParser.java"
         target-dir="src/com/cod/cordova"/>
 
+
+        <!-- kludge for 2.9 -->
+        <source-file src="src/android/org/apache/cordova/api/Dummy.java"
+            target-dir="src/org/apache/cordova/api"/>
+
+            
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.BLUETOOTH" />
             <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />

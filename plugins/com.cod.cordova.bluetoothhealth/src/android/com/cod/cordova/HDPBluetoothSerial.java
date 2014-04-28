@@ -11,8 +11,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,7 +20,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import com.cod.cordova.numericBP;
 
@@ -45,12 +42,12 @@ import java.util.Set;
 /**
  * PhoneGap Plugin for Serial Communication over Bluetooth
  */
-public class BluetoothSerial extends CordovaPlugin {
+public class HDPBluetoothSerial extends CordovaPlugin {
 
     // actions
     private static final String LIST = "list";
     private static final String CONNECT = "connect";
-    private static final String CONNECTHDP = "connecthdp";
+    private static final String XX = "xx";
     private static final String CONNECT_INSECURE = "connectInsecure";
     private static final String DISCONNECT = "disconnect";
     private static final String WRITE = "write";
@@ -68,7 +65,7 @@ public class BluetoothSerial extends CordovaPlugin {
     private CallbackContext dataAvailableCallback;
 
     private BluetoothAdapter bluetoothAdapter;
-    private BluetoothSerialService bluetoothSerialService;
+    private HDPBluetoothSerialService bluetoothSerialService;
 
     // Debugging
     private static final String TAG = "BluetoothSerial";
@@ -169,48 +166,6 @@ public class BluetoothSerial extends CordovaPlugin {
         }
     };
 
-    // Sends a message to {@link BluetoothHDPService}.
-    private void SendMessage(int what, int value) {
-        if (mHealthService == null) {
-            Log.d(TAG, "Health Service not connected.");
-            return;
-        }
-
-        try {
-            Log.d(TAG, "Sending message {what:" + what + ",value:" + value);
-            mHealthService.send(Message.obtain(null, what, value, 0));
-        } catch (RemoteException e) {
-            Log.w(TAG, "Unable to reach service.");
-            e.printStackTrace();
-        }
-    }
-
-    private final Messenger mMessenger = new Messenger(mIncomingHandler);
-
-    public void actOnActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i(TAG, "activity result " + requestCode);
-        switch (requestCode) {
-        case REQUEST_ENABLE_BT:
-            if (resultCode == Activity.RESULT_OK) {
-                BTinit();
-            } else {
-                // unable to connect to bt, switch it to manual mode
-                connectCallback.error(BLUETOOTH_IS_OFF);
-                return;
-            }
-        }
-    }
-
-    private void BTinit() {
-        // Starts health service.
-        Log.i(TAG, "btinit");
-        Intent intent = new Intent(act, BluetoothHDPService.class);
-        Log.i(TAG, "btinit, new intent set up");
-        act.startService(intent);
-        act.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
-    }
-
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder service) {
             mHealthServiceBound = true;
@@ -237,14 +192,14 @@ public class BluetoothSerial extends CordovaPlugin {
     public boolean execute(String action, CordovaArgs args,
             CallbackContext callbackContext) throws JSONException {
 
-        Log.d(TAG, "action = " + action);
+        Log.i(TAG, "action= " +action+" Is ConnectHDP? " + action.equals("xx"));
 
         if (bluetoothAdapter == null) {
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         }
 
         if (bluetoothSerialService == null) {
-            bluetoothSerialService = new BluetoothSerialService(mHandler);
+            bluetoothSerialService = new HDPBluetoothSerialService(mHandler);
         }
 
         boolean validAction = true;
@@ -252,6 +207,24 @@ public class BluetoothSerial extends CordovaPlugin {
         if (action.equals(LIST)) {
 
             listBondedDevices(callbackContext);
+
+        } else if (action.equals("xx")) {
+
+            Log.i(TAG,"CONNECTHDP STARTS");
+            connectCallback = callbackContext;
+            act = this.cordova.getActivity();
+            Log.i(TAG,"CORDOVA ACTIVITY GET");
+            if (!bluetoothAdapter.isEnabled()) {
+                Intent enableIntent = new Intent(
+                        BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                act.startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            } else {
+                BTinit();
+            }
+            Log.i(TAG,"Init is successful.");
+            SendMessage(BluetoothHDPService.MSG_REG_HEALTH_APP,
+                    HEALTH_PROFILE_SOURCE_DATA_TYPE);
+            Log.i(TAG,"Message is sent to pair with BPM.");
 
         } else if (action.equals(CONNECT)) {
 
@@ -316,7 +289,7 @@ public class BluetoothSerial extends CordovaPlugin {
 
         } else if (action.equals(IS_CONNECTED)) {
 
-            if (bluetoothSerialService.getState() == BluetoothSerialService.STATE_CONNECTED) {
+            if (bluetoothSerialService.getState() == HDPBluetoothSerialService.STATE_CONNECTED) {
                 callbackContext.success();
             } else {
                 callbackContext.error("Not connected.");
@@ -327,22 +300,6 @@ public class BluetoothSerial extends CordovaPlugin {
             buffer.setLength(0);
             callbackContext.success();
 
-        } else if (action.equals(CONNECTHDP)) {
-            Log.i(TAG,"CONNECTHDP STARTS");
-            connectCallback = callbackContext;
-            act = this.cordova.getActivity();
-            Log.i(TAG,"CORDOVA ACTIVITY GET");
-            if (!bluetoothAdapter.isEnabled()) {
-                Intent enableIntent = new Intent(
-                        BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                act.startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-            } else {
-                BTinit();
-            }
-            Log.i(TAG,"Init is successful.");
-            SendMessage(BluetoothHDPService.MSG_REG_HEALTH_APP,
-                    HEALTH_PROFILE_SOURCE_DATA_TYPE);
-            Log.i(TAG,"Message is sent to pair with BPM.");
         } else {
 
             validAction = false;
@@ -358,6 +315,48 @@ public class BluetoothSerial extends CordovaPlugin {
         if (bluetoothSerialService != null) {
             bluetoothSerialService.stop();
         }
+    }
+
+    // Sends a message to {@link BluetoothHDPService}.
+    private void SendMessage(int what, int value) {
+        if (mHealthService == null) {
+            Log.d(TAG, "Health Service not connected.");
+            return;
+        }
+
+        try {
+            Log.d(TAG, "Sending message {what:" + what + ",value:" + value);
+            mHealthService.send(Message.obtain(null, what, value, 0));
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to reach service.");
+            e.printStackTrace();
+        }
+    }
+
+    private final Messenger mMessenger = new Messenger(mIncomingHandler);
+
+    public void actOnActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "activity result " + requestCode);
+        switch (requestCode) {
+        case REQUEST_ENABLE_BT:
+            if (resultCode == Activity.RESULT_OK) {
+                BTinit();
+            } else {
+                // unable to connect to bt, switch it to manual mode
+                connectCallback.error(BLUETOOTH_IS_OFF);
+                return;
+            }
+        }
+    }
+
+    private void BTinit() {
+        // Starts health service.
+        Log.i(TAG, "btinit");
+        Intent intent = new Intent(act, BluetoothHDPService.class);
+        Log.i(TAG, "btinit, new intent set up");
+        act.startService(intent);
+        act.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
     }
 
     private void listBondedDevices(CallbackContext callbackContext)
@@ -417,17 +416,17 @@ public class BluetoothSerial extends CordovaPlugin {
                 if (D)
                     Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
                 switch (msg.arg1) {
-                case BluetoothSerialService.STATE_CONNECTED:
+                case HDPBluetoothSerialService.STATE_CONNECTED:
                     Log.i(TAG, "BluetoothSerialService.STATE_CONNECTED");
                     notifyConnectionSuccess();
                     break;
-                case BluetoothSerialService.STATE_CONNECTING:
+                case HDPBluetoothSerialService.STATE_CONNECTING:
                     Log.i(TAG, "BluetoothSerialService.STATE_CONNECTING");
                     break;
-                case BluetoothSerialService.STATE_LISTEN:
+                case HDPBluetoothSerialService.STATE_LISTEN:
                     Log.i(TAG, "BluetoothSerialService.STATE_LISTEN");
                     break;
-                case BluetoothSerialService.STATE_NONE:
+                case HDPBluetoothSerialService.STATE_NONE:
                     Log.i(TAG, "BluetoothSerialService.STATE_NONE");
                     break;
                 }
@@ -450,7 +449,7 @@ public class BluetoothSerial extends CordovaPlugin {
 
     private void notifyConnectionLost(String error) {
         if (connectCallback != null) {
-            connectCallback.error(error);
+            connectCallback.error("Lost connection"+error);
             connectCallback = null;
         }
     }
