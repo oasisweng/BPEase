@@ -53,28 +53,28 @@ function validateResults(index1, index2) {
     var pass = true;
 
     if (time_v === "") {
-        alert("Time is empty");
+        alert("The field Time is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (date_v === "") {
-        alert("Date is empty");
+        alert("The field Date is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (diastole1_v === "") {
-        alert("Diastole Reading 1 is empty");
+        alert("The field Diastole Reading 1 is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (diastole2_v === "") {
-        alert("Diastole Reading 2 is empty");
+        alert("The field Diastole Reading 2 is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (systole1_v === "") {
-        alert("Systole Reading 1 is empty");
+        alert("The field Systole Reading 1 is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (systole2_v === "") {
-        alert("Systole Reading 2 is empty");
+        alert("The field Systole Reading 2 is either empty or has an invalid value. Please try again. If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (pulse1_v === "") {
-        alert("Pule Reading 1 is empty");
+        alert("The field Diastole Pulse Reading 1 is either empty or has an invalid value. Please try again. If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else if (pulse2_v === "") {
-        alert("pulse2 Reading 2 is empty");
+        alert("The field Pulse Reading 2 is either empty or has an invalid value. Please try again. If the same invalid value appears more than 2 times,please contact your GP immediately!");
         pass = false;
     } else {
         if (diastole1_v < 60 || diastole2_v < 60 || diastole1_v > 120 || diastole2_v > 120 || systole1_v < 80 || systole2_v < 80 || systole1_v > 220 || systole2_v > 220) {
