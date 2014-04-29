@@ -58,7 +58,7 @@ function validateResults(index1, index2) {
     } else if (date_v === "") {
         alert('The field Date is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!');
         pass = false;
-    } else if (diastole1_v === "") {
+    } else if (diastole1_v === "" || diastole1_v <) {
         alert('The field Diastole Reading 1 is either empty or has an invalid value. Please try again.If the same invalid value appears more than 2 times,please contact your GP immediately!');
         pass = false;
     } else if (diastole2_v === "") {
@@ -82,6 +82,8 @@ function validateResults(index1, index2) {
             pass = false;
         }
     }
+
+    
 
     return pass;
 }

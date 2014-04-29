@@ -294,3 +294,40 @@ $(document).delegate("#bluetooth-measure", "pageshow", function() {
         saveRecord(data_arr);
     });
 });
+
+
+
+
+//====================================
+//Code for checking date range
+//====================================
+ function checkDateRange(start, end) 
+   {
+        var startDate = Date.parse(start);
+        var endDate = Date.parse(end);
+        if (isNaN(startDate)) 
+        {
+            alert("The start date provided is not valid, please enter a valid date.");
+            return false;
+        }
+        if (isNaN(endDate)) 
+        {
+           alert("The end date provided is not valid, please enter a valid date.");
+           return false;
+        }
+        var difference = (endDate - startDate) / (86400000);
+        if (difference < 0) 
+        {
+          alert("The start date must come before the end date.");
+          return false;
+        }
+        if (difference < 4 || difference >7)
+        {
+          alert("The range must be at least 4 days or maximum 7 days.");
+          return false;
+        }
+   return true;
+}
+//====================================
+//Code for checking date range
+//====================================
